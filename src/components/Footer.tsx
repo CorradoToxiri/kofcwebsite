@@ -20,8 +20,7 @@ export default function Footer() {
               src="/kofc-horizontal-reversed.png"
               alt="Knights of Columbus"
               width={200}
-              height={48}
-              style={{ width: '200px', height: 'auto' }}
+              height={93}
             />
             <p style={{ margin: 0, color: '#F7C04A', fontFamily: 'var(--font-serif)', fontSize: '18px', fontWeight: 600, marginTop: '4px' }}>
               Presentation Council #6033
