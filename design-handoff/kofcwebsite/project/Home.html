@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Knights of Columbus · Presentation Council #6033 · Upper Saddle River, NJ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&amp;family=Source+Sans+3:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#003087;
+  --navy-dark:#001F5C;
+  --navy-deeper:#00164A;
+  --gold:#F2A900;
+  --gold-dark:#D89400;
+  --red:#C8102E;
+  --surface:#ffffff;
+  --surface-alt:#E8EEF5;
+  --surface-warm:#F6EFDC;
+  --ink:#1A1A1A;
+  --ink-soft:#2B3142;
+  --muted:#5A6478;
+  --border:#D9DEE5;
+  --border-strong:#B9C3D2;
+  --shadow-sm:0 1px 2px rgba(10,20,50,.06);
+  --shadow-card:0 2px 10px rgba(10,20,50,.07);
+  --shadow-lift:0 8px 24px rgba(10,20,50,.12);
+  --serif:"Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+  --sans:"Source Sans 3", "Source Sans Pro", -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  --maxw:1240px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.6;
+  color:var(--ink);
+  background:#fff;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:var(--navy);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---------- Layout helpers ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+section{padding:72px 0}
+@media (max-width:780px){section{padding:48px 0}}
+
+/* ---------- Headings ---------- */
+h1,h2,h3,h4{font-family:var(--serif);color:var(--navy);font-weight:600;letter-spacing:-.005em;margin:0}
+h1{font-size:54px;line-height:1.08}
+h2{font-size:34px;line-height:1.15}
+h3{font-size:22px;line-height:1.25}
+h4{font-size:17px;line-height:1.3;font-weight:600}
+.eyebrow{
+  font-family:var(--sans);
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--navy);
+  margin:0 0 14px;
+}
+.flourish{display:block;width:56px;height:4px;background:var(--gold);margin:14px 0 22px;border-radius:2px}
+.flourish.center{margin-left:auto;margin-right:auto}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--sans);font-weight:600;font-size:15px;
+  padding:13px 22px;border-radius:5px;border:2px solid transparent;
+  cursor:pointer;transition:background .15s, color .15s, border-color .15s, transform .15s;
+  text-decoration:none;line-height:1;
+}
+.btn .arrow{font-size:18px;line-height:1;transform:translateY(-1px)}
+.btn-primary{background:var(--gold);color:var(--navy-dark);border-color:var(--gold)}
+.btn-primary:hover{background:var(--gold-dark);border-color:var(--gold-dark);text-decoration:none}
+.btn-secondary{background:#fff;color:var(--navy);border-color:var(--navy)}
+.btn-secondary:hover{background:var(--navy);color:#fff;text-decoration:none}
+.btn-ghost{background:transparent;color:var(--navy);border-color:transparent;padding:8px 0}
+.btn-ghost:hover{color:var(--gold-dark);text-decoration:none}
+.btn-onnavy{background:var(--gold);color:var(--navy-dark);border-color:var(--gold)}
+.btn-onnavy:hover{background:#fff;color:var(--navy-dark);border-color:#fff}
+
+/* ---------- Top utility bar ---------- */
+.utility{background:var(--navy-deeper);color:#cfd6e8;font-size:13px}
+.utility .wrap{display:flex;justify-content:space-between;align-items:center;height:36px}
+.utility .left{display:flex;align-items:center;gap:18px}
+.utility .left .pill{background:rgba(242,169,0,.15);color:#F7C04A;border:1px solid rgba(242,169,0,.35);border-radius:999px;padding:3px 10px;font-size:11.5px;font-weight:600;letter-spacing:.04em}
+.utility .right{display:flex;gap:22px}
+.utility a{color:#cfd6e8}
+.utility a:hover{color:#fff;text-decoration:none}
+
+/* ---------- Header ---------- */
+.header{
+  background:linear-gradient(180deg,var(--navy-dark) 0%, var(--navy) 100%);
+  color:#fff;
+  border-bottom:3px solid var(--gold);
+}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;gap:32px;padding-top:18px;padding-bottom:18px}
+.brand{display:flex;align-items:center;gap:16px;color:#fff;text-decoration:none}
+.brand:hover{text-decoration:none}
+.brand .emblem{width:62px;height:62px;flex:0 0 auto}
+.brand .lockup{display:flex;flex-direction:column;line-height:1.05}
+.brand .lockup .l1{font-family:var(--serif);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#F7C04A;font-weight:600}
+.brand .lockup .l2{font-family:var(--serif);font-size:23px;font-weight:600;margin-top:4px;letter-spacing:-.005em}
+.brand .lockup .l3{font-family:var(--sans);font-size:12.5px;color:#bcc6dd;margin-top:3px;letter-spacing:.02em}
+
+.nav{display:flex;align-items:center;gap:6px}
+.nav a{
+  color:#fff;font-family:var(--sans);font-size:15px;font-weight:500;
+  padding:10px 14px;border-radius:4px;
+  position:relative;
+}
+.nav a:hover{background:rgba(255,255,255,.08);text-decoration:none}
+.nav a.active{color:#F7C04A}
+.nav a.active::after{
+  content:"";position:absolute;left:14px;right:14px;bottom:2px;height:2px;background:var(--gold);
+}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;background:var(--surface-alt);padding:0;overflow:hidden}
+.hero-inner{
+  max-width:var(--maxw);margin:0 auto;padding:64px 32px 72px;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+}
+.hero-copy .badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#fff;border:1px solid var(--border);border-radius:999px;
+  padding:6px 14px;font-size:13px;color:var(--ink-soft);font-weight:500;
+  margin-bottom:22px;
+}
+.hero-copy .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.hero-copy h1{font-size:60px;line-height:1.05}
+.hero-copy h1 em{font-style:italic;color:var(--navy);font-weight:500}
+.hero-copy .lede{font-size:19px;line-height:1.55;color:var(--ink-soft);margin:22px 0 28px;max-width:560px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:28px;margin-top:36px;
+  border-top:1px solid var(--border-strong);padding-top:24px;
+}
+.hero-meta .stat{}
+.hero-meta .num{font-family:var(--serif);font-size:32px;color:var(--navy);font-weight:600;line-height:1}
+.hero-meta .lbl{font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.02em}
+
+.hero-photo{position:relative}
+.photo-frame{
+  position:relative;border-radius:6px;overflow:hidden;background:#fff;
+  border:1px solid var(--border);box-shadow:var(--shadow-lift);
+}
+.photo-frame .caption{
+  position:absolute;left:18px;bottom:18px;background:rgba(0,31,92,.92);color:#fff;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;
+  padding:7px 12px;border-radius:3px;border-left:3px solid var(--gold);
+}
+.placeholder{
+  width:100%;aspect-ratio:4/5;
+  background:
+    repeating-linear-gradient(135deg, rgba(0,48,135,.06) 0 14px, rgba(0,48,135,.10) 14px 28px),
+    linear-gradient(180deg,#dfe6f1,#c8d3e4);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--navy-dark);
+}
+.placeholder .ph-inner{
+  text-align:center;font-family:var(--mono);font-size:12px;
+  background:rgba(255,255,255,.85);padding:14px 18px;border-radius:3px;
+  border:1px solid rgba(0,31,92,.18);max-width:78%;
+  letter-spacing:.04em;
+}
+.placeholder .ph-title{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--navy);margin-bottom:4px;letter-spacing:0}
+.hero-photo .stamp{
+  position:absolute;left:-22px;top:32px;background:#fff;
+  border:1px solid var(--border);box-shadow:var(--shadow-card);
+  padding:14px 18px;border-radius:4px;display:flex;align-items:center;gap:14px;
+}
+.hero-photo .stamp .seal{
+  width:42px;height:42px;border-radius:50%;
+  border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:700;color:var(--navy);font-size:14px;
+}
+.hero-photo .stamp .txt{font-size:12.5px;line-height:1.25;color:var(--ink-soft)}
+.hero-photo .stamp .txt strong{display:block;color:var(--navy);font-family:var(--serif);font-size:14px;font-weight:600}
+
+@media (max-width:980px){
+  .hero-inner{grid-template-columns:1fr;gap:36px;padding:40px 24px 48px}
+  .hero-copy h1{font-size:42px}
+  .hero-photo .stamp{left:0;top:-18px}
+}
+
+/* ---------- Welcome strip (Pastor + Grand Knight) ---------- */
+.welcome{background:#fff;border-bottom:1px solid var(--border)}
+.welcome-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:start}
+.welcome-quote p{font-family:var(--serif);font-size:24px;line-height:1.45;color:var(--ink);font-weight:400;margin:0}
+.welcome-quote p::before{content:"\201C";font-size:62px;line-height:.4;color:var(--gold);vertical-align:-12px;margin-right:6px;font-family:var(--serif)}
+.welcome-quote .attrib{margin-top:24px;font-size:14px;color:var(--muted);display:flex;align-items:center;gap:14px}
+.welcome-quote .attrib .line{width:36px;height:1px;background:var(--border-strong)}
+.welcome-side{
+  background:var(--surface-alt);border-radius:6px;padding:28px;border-left:4px solid var(--gold);
+}
+.welcome-side h3{font-size:18px;margin-bottom:8px}
+.welcome-side ul{list-style:none;padding:0;margin:14px 0 0}
+.welcome-side li{
+  display:flex;justify-content:space-between;gap:14px;
+  padding:12px 0;border-bottom:1px dashed var(--border-strong);font-size:14.5px;
+}
+.welcome-side li:last-child{border-bottom:none}
+.welcome-side li .when{color:var(--muted);font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:12.5px}
+.welcome-side li .what{color:var(--ink-soft);font-weight:500}
+
+@media (max-width:880px){.welcome-grid{grid-template-columns:1fr;gap:32px}}
+
+/* ---------- Pillars (Charity Unity Fraternity Patriotism) ---------- */
+.pillars{background:var(--surface-alt)}
+.pillars-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:36px;flex-wrap:wrap}
+.pillars-head .l h2{font-size:36px}
+.pillars-head .r{max-width:420px;color:var(--ink-soft);font-size:16px}
+.pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.pillar{
+  background:#fff;border:1px solid var(--border);border-radius:6px;padding:28px 26px;
+  box-shadow:var(--shadow-sm);position:relative;transition:transform .15s, box-shadow .15s;
+}
+.pillar:hover{transform:translateY(-2px);box-shadow:var(--shadow-card)}
+.pillar .num{
+  font-family:var(--serif);font-size:13px;font-weight:600;color:var(--gold-dark);letter-spacing:.18em;
+}
+.pillar h3{margin-top:14px}
+.pillar .flourish{margin:10px 0 14px}
+.pillar p{font-size:15px;color:var(--ink-soft);margin:0 0 18px;line-height:1.55}
+.pillar .ico{width:34px;height:34px;color:var(--navy);margin-bottom:6px}
+.pillar .meta{font-size:13px;color:var(--muted);font-family:var(--mono)}
+
+@media (max-width:980px){.pillars-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.pillars-grid{grid-template-columns:1fr}}
+
+/* ---------- Impact band ---------- */
+.impact{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.impact::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(60% 80% at 85% 20%, rgba(242,169,0,.10), transparent 60%);
+}
+.impact .wrap{position:relative}
+.impact h2{color:#fff}
+.impact .flourish{background:var(--gold)}
+.impact-head{max-width:680px;margin-bottom:36px}
+.impact-head p{color:#cfd6e8;font-size:17px;margin:0}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,.18)}
+.impact-grid .cell{
+  padding:30px 24px 30px 0;border-right:1px solid rgba(255,255,255,.18);
+}
+.impact-grid .cell:last-child{border-right:none}
+.impact-grid .num{font-family:var(--serif);font-size:46px;font-weight:600;color:var(--gold);line-height:1}
+.impact-grid .lbl{font-size:14.5px;color:#dde3f1;margin-top:10px;line-height:1.4}
+.impact-grid .sub{font-size:12.5px;color:#9aa6c4;margin-top:6px;font-family:var(--mono)}
+
+@media (max-width:880px){
+  .impact-grid{grid-template-columns:repeat(2,1fr)}
+  .impact-grid .cell{border-bottom:1px solid rgba(255,255,255,.18);padding:24px 20px 24px 0}
+  .impact-grid .cell:nth-child(2){border-right:none}
+  .impact-grid .cell:nth-child(3),.impact-grid .cell:nth-child(4){border-bottom:none}
+}
+
+/* ---------- Activities + sidebar ---------- */
+.activities-wrap{display:grid;grid-template-columns:1.55fr 1fr;gap:48px;align-items:start}
+.activities h2{font-size:34px}
+.activity-list{display:flex;flex-direction:column;gap:0;margin-top:32px;border-top:1px solid var(--border)}
+.activity{
+  display:grid;grid-template-columns:120px 1fr auto;gap:28px;
+  padding:24px 0;border-bottom:1px solid var(--border);align-items:start;
+}
+.activity .date{
+  font-family:var(--serif);color:var(--navy);
+}
+.activity .date .m{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dark);font-weight:600;font-family:var(--sans)}
+.activity .date .d{font-size:38px;font-weight:600;line-height:1;margin-top:4px}
+.activity .date .y{font-size:13px;color:var(--muted);margin-top:4px;font-family:var(--mono)}
+.activity h3{font-size:20px;margin-bottom:6px}
+.activity p{font-size:15px;color:var(--ink-soft);margin:0;line-height:1.5;max-width:520px}
+.activity .meta{margin-top:10px;font-size:13px;color:var(--muted);display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.activity .meta .tag{
+  font-family:var(--sans);font-weight:600;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--navy);background:var(--surface-alt);padding:3px 8px;border-radius:3px;
+}
+.activity .right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;padding-top:6px}
+.activity .right .rsvp{font-size:12.5px;color:var(--muted);font-family:var(--mono)}
+
+.sidebar{position:sticky;top:24px;display:flex;flex-direction:column;gap:24px}
+.card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:24px;box-shadow:var(--shadow-sm)}
+.card h3{font-size:18px}
+.card .flourish{margin:8px 0 14px}
+.card.tan{background:var(--surface-warm);border-color:#E5D9B6}
+
+.meeting{}
+.meeting .row{display:flex;justify-content:space-between;font-size:14px;padding:10px 0;border-bottom:1px dashed var(--border-strong)}
+.meeting .row:last-of-type{border-bottom:none}
+.meeting .row .k{color:var(--muted)}
+.meeting .row .v{color:var(--ink);font-weight:600;font-family:var(--mono);font-size:13px}
+.meeting .note{margin-top:12px;font-size:13px;color:var(--ink-soft);line-height:1.5}
+
+.bulletin h3{display:flex;justify-content:space-between;align-items:center}
+.bulletin .pill{font-family:var(--mono);font-size:11px;color:var(--gold-dark);letter-spacing:.08em;background:var(--surface-warm);padding:3px 8px;border-radius:3px;font-weight:600}
+.bulletin ol{padding-left:18px;margin:8px 0 0;color:var(--ink-soft);font-size:14.5px}
+.bulletin ol li{padding:6px 0}
+.bulletin ol li::marker{color:var(--navy);font-weight:600}
+
+@media (max-width:980px){
+  .activities-wrap{grid-template-columns:1fr;gap:32px}
+  .sidebar{position:static}
+  .activity{grid-template-columns:80px 1fr;gap:20px}
+  .activity .right{grid-column:1 / -1;flex-direction:row;justify-content:space-between;align-items:center}
+}
+
+/* ---------- Join section ---------- */
+.join{
+  background:linear-gradient(180deg, var(--navy-dark), var(--navy));
+  color:#fff;position:relative;overflow:hidden;
+}
+.join::before{
+  content:"";position:absolute;left:-120px;bottom:-120px;width:420px;height:420px;
+  background:radial-gradient(circle, rgba(242,169,0,.18), transparent 65%);
+}
+.join h2{color:#fff;font-size:40px}
+.join .flourish{background:var(--gold)}
+.join-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;position:relative}
+.join-copy p{color:#cfd6e8;font-size:17px;line-height:1.6;margin:0 0 18px}
+.join-copy ul{margin:18px 0 28px;padding:0;list-style:none}
+.join-copy li{display:flex;gap:12px;padding:8px 0;color:#dde3f1;font-size:15.5px}
+.join-copy li::before{content:"";width:6px;height:6px;background:var(--gold);border-radius:50%;margin-top:11px;flex:0 0 auto}
+.join-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.join-card{
+  background:#fff;color:var(--ink);border-radius:8px;padding:32px 28px;
+  box-shadow:var(--shadow-lift);
+}
+.join-card h3{font-size:22px}
+.join-card .steps{counter-reset:step;list-style:none;padding:0;margin:18px 0 0}
+.join-card .steps li{
+  counter-increment:step;display:grid;grid-template-columns:38px 1fr;gap:14px;
+  padding:14px 0;border-bottom:1px solid var(--border);align-items:start;
+}
+.join-card .steps li:last-child{border-bottom:none}
+.join-card .steps li::before{
+  content:counter(step,decimal-leading-zero);
+  font-family:var(--serif);font-size:18px;color:var(--gold-dark);font-weight:600;
+}
+.join-card .steps strong{color:var(--navy);display:block;font-family:var(--serif);font-size:16px;margin-bottom:2px}
+.join-card .steps span{color:var(--ink-soft);font-size:14px;line-height:1.45}
+
+@media (max-width:880px){.join-grid{grid-template-columns:1fr;gap:32px}}
+
+/* ---------- History note ---------- */
+.history{background:var(--surface-alt)}
+.history-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.history-photo .placeholder{aspect-ratio:5/4}
+.history h2{font-size:34px}
+.history p{color:var(--ink-soft);font-size:17px;line-height:1.65;margin:0 0 14px}
+.history .timeline{display:flex;gap:32px;margin-top:28px;flex-wrap:wrap}
+.history .tnode{}
+.history .tnode .y{font-family:var(--serif);font-size:24px;color:var(--navy);font-weight:600}
+.history .tnode .l{font-size:13px;color:var(--muted);margin-top:4px;max-width:160px;line-height:1.35}
+
+@media (max-width:880px){.history-grid{grid-template-columns:1fr;gap:32px}}
+
+/* ---------- Footer ---------- */
+.footer{background:var(--navy-deeper);color:#cfd6e8;padding-top:64px}
+.footer a{color:#cfd6e8}
+.footer a:hover{color:#F7C04A;text-decoration:none}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.1fr;gap:36px;padding-bottom:48px}
+.footer h4{color:#fff;font-family:var(--sans);font-size:13px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
+.footer ul{list-style:none;padding:0;margin:0}
+.footer ul li{padding:5px 0;font-size:14.5px}
+.footer .brand-block{display:flex;flex-direction:column;gap:14px}
+.footer .brand-block img{width:200px}
+.footer .brand-block p{margin:0;font-size:14px;color:#9aa6c4;line-height:1.55}
+.footer .brand-block .addr{font-size:13.5px;color:#cfd6e8}
+.footer .brand-block .addr strong{color:#fff;font-weight:600}
+.footer .social{display:flex;gap:10px;margin-top:8px}
+.footer .social a{
+  width:34px;height:34px;border:1px solid rgba(255,255,255,.2);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;color:#cfd6e8;
+}
+.footer .social a:hover{background:var(--gold);color:var(--navy-dark);border-color:var(--gold)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.12);padding:22px 0;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+  font-size:13px;color:#9aa6c4;
+}
+.footer-bottom .links{display:flex;gap:22px}
+
+@media (max-width:980px){.footer-grid{grid-template-columns:1fr 1fr;gap:28px}}
+@media (max-width:520px){.footer-grid{grid-template-columns:1fr}}
+
+/* ---------- Mobile nav simplification ---------- */
+@media (max-width:1000px){
+  .nav{display:none}
+  .header .wrap{padding:14px 24px}
+  .brand .lockup .l2{font-size:18px}
+  .brand .emblem{width:48px;height:48px}
+}
+
+/* ---------- Tiny utilities ---------- */
+.icon{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6}
+.center{text-align:center}
+.muted{color:var(--muted)}
+</style>
+</head>
+<body>
+<!-- ============== UTILITY BAR ============== -->
+<div class="utility">
+  <div class="wrap">
+    <div class="left">
+      <span class="pill">COUNCIL #6033</span>
+      <span>Church of the Presentation · Upper Saddle River, NJ</span>
+    </div>
+    <div class="right">
+      <a href="#calendar">Calendar</a>
+      <a href="#contact">Contact</a>
+      <a href="#members">Members Sign In</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============== HEADER ============== -->
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <img class="emblem" src="assets/kofc-emblem-reversed.png" alt="Knights of Columbus emblem">
+      <span class="lockup">
+        <span class="l1">Knights of Columbus</span>
+        <span class="l2">Presentation Council #6033</span>
+        <span class="l3">Chartered 1968 · Upper Saddle River, New Jersey</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#officers">Officers</a>
+      <a href="#activities">Activities</a>
+      <a href="#charities">Charities</a>
+      <a href="#calendar">Calendar</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero" style="padding:0">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="badge"><span class="dot"></span> Presentation Council · Est. 1968</span>
+      <h1>Faith, family, and <em>fraternity</em> — rooted at Presentation Parish.</h1>
+      <p class="lede" style="" data-cc-id="cc-1">
+        We are 100 Catholic men of Upper Saddle River, Saddle River, Allendale, and the surrounding towns —
+        gathering each month to serve our parish, support our neighbors in need, and grow as husbands, fathers, and disciples.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#join">Join Our Brotherhood <span class="arrow">→</span></a>
+        <a class="btn btn-secondary" href="#donate">Support Our Charities</a>
+      </div>
+      <div class="hero-meta">
+        <div class="stat"><div class="num">58</div><div class="lbl">Years serving the parish</div></div>
+        <div class="stat"><div class="num" style="" data-lt-tmp-id="lt-14177" spellcheck="false" data-gramm="false" data-cc-id="cc-2">100</div><div class="lbl">Active brother knights</div></div>
+        <div class="stat"><div class="num">$47K</div><div class="lbl">Raised for charity in 2025</div></div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <div class="placeholder" data-cc-id="cc-2">
+          <div class="ph-inner">
+            <div class="ph-title">Hero photograph</div>
+            Brothers gathered after the<br>
+            annual Tootsie Roll Drive · 2025<br>
+            <span class="muted">// supplied by council photo library</span>
+          </div>
+        </div>
+        <div class="caption">PHOTO_01 · COUNCIL ARCHIVE</div>
+      </div>
+      <div class="stamp" aria-hidden="true">
+        <div class="seal">VI<br></div>
+        <div class="txt"><strong>Council #6033</strong>Chartered May 1968</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== WELCOME / GRAND KNIGHT ============== -->
+<section class="welcome">
+  <div class="wrap">
+    <div class="welcome-grid">
+      <div class="welcome-quote">
+        <span class="eyebrow">A word from the Grand Knight</span>
+        <span class="flourish"></span>
+        <p style="" data-lt-tmp-id="lt-529257" spellcheck="false" data-gramm="false" data-cc-id="cc-3">Whether you have been a Knight for forty years or are simply curious about who we are, you have a brother in this council. Come to a meeting, share a meal, and see for yourself what fraternity feels like at Presentation.</p>
+        <div class="attrib">
+          <span class="line"></span>
+          <span><strong style="color:var(--navy);font-weight:600">Michael J. O’Donnell</strong> · Grand Knight, 2025–2026</span>
+        </div>
+      </div>
+      <aside class="welcome-side" aria-label="This week at the council">
+        <h4 style="font-family:var(--serif);color:var(--navy);font-size:17px;margin-bottom:4px">This week at Council #6033</h4>
+        <span class="flourish" style="margin:6px 0 4px"></span>
+        <ul>
+          <li><span class="what">Officers’ Meeting</span><span class="when">Mon · 7:30 PM</span></li>
+          <li><span class="what">Pancake Breakfast (parish hall)</span><span class="when">Sun · 8:30 AM</span></li>
+          <li><span class="what">Adoration &amp; Rosary</span><span class="when">Wed · 7:00 PM</span></li>
+          <li><span class="what">First Degree Exemplification</span><span class="when">Fri · 7:00 PM</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PILLARS ============== -->
+<section class="pillars" id="about" data-cc-id="cc-2">
+  <div class="wrap">
+    <div class="pillars-head">
+      <div class="l">
+        <span class="eyebrow">Our principles</span>
+        <h2>Four pillars, one fraternity.</h2>
+        <span class="flourish"></span>
+      </div>
+      <div class="r">
+        Founded in 1882 by Blessed Michael McGivney, the Knights stand on four principles. Our council lives them out at the parish level — week in, week out.
+      </div>
+    </div>
+    <div class="pillars-grid">
+
+      <div class="pillar">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9.2-9A5.4 5.4 0 0 1 12 6.4 5.4 5.4 0 0 1 21.2 12c-2.2 4.5-9.2 9-9.2 9z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"></path></svg>
+        <div class="num">I.</div>
+        <h3>Charity</h3>
+        <span class="flourish"></span>
+        <p>From the food pantry collection to the Coats for Kids drive, we are our parish’s hands and feet for those in need.</p>
+        <div class="meta">$47,200 given in 2025</div>
+      </div>
+
+      <div class="pillar">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6" fill="none"></circle><path d="M3.5 12h17M12 3.5c2.5 3 2.5 14 0 17M12 3.5c-2.5 3-2.5 14 0 17" stroke="currentColor" stroke-width="1.6" fill="none"></path></svg>
+        <div class="num">II.</div>
+        <h3>Unity</h3>
+        <span class="flourish"></span>
+        <p>None of us is as good as all of us. We work shoulder-to-shoulder with our pastor, our parish, and our community.</p>
+        <div class="meta">12 parish events / year</div>
+      </div>
+
+      <div class="pillar">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20a7 7 0 0 1 14 0M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"></path></svg>
+        <div class="num">III.</div>
+        <h3>Fraternity</h3>
+        <span class="flourish"></span>
+        <p>A circle of Catholic men who hold each other up — at first communions and at funerals, in joys and in trials.</p>
+        <div class="meta" style="" data-cc-id="cc-1">100 brother knights</div>
+      </div>
+
+      <div class="pillar">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v9l-8 5-8-5V5z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"></path><path d="M4 9h16M12 5v14" stroke="currentColor" stroke-width="1.6" fill="none"></path></svg>
+        <div class="num">IV.</div>
+        <h3>Patriotism</h3>
+        <span class="flourish"></span>
+        <p>Faithful citizens who honor our country, support our veterans, and stand for the dignity of every life among us.</p>
+        <div class="meta" style="" data-cc-id="cc-3">20 Fourth Degree Knights</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== IMPACT BAND ============== -->
+<section class="impact" id="charities">
+  <div class="wrap" data-cc-id="cc-5">
+    <div class="impact-head">
+      <span class="eyebrow" style="color:#F7C04A">Our 2025 impact</span>
+      <h2 style="" data-cc-id="cc-4">What 100 brothers can do, by God’s grace.</h2>
+      <span class="flourish"></span>
+      <p>Every dollar, every hour, every coat — accounted for and given back to our parish, our town, and the families who call us neighbor.</p>
+    </div>
+    <div class="impact-grid">
+      <div class="cell">
+        <div class="num">$47,200</div>
+        <div class="lbl">Donated to charity this year</div>
+        <div class="sub">// food pantry · seminarians · pro-life</div>
+      </div>
+      <div class="cell">
+        <div class="num">3,840</div>
+        <div class="lbl">Volunteer hours logged</div>
+        <div class="sub">// reported to Supreme, Form 1728</div>
+      </div>
+      <div class="cell">
+        <div class="num">412</div>
+        <div class="lbl">Coats given to children in Bergen County</div>
+        <div class="sub">// Coats for Kids · winter 2025</div>
+      </div>
+      <div class="cell">
+        <div class="num">22</div>
+        <div class="lbl">New brothers welcomed</div>
+        <div class="sub">// exemplified at Presentation, 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ACTIVITIES + SIDEBAR ============== -->
+<section class="activities" id="activities" data-cc-id="cc-22">
+  <div class="wrap">
+    <div class="activities-wrap">
+      <div>
+        <span class="eyebrow">What’s ahead</span>
+        <h2>Upcoming activities at the council.</h2>
+        <span class="flourish"></span>
+        <p class="muted" style="max-width:560px;margin-top:6px">All events at Church of the Presentation unless otherwise noted. Members and parishioners welcome — bring a friend.</p>
+
+        <div class="activity-list">
+
+          <article class="activity">
+            <div class="date">
+              <div class="m">Nov</div>
+              <div class="d">19</div>
+              <div class="y">Wed · 2025</div>
+            </div>
+            <div>
+              <h3>Monthly Council Meeting</h3>
+              <p>General business meeting in the lower parish hall. Officers’ reports, charity vote, and refreshments to follow. New members encouraged to attend.</p>
+              <div class="meta"><span class="tag">Members</span><span>Parish Hall · 7:30 PM</span></div>
+            </div>
+            <div class="right"><a class="btn btn-ghost" href="#">Details →</a><div class="rsvp">RSVP not required</div></div>
+          </article>
+
+          <article class="activity">
+            <div class="date">
+              <div class="m">Nov</div>
+              <div class="d">23</div>
+              <div class="y">Sun · 2025</div>
+            </div>
+            <div>
+              <h3>Coats for Kids — Distribution Day</h3>
+              <p>Distributing 412 winter coats to children referred by the Center for Food Action. Volunteers needed: Saturday 8 AM setup, Sunday 11 AM service.</p>
+              <div class="meta"><span class="tag">Charity</span><span>CFA Englewood · 11:00 AM</span></div>
+            </div>
+            <div class="right"><a class="btn btn-ghost" href="#">Volunteer →</a><div class="rsvp">RSVP by Nov 20</div></div>
+          </article>
+
+          <article class="activity">
+            <div class="date">
+              <div class="m">Dec</div>
+              <div class="d">07</div>
+              <div class="y">Sun · 2025</div>
+            </div>
+            <div>
+              <h3>Pancake Breakfast for Seminarians</h3>
+              <p data-cc-id="cc-20">Our annual breakfast supporting two seminarians of the Archdiocese of Newark. $10 adults, $5 children, families $30. Hosted in the parish hall after 8:30 Mass.</p>
+              <div class="meta"><span class="tag">Fundraiser</span><span>Parish Hall · 9:30 AM – 1 PM</span></div>
+            </div>
+            <div class="right"><a class="btn btn-ghost" href="#">Details →</a><div class="rsvp">All welcome</div></div>
+          </article>
+
+          <article class="activity">
+            <div class="date">
+              <div class="m">Dec</div>
+              <div class="d">14</div>
+              <div class="y">Sun · 2025</div>
+            </div>
+            <div>
+              <h3>Keep Christ in Christmas — Poster Contest</h3>
+              <p>Judging of submissions from grades K–8, presented in the church narthex during coffee hour. Prizes awarded by the Grand Knight.</p>
+              <div class="meta"><span class="tag">Family</span><span>Church Narthex · 10:00 AM</span></div>
+            </div>
+            <div class="right"><a class="btn btn-ghost" href="#">Details →</a><div class="rsvp">All welcome</div></div>
+          </article>
+
+        </div>
+
+        <div style="margin-top:28px"><a class="btn btn-secondary" href="#calendar">View full calendar →</a></div>
+      </div>
+
+      <aside class="sidebar" aria-label="Council details" data-cc-id="cc-25">
+
+        <div class="card meeting">
+          <span class="eyebrow" style="font-size:12px">Council essentials</span>
+          <h3>Where &amp; when we meet</h3>
+          <span class="flourish"></span>
+          <div class="row"><span class="k">Council meeting</span><span class="v">3rd Wed · 7:30 PM</span></div>
+          <div class="row"><span class="k">Officers’ meeting</span><span class="v">1st Mon · 7:30 PM</span></div>
+          <div class="row"><span class="k">Location</span><span class="v">Parish Hall, USR</span></div>
+          <div class="row"><span class="k">Address</span><span class="v">271 W Saddle River Rd</span></div>
+          <div class="note">All baptized Catholic men 18 and over are welcome to attend a meeting and learn more — no commitment required.</div>
+        </div>
+
+        <div class="card tan bulletin" data-cc-id="cc-26">
+          <h3>From the bulletin <span class="pill">NOV ’25</span></h3>
+          <span class="flourish"></span>
+          <ol>
+            <li>Tootsie Roll Drive raised $4,180 — thank you to all who served outside ShopRite the weekend of Oct 25.</li>
+            <li>Memorial Mass for deceased brothers: Friday, Nov 21 at 7:00 PM.</li>
+            <li data-cc-id="cc-27">Christmas wreaths on sale after all weekend Masses beginning Nov 29 — proceeds to seminarian support.</li>
+          </ol>
+        </div>
+
+        <div class="card" style="background:var(--navy);border-color:var(--navy);color:#fff" data-cc-id="cc-5">
+          <span class="eyebrow" style="color:#F7C04A;font-size:12px">Need a hand?</span>
+          <h3 style="color:#fff;margin-top:6px" data-cc-id="cc-24">Brothers helping brothers.</h3>
+          <span class="flourish"></span>
+          <p style="font-size:14.5px;color:#cfd6e8;margin:0 0 16px" data-cc-id="cc-4">If a fellow Knight or parishioner is sick, grieving, or in need, our Family Director will quietly coordinate help.</p>
+          <a class="btn btn-onnavy" href="#contact" style="font-size:14px;padding:10px 16px" data-cc-id="cc-23">Contact the Family Director</a>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============== JOIN CTA ============== -->
+<section class="join" id="join" data-cc-id="cc-6">
+  <div class="wrap" data-cc-id="cc-10">
+    <div class="join-grid" data-cc-id="cc-9">
+      <div class="join-copy" data-cc-id="cc-12">
+        <span class="eyebrow" style="color:#F7C04A" data-cc-id="cc-17">Join the Knights</span>
+        <h2 data-cc-id="cc-11">Become the man your family deserves.</h2>
+        <span class="flourish"></span>
+        <p data-cc-id="cc-19">Membership at Council #6033 is open to practical Catholic men, 18 years or older, in communion with the Holy See. The first step is the easiest one: come to a meeting.</p>
+        <ul>
+          <li data-cc-id="cc-18">Grow in faith with brothers who hold you to it.</li>
+          <li>Serve your parish in concrete, hands-on ways.</li>
+          <li>Protect your family with member-only insurance and benefits.</li>
+          <li>Pass something good on to your sons and grandsons.</li>
+        </ul>
+        <div class="join-cta">
+          <a class="btn btn-onnavy" href="#">Begin Your Membership <span class="arrow">→</span></a>
+          <a class="btn btn-secondary" href="#" style="background:transparent;color:#fff;border-color:#fff">Talk to a Knight first</a>
+        </div>
+      </div>
+      <div class="join-card" data-cc-id="cc-7">
+        <span class="eyebrow">How it works</span>
+        <h3 data-cc-id="cc-21">Three simple steps.</h3>
+        <span class="flourish"></span>
+        <ol class="steps">
+          <li data-cc-id="cc-3" style=""><strong data-cc-id="cc-8">Reach out</strong><span data-cc-id="cc-16" style="width: 400px;">Email our Membership Director or fill out the short interest form. We’ll call within a week.</span></li>
+          <li data-cc-id="cc-14"><strong data-cc-id="cc-15">Visit a meeting</strong><span data-cc-id="cc-13" style="width: 400px;">Join us on the third Wednesday of any month. No obligation, just coffee, fellowship, and a look behind the curtain.</span></li>
+          <li><strong>Take your degree</strong><lt-highlighter contenteditable="false" style="display: none;" class="lt-highlighter--grid-item" data-lt-linked="1"><lt-div spellcheck="false" class="lt-highlighter__wrapper" style="width: 400px !important; height: 40.6px !important; transform: none !important; transform-origin: 200px 20.3px 0px !important; zoom: 1 !important; margin-top: 408.3px !important; margin-left: 700px !important;"><lt-div class="lt-highlighter__scroll-element" style="top: 0px !important; left: 0px !important; width: 400px !important; height: 40.6px !important;"></lt-div></lt-div></lt-highlighter><span style="width: 400px;" data-lt-tmp-id="lt-423341" spellcheck="false" data-gramm="false" data-cc-id="cc-28">When you’re ready, complete the online or in-person Exemplification of Charity, Unity, and Fraternity — and you’re a brother knight.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HISTORY ============== -->
+<section class="history">
+  <div class="wrap">
+    <div class="history-grid">
+      <div class="history-photo">
+        <div class="photo-frame">
+          <div class="placeholder">
+            <div class="ph-inner">
+              <div class="ph-title">Charter document, 1968</div>
+              Original charter signed by<br>
+              Supreme Knight John W. McDevitt<br>
+              <span class="muted">// council archive · framed in hall</span>
+            </div>
+          </div>
+          <div class="caption">PHOTO_07 · CHARTER_1968</div>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">A short history</span>
+        <h2>Fifty-eight years of brothers, one parish.</h2>
+        <span class="flourish"></span>
+        <p>Presentation Council #6033 was chartered in May 1968 by 48 founding members under the leadership of our first Grand Knight, William F. Hennessy. From its first pancake breakfast that autumn to today, the council has been bound to the rhythms of parish life at Church of the Presentation.</p>
+        <p>We have buried our brothers and welcomed new ones; we have served three pastors and seen the parish grow around us. The work has never changed: support the priest, care for the poor, and walk together in faith.</p>
+        <div class="timeline">
+          <div class="tnode"><div class="y">1968</div><div class="l">Council chartered with 48 founders</div></div>
+          <div class="tnode"><div class="y">1991</div><div class="l">Founded annual Tootsie Roll drive</div></div>
+          <div class="tnode"><div class="y">2002</div><div class="l">Patriotic (4th) Degree formed</div></div>
+          <div class="tnode"><div class="y">2025</div><div class="l">$47K raised — record year</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+
+      <div class="brand-block">
+        <img src="assets/kofc-horizontal-reversed.png" alt="Knights of Columbus">
+        <p style="color:#F7C04A;font-family:var(--serif);font-size:18px;font-weight:600;margin-top:4px">Presentation Council #6033</p>
+        <div class="addr">
+          <strong>Church of the Presentation</strong><br>
+          271 West Saddle River Road<br>
+          Upper Saddle River, NJ 07458<br>
+          (201) 327-1313
+        </div>
+        <div class="social" aria-label="Follow our council">
+          <a href="#" aria-label="Facebook"><svg class="icon" viewBox="0 0 24 24"><path d="M14 8h2.5V5H14c-2 0-3 1.5-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V8.5c0-.3.2-.5.5-.5z" fill="currentColor" stroke="none"></path></svg></a>
+          <a href="#" aria-label="Email"><svg class="icon" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg></a>
+          <a href="#" aria-label="Calendar"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="1.5"></rect><path d="M4 9h16M8 3v4M16 3v4"></path></svg></a>
+          <a href="#" aria-label="Phone"><svg class="icon" viewBox="0 0 24 24"><path d="M5 5l3-1 2 4-2 1a10 10 0 0 0 6 6l1-2 4 2-1 3a2 2 0 0 1-2 1A14 14 0 0 1 4 7a2 2 0 0 1 1-2z"></path></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="#">Our Council</a></li>
+          <li><a href="#">Officers</a></li>
+          <li><a href="#">History</a></li>
+          <li><a href="#">Past Grand Knights</a></li>
+          <li><a href="#">Brothers in Memoriam</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="#">Become a Knight</a></li>
+          <li><a href="#">Volunteer</a></li>
+          <li><a href="#">Make a Donation</a></li>
+          <li><a href="#">Request a Mass</a></li>
+          <li><a href="#">Family Assistance</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Activities</h4>
+        <ul>
+          <li><a href="#">Calendar</a></li>
+          <li><a href="#">Coats for Kids</a></li>
+          <li><a href="#">Tootsie Roll Drive</a></li>
+          <li><a href="#">Pancake Breakfasts</a></li>
+          <li><a href="#">Memorial Mass</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Knights of Columbus (Supreme)</a></li>
+          <li><a href="#">NJ State Council</a></li>
+          <li><a href="#">Member Insurance</a></li>
+          <li><a href="#">Faith Formation</a></li>
+          <li><a href="#">Members Sign In</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 Presentation Council #6033, Knights of Columbus. All rights reserved.</div>
+      <div class="links">
+        <a href="#">Privacy</a>
+        <a href="#">Site Credits</a>
+        <a href="#">Contact the Webmaster</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+<lt-toolbar contenteditable="false" style="display: none;" data-lt-adjust-appearance="true" data-lt-force-appearance="light"><lt-div class="lt-toolbar__wrapper lt-toolbar__wrapper--hide" style="left: 1223px; position: absolute !important; top: 4124px !important; bottom: auto !important; z-index: auto; opacity: 0 !important; pointer-events: none !important;"><lt-div class="lt-toolbar__status-icon lt-toolbar__status-icon--has-no-errors"><lt-span class="lt-icon__tooltip lt-icon__tooltip--top-right"></lt-span></lt-div><lt-div class="lt-toolbar__premium-icon-dot"></lt-div></lt-div></lt-toolbar><lt-toolbar contenteditable="false" style="display: none;" data-lt-adjust-appearance="true" data-lt-force-appearance="light"><lt-div class="lt-toolbar__wrapper lt-toolbar__wrapper--hide"><lt-div class="lt-toolbar__status-icon lt-toolbar__status-icon--has-no-errors"><lt-span class="lt-icon__tooltip lt-icon__tooltip--top-right"></lt-span></lt-div><lt-div class="lt-toolbar__premium-icon-dot"></lt-div></lt-div></lt-toolbar><lt-toolbar contenteditable="false" style="display: none;" data-lt-adjust-appearance="true" data-lt-force-appearance="dark"><lt-div class="lt-toolbar__wrapper" style="left: 870px; position: absolute !important; top: 2102px !important; bottom: auto !important; z-index: auto; opacity: 1 !important; pointer-events: all !important;"><lt-div class="lt-toolbar__status-icon lt-toolbar__status-icon--has-no-errors"><lt-span class="lt-icon__tooltip lt-icon__tooltip--top-right"></lt-span></lt-div><lt-div class="lt-toolbar__premium-icon-dot"></lt-div></lt-div></lt-toolbar>
+</body>
+</html>

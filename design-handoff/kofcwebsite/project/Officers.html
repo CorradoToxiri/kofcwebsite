@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Council Officers &middot; Presentation Council #6033 &middot; Knights of Columbus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&amp;family=Source+Sans+3:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#003087;
+  --navy-dark:#001F5C;
+  --navy-deeper:#00164A;
+  --gold:#F2A900;
+  --gold-dark:#D89400;
+  --red:#C8102E;
+  --surface:#ffffff;
+  --surface-alt:#E8EEF5;
+  --surface-warm:#F6EFDC;
+  --ink:#1A1A1A;
+  --ink-soft:#2B3142;
+  --muted:#5A6478;
+  --border:#D9DEE5;
+  --border-strong:#B9C3D2;
+  --shadow-sm:0 1px 2px rgba(10,20,50,.06);
+  --shadow-card:0 2px 10px rgba(10,20,50,.07);
+  --shadow-lift:0 8px 24px rgba(10,20,50,.12);
+  --serif:"Source Serif 4","Source Serif Pro",Georgia,"Times New Roman",serif;
+  --sans:"Source Sans 3","Source Sans Pro",-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --maxw:1240px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--sans);font-size:17px;line-height:1.6;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;display:block}
+a{color:var(--navy);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+section{padding:72px 0}
+@media (max-width:780px){section{padding:48px 0}}
+
+h1,h2,h3,h4{font-family:var(--serif);color:var(--navy);font-weight:600;letter-spacing:-.005em;margin:0}
+h1{font-size:54px;line-height:1.08}
+h2{font-size:34px;line-height:1.15}
+h3{font-size:22px;line-height:1.25}
+h4{font-size:17px;line-height:1.3;font-weight:600}
+.eyebrow{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin:0 0 14px}
+.flourish{display:block;width:56px;height:4px;background:var(--gold);margin:14px 0 22px;border-radius:2px}
+
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:600;font-size:15px;padding:13px 22px;border-radius:5px;border:2px solid transparent;cursor:pointer;transition:background .15s,color .15s,border-color .15s,transform .15s;text-decoration:none;line-height:1}
+.btn .arrow{font-size:18px;line-height:1;transform:translateY(-1px)}
+.btn-primary{background:var(--gold);color:var(--navy-dark);border-color:var(--gold)}
+.btn-primary:hover{background:var(--gold-dark);border-color:var(--gold-dark);text-decoration:none}
+.btn-secondary{background:#fff;color:var(--navy);border-color:var(--navy)}
+.btn-secondary:hover{background:var(--navy);color:#fff;text-decoration:none}
+.btn-onnavy{background:var(--gold);color:var(--navy-dark);border-color:var(--gold)}
+.btn-onnavy:hover{background:#fff;color:var(--navy-dark);border-color:#fff}
+
+/* utility bar */
+.utility{background:var(--navy-deeper);color:#cfd6e8;font-size:13px}
+.utility .wrap{display:flex;justify-content:space-between;align-items:center;height:36px}
+.utility .left{display:flex;align-items:center;gap:18px}
+.utility .left .pill{background:rgba(242,169,0,.15);color:#F7C04A;border:1px solid rgba(242,169,0,.35);border-radius:999px;padding:3px 10px;font-size:11.5px;font-weight:600;letter-spacing:.04em}
+.utility .right{display:flex;gap:22px}
+.utility a{color:#cfd6e8}
+.utility a:hover{color:#fff;text-decoration:none}
+
+/* header */
+.header{background:linear-gradient(180deg,var(--navy-dark) 0%,var(--navy) 100%);color:#fff;border-bottom:3px solid var(--gold)}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;gap:32px;padding-top:18px;padding-bottom:18px}
+.brand{display:flex;align-items:center;gap:16px;color:#fff;text-decoration:none}
+.brand:hover{text-decoration:none}
+.brand .emblem{width:62px;height:62px;flex:0 0 auto}
+.brand .lockup{display:flex;flex-direction:column;line-height:1.05}
+.brand .lockup .l1{font-family:var(--serif);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#F7C04A;font-weight:600}
+.brand .lockup .l2{font-family:var(--serif);font-size:23px;font-weight:600;margin-top:4px;letter-spacing:-.005em}
+.brand .lockup .l3{font-family:var(--sans);font-size:12.5px;color:#bcc6dd;margin-top:3px;letter-spacing:.02em}
+.nav{display:flex;align-items:center;gap:6px}
+.nav a{color:#fff;font-family:var(--sans);font-size:15px;font-weight:500;padding:10px 14px;border-radius:4px;position:relative}
+.nav a:hover{background:rgba(255,255,255,.08);text-decoration:none}
+.nav a.active{color:#F7C04A}
+.nav a.active::after{content:"";position:absolute;left:14px;right:14px;bottom:2px;height:2px;background:var(--gold)}
+
+/* page hero */
+.pagehero{background:var(--surface-alt);padding:0;position:relative;overflow:hidden}
+.pagehero::before{content:"";position:absolute;right:-80px;top:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(0,48,135,.08),transparent 65%);pointer-events:none}
+.pagehero-inner{max-width:var(--maxw);margin:0 auto;padding:60px 32px 56px;display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:end;position:relative}
+.crumbs{font-size:13px;color:var(--muted);font-family:var(--mono);letter-spacing:.04em;margin-bottom:18px}
+.crumbs a{color:var(--muted)}
+.crumbs a:hover{color:var(--navy);text-decoration:none}
+.crumbs .sep{margin:0 8px;opacity:.5}
+.pagehero h1{font-size:52px;line-height:1.05}
+.pagehero h1 em{font-style:italic;font-weight:500}
+.pagehero .lede{font-size:18px;color:var(--ink-soft);max-width:540px;margin:18px 0 0}
+.pagehero-meta{border-left:3px solid var(--gold);padding:6px 0 6px 22px;display:flex;flex-direction:column;gap:14px}
+.pagehero-meta .row{display:flex;justify-content:space-between;font-size:14px;gap:14px;border-bottom:1px dashed var(--border-strong);padding-bottom:12px}
+.pagehero-meta .row:last-child{border-bottom:none;padding-bottom:0}
+.pagehero-meta .k{color:var(--muted)}
+.pagehero-meta .v{color:var(--navy);font-weight:600;font-family:var(--mono);font-size:13px;text-align:right}
+@media (max-width:880px){.pagehero-inner{grid-template-columns:1fr;gap:28px;padding:40px 24px}.pagehero h1{font-size:38px}}
+
+/* group section */
+.group-head{display:flex;align-items:end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+.group-head .l h2{font-size:30px}
+.group-head .r{max-width:440px;color:var(--ink-soft);font-size:15.5px;line-height:1.55}
+.group-rule{height:1px;background:var(--border);margin:36px 0 0}
+
+/* officer grid */
+.off-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:980px){.off-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.off-grid{grid-template-columns:1fr}}
+
+/* officer card */
+.off{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);transition:transform .15s,box-shadow .15s}
+.off:hover{transform:translateY(-2px);box-shadow:var(--shadow-card)}
+.off .portrait{position:relative;aspect-ratio:4/5;background:linear-gradient(180deg,#dfe6f1,#c8d3e4);overflow:hidden}
+.off .portrait .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,rgba(0,48,135,.06) 0 14px,rgba(0,48,135,.10) 14px 28px)}
+.off .portrait .monogram{font-family:var(--serif);font-size:60px;font-weight:600;color:rgba(0,31,92,.55);letter-spacing:-.01em;background:rgba(255,255,255,.7);width:108px;height:108px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid rgba(242,169,0,.55);box-shadow:0 2px 6px rgba(10,20,50,.08)}
+.off .portrait .role-tab{position:absolute;left:14px;top:14px;background:var(--navy-dark);color:#fff;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:3px;border-left:3px solid var(--gold)}
+.off .portrait .sk-stamp{position:absolute;right:14px;top:14px;background:rgba(242,169,0,.95);color:var(--navy-dark);font-family:var(--serif);font-size:11px;font-weight:700;letter-spacing:.18em;padding:4px 8px;border-radius:2px}
+.off .portrait .photo-tag{position:absolute;right:12px;bottom:12px;background:rgba(0,31,92,.85);color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:.06em;padding:4px 8px;border-radius:2px}
+.off .body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.off .name{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--navy);line-height:1.2}
+.off .post-flourish{display:block;width:36px;height:3px;background:var(--gold);border-radius:2px;margin:10px 0 12px}
+.off .post{font-size:13px;color:var(--muted);font-family:var(--mono);letter-spacing:.04em;margin-bottom:12px}
+.off .bio{font-size:14.5px;color:var(--ink-soft);line-height:1.5;margin:0 0 16px;flex:1}
+.off .actions{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--border);padding-top:14px;margin-top:auto}
+.off .email{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--navy)}
+.off .email:hover{color:var(--gold-dark);text-decoration:none}
+.off .email svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6}
+.off .term{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.04em}
+
+/* featured (Grand Knight + Chaplain) row */
+.featured-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:18px}
+@media (max-width:880px){.featured-grid{grid-template-columns:1fr}}
+.feat{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:240px 1fr;box-shadow:var(--shadow-card)}
+@media (max-width:560px){.feat{grid-template-columns:1fr}.feat .portrait{aspect-ratio:4/3}}
+.feat .portrait{position:relative;background:linear-gradient(180deg,#dfe6f1,#c8d3e4);overflow:hidden}
+.feat .portrait .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,rgba(0,48,135,.06) 0 14px,rgba(0,48,135,.10) 14px 28px)}
+.feat .portrait .monogram{font-family:var(--serif);font-size:64px;font-weight:600;color:rgba(0,31,92,.55);background:rgba(255,255,255,.75);width:118px;height:118px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--gold)}
+.feat .portrait .role-tab{position:absolute;left:14px;top:14px;background:var(--gold);color:var(--navy-dark);font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px;border-radius:3px}
+.feat .body{padding:26px 28px;display:flex;flex-direction:column;justify-content:center}
+.feat .post{font-size:12px;color:var(--gold-dark);font-family:var(--sans);font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+.feat .name{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--navy);line-height:1.15}
+.feat .post-flourish{display:block;width:48px;height:3px;background:var(--gold);border-radius:2px;margin:12px 0 14px}
+.feat .bio{font-size:15px;color:var(--ink-soft);line-height:1.55;margin:0 0 16px}
+.feat .actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.feat .email{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;color:var(--navy)}
+.feat .email svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6}
+.feat .email:hover{color:var(--gold-dark);text-decoration:none}
+.feat .term{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+/* roster table */
+.roster-section{background:var(--surface-alt)}
+.roster-card{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.roster-table{width:100%;border-collapse:collapse;font-size:14.5px}
+.roster-table thead th{background:var(--navy-dark);color:#fff;text-align:left;padding:14px 20px;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.roster-table thead th:last-child{text-align:right}
+.roster-table tbody td{padding:14px 20px;border-bottom:1px solid var(--border);vertical-align:top}
+.roster-table tbody tr:last-child td{border-bottom:none}
+.roster-table tbody tr:hover{background:#fafbfd}
+.roster-table .role{font-family:var(--serif);font-weight:600;color:var(--navy);width:32%}
+.roster-table .person{color:var(--ink);font-weight:500}
+.roster-table .person small{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:2px}
+.roster-table .contact{text-align:right;font-family:var(--mono);font-size:12.5px}
+.roster-table .contact a{color:var(--navy)}
+
+/* CTA band */
+.cta-band{background:linear-gradient(180deg,var(--navy-dark),var(--navy));color:#fff;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;left:-120px;bottom:-120px;width:420px;height:420px;background:radial-gradient(circle,rgba(242,169,0,.18),transparent 65%)}
+.cta-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:48px;align-items:center;position:relative}
+.cta-grid h2{color:#fff;font-size:36px}
+.cta-grid p{color:#cfd6e8;font-size:16.5px;margin:0 0 20px;line-height:1.6}
+.cta-grid .actions{display:flex;flex-wrap:wrap;gap:12px}
+.cta-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:6px;padding:24px;backdrop-filter:blur(2px)}
+.cta-card h3{color:#fff;font-size:18px}
+.cta-card .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.15);font-size:14px}
+.cta-card .row:last-child{border-bottom:none}
+.cta-card .k{color:#cfd6e8}
+.cta-card .v{color:#fff;font-family:var(--mono);font-size:13px;font-weight:600}
+@media (max-width:880px){.cta-grid{grid-template-columns:1fr;gap:28px}}
+
+/* footer */
+.footer{background:var(--navy-deeper);color:#cfd6e8;padding-top:64px}
+.footer a{color:#cfd6e8}
+.footer a:hover{color:#F7C04A;text-decoration:none}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.1fr;gap:36px;padding-bottom:48px}
+.footer h4{color:#fff;font-family:var(--sans);font-size:13px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
+.footer ul{list-style:none;padding:0;margin:0}
+.footer ul li{padding:5px 0;font-size:14.5px}
+.footer .brand-block{display:flex;flex-direction:column;gap:14px}
+.footer .brand-block img{width:200px}
+.footer .brand-block p{margin:0;font-size:14px;color:#9aa6c4;line-height:1.55}
+.footer .brand-block .addr{font-size:13.5px;color:#cfd6e8}
+.footer .brand-block .addr strong{color:#fff;font-weight:600}
+.footer .social{display:flex;gap:10px;margin-top:8px}
+.footer .social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#cfd6e8}
+.footer .social a:hover{background:var(--gold);color:var(--navy-dark);border-color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding:22px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13px;color:#9aa6c4}
+.footer-bottom .links{display:flex;gap:22px}
+@media (max-width:980px){.footer-grid{grid-template-columns:1fr 1fr;gap:28px}}
+@media (max-width:520px){.footer-grid{grid-template-columns:1fr}}
+
+@media (max-width:1000px){.nav{display:none}.header .wrap{padding:14px 24px}.brand .lockup .l2{font-size:18px}.brand .emblem{width:48px;height:48px}}
+.icon{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6}
+</style>
+</head>
+<body>
+<!-- UTILITY -->
+<div class="utility">
+  <div class="wrap">
+    <div class="left">
+      <span class="pill">COUNCIL #6033</span>
+      <span>Church of the Presentation &middot; Upper Saddle River, NJ</span>
+    </div>
+    <div class="right">
+      <a href="#calendar">Calendar</a>
+      <a href="#contact">Contact</a>
+      <a href="#members">Members Sign In</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="Home.html">
+      <img class="emblem" src="assets/kofc-emblem-reversed.png" alt="Knights of Columbus emblem">
+      <span class="lockup">
+        <span class="l1">Knights of Columbus</span>
+        <span class="l2">Presentation Council #6033</span>
+        <span class="l3">Chartered 1968 &middot; Upper Saddle River, New Jersey</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="Home.html">Home</a>
+      <a href="#about">About</a>
+      <a href="Officers.html" class="active">Officers</a>
+      <a href="#activities">Activities</a>
+      <a href="#charities">Charities</a>
+      <a href="#calendar">Calendar</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="pagehero">
+  <div class="pagehero-inner">
+    <div>
+      <div class="crumbs"><a href="Home.html">HOME</a><span class="sep">/</span><a href="#about">ABOUT</a><span class="sep">/</span>OFFICERS</div>
+      <span class="eyebrow">Council Officers &middot; Columbian Year 2025&ndash;2026</span>
+      <h1>The brothers entrusted with <em>leading</em> our council.</h1>
+      <p class="lede">Each year, our council elects officers from among its members to oversee its meetings, finances, charitable work, and faith life &mdash; serving without compensation, in fraternity with our pastor and parish.</p>
+    </div>
+    <aside class="pagehero-meta" aria-label="Council facts">
+      <div class="row"><span class="k">Columbian Year</span><span class="v">Jul 2025 &ndash; Jun 2026</span></div>
+      <div class="row"><span class="k">Officers seated</span><span class="v">14 brothers</span></div>
+      <div class="row"><span class="k">Term begins</span><span class="v">First Wed of July</span></div>
+      <div class="row"><span class="k">Council home</span><span class="v" style="">Church of the Presentation</span></div>
+    </aside>
+  </div>
+</section>
+
+<!-- FEATURED: GRAND KNIGHT + CHAPLAIN -->
+<section style="padding-bottom:24px">
+  <div class="wrap">
+    <div class="group-head">
+      <div class="l">
+        <span class="eyebrow">The shepherds of our council</span>
+        <h2>Grand Knight &amp; Chaplain</h2>
+        <span class="flourish"></span>
+      </div>
+      <div class="r">Our Grand Knight presides over council business and life; our Chaplain is appointed by the pastor as the spiritual heart of our brotherhood.</div>
+    </div>
+
+    <div class="featured-grid">
+
+      <article class="feat">
+        <div class="portrait">
+          <div class="ph"><div class="monogram">ED</div></div>
+          <span class="role-tab">Grand Knight</span>
+        </div>
+        <div class="body">
+          <div class="post">Elected officer &middot; Presiding</div>
+          <div class="name">SK Edward G. Dowd</div>
+          <span class="post-flourish"></span>
+          <p class="bio">Presides over all meetings of the council, appoints chairmen and committees, and represents Council #6033 to the pastor, the district deputy, and the state council. Sir Knight of the Fourth Degree.</p>
+          <div class="actions">
+            <a class="email" href="mailto:gk@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email the Grand Knight</a>
+            <span class="term">Term &middot; 2025&ndash;2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="feat">
+        <div class="portrait">
+          <div class="ph"><div class="monogram">RS</div></div>
+          <span class="role-tab" style="background:var(--navy-dark);color:#fff">Chaplain</span>
+        </div>
+        <div class="body">
+          <div class="post">Appointed by the Pastor &middot; Spiritual director</div>
+          <div class="name">Rev. Robert B. Stagg</div>
+          <span class="post-flourish"></span>
+          <p class="bio">Our council chaplain leads us in prayer, opens our meetings, celebrates the council&rsquo;s memorial Mass, and supports our brothers and their families in moments of joy and grief alike.</p>
+          <div class="actions">
+            <a class="email" href="mailto:chaplain@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email Father Stagg</a>
+            <span class="term">Pastoral appointment</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ELECTED OFFICERS -->
+<section style="padding-top:36px">
+  <div class="wrap">
+    <div class="group-head">
+      <div class="l">
+        <span class="eyebrow">Section I &middot; Elected officers</span>
+        <h2>The elected line.</h2>
+        <span class="flourish"></span>
+      </div>
+      <div class="r">Six brothers elected by the council in May, installed at the first meeting of July, to lead the council&rsquo;s business and ceremonial life through the Columbian year.</div>
+    </div>
+
+    <div class="off-grid">
+
+      <article class="off">
+        <div class="portrait"><div class="ph"><div class="monogram">JL</div></div><span class="role-tab">Deputy GK</span><span class="photo-tag">PHOTO &middot; PENDING</span></div>
+        <div class="body">
+          <div class="name">Joseph R. Lupino</div>
+          <span class="post-flourish"></span>
+          <div class="post">Deputy Grand Knight</div>
+          <p class="bio">Stands ready to assume the duties of the Grand Knight, oversees committee work, and chairs council programs in his absence.</p>
+          <div class="actions">
+            <a class="email" href="mailto:dgk@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email</a>
+            <span class="term">2025&ndash;2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="off">
+        <div class="portrait"><div class="ph"><div class="monogram">CT</div></div><span class="role-tab">Chancellor</span><span class="photo-tag">PHOTO &middot; PENDING</span></div>
+        <div class="body">
+          <div class="name">Corrado Toxiri</div>
+          <span class="post-flourish"></span>
+          <div class="post">Chancellor</div>
+          <p class="bio">Strengthens the bonds of fraternity among brothers, assists the Grand Knight, and supports new members through their first year in the council.</p>
+          <div class="actions">
+            <a class="email" href="mailto:chancellor@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email</a>
+            <span class="term">2025&ndash;2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="off">
+        <div class="portrait"><div class="ph"><div class="monogram">JL</div></div><span class="role-tab">Recorder</span><span class="sk-stamp">SK</span><span class="photo-tag">PHOTO &middot; PENDING</span></div>
+        <div class="body">
+          <div class="name">SK Jeremiah P. Lynch</div>
+          <span class="post-flourish"></span>
+          <div class="post">Recorder</div>
+          <p class="bio">Keeps a true record of council meetings, manages correspondence, and preserves the institutional memory of Council #6033.</p>
+          <div class="actions">
+            <a class="email" href="mailto:recorder@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email</a>
+            <span class="term">2025&ndash;2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="off">
+        <div class="portrait"><div class="ph"><div class="monogram">KB</div></div><span class="role-tab">Treasurer</span><span class="photo-tag">PHOTO &middot; PENDING</span></div>
+        <div class="body">
+          <div class="name">Kevin R. Birdsall</div>
+          <span class="post-flourish"></span>
+          <div class="post">Treasurer</div>
+          <p class="bio">Receives moneys from the Financial Secretary, deposits funds in the council&rsquo;s name, and pays orders of the council as authorized.</p>
+          <div class="actions">
+            <a class="email" href="mailto:treasurer@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email</a>
+            <span class="term">2025&ndash;2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="off">
+        <div class="portrait"><div class="ph"><div class="monogram">RP</div></div><span class="role-tab">Warden</span><span class="photo-tag">PHOTO &middot; PENDING</span></div>
+        <div class="body">
+          <div class="name">Roy Polizzi</div>
+          <span class="post-flourish"></span>
+          <div class="post">Warden</div>
+          <p class="bio">Sets up the council chamber, safeguards regalia, and supervises the inside and outside guards during meetings and ceremonials.</p>
+          <div class="actions">
+            <a class="email" href="mailto:warden@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email</a>
+            <span class="term">2025&ndash;2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="off">
+        <div class="portrait"><div class="ph"><div class="monogram">SF</div></div><span class="role-tab">Inside Guard</span><span class="photo-tag">PHOTO &middot; PENDING</span></div>
+        <div class="body">
+          <div class="name">Sean M. Farley</div>
+          <span class="post-flourish"></span>
+          <div class="post">Inside Guard</div>
+          <p class="bio">Attends the inner door of the council chamber, admits members in good standing, and assists the Warden in keeping good order.</p>
+          <div class="actions">
+            <a class="email" href="mailto:insideguard@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email</a>
+            <span class="term">2025&ndash;2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="off">
+        <div class="portrait"><div class="ph"><div class="monogram">RT</div></div><span class="role-tab">Outside Guard</span><span class="photo-tag">PHOTO &middot; PENDING</span></div>
+        <div class="body">
+          <div class="name">Rene A. Tenazas</div>
+          <span class="post-flourish"></span>
+          <div class="post">Outside Guard</div>
+          <p class="bio">Attends the outside door of the council chamber and ensures that none but those entitled gain admission to the meeting.</p>
+          <div class="actions">
+            <a class="email" href="mailto:outsideguard1@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email</a>
+            <span class="term">2025&ndash;2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="off">
+        <div class="portrait"><div class="ph"><div class="monogram">RS</div></div><span class="role-tab">Outside Guard</span><span class="photo-tag">PHOTO &middot; PENDING</span></div>
+        <div class="body">
+          <div class="name">Dr. Robert G. Stevenson, EdD</div>
+          <span class="post-flourish"></span>
+          <div class="post">Outside Guard</div>
+          <p class="bio">Serves alongside the warden in the ceremonial duties of the council, ensuring decorum at all council meetings and exemplifications.</p>
+          <div class="actions">
+            <a class="email" href="mailto:outsideguard2@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email</a>
+            <span class="term">2025&ndash;2026</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTEES + APPOINTED -->
+<section style="padding-top:36px;background:var(--surface-alt)">
+  <div class="wrap">
+    <div class="group-head">
+      <div class="l">
+        <span class="eyebrow">Section II &middot; Trustees &amp; appointed</span>
+        <h2>Trustees and the Financial Secretary.</h2>
+        <span class="flourish"></span>
+      </div>
+      <div class="r">Three Trustees rotate through one-, two-, and three-year terms, providing oversight and continuity. The Financial Secretary is appointed by Supreme upon nomination of the council.</div>
+    </div>
+
+    <div class="off-grid">
+
+      <article class="off">
+        <div class="portrait"><div class="ph"><div class="monogram">SC</div></div><span class="role-tab">3-Yr Trustee</span><span class="photo-tag">PHOTO &middot; PENDING</span></div>
+        <div class="body">
+          <div class="name">Sal J. Canariato</div>
+          <span class="post-flourish"></span>
+          <div class="post">Three-Year Trustee</div>
+          <p class="bio">Senior trustee. Reviews the council&rsquo;s books quarterly with his fellow trustees and counsels the elected line on continuity and good governance.</p>
+          <div class="actions">
+            <a class="email" href="mailto:trustee3@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email</a>
+            <span class="term">Term ends 2028</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="off">
+        <div class="portrait"><div class="ph"><div class="monogram">PF</div></div><span class="role-tab">2-Yr Trustee</span><span class="photo-tag">PHOTO &middot; PENDING</span></div>
+        <div class="body">
+          <div class="name">Peter E. Finlay</div>
+          <span class="post-flourish"></span>
+          <div class="post">Two-Year Trustee</div>
+          <p class="bio">Conducts the semi-annual audit of council finances and assists in ceremonial functions, drawing on prior service in the elected line.</p>
+          <div class="actions">
+            <a class="email" href="mailto:trustee2@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email</a>
+            <span class="term">Term ends 2027</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="off">
+        <div class="portrait"><div class="ph"><div class="monogram">BE</div></div><span class="role-tab">1-Yr Trustee</span><span class="photo-tag">PHOTO &middot; PENDING</span></div>
+        <div class="body">
+          <div class="name">Barry W. Ervin</div>
+          <span class="post-flourish"></span>
+          <div class="post">One-Year Trustee</div>
+          <p class="bio">Junior trustee. Brings the most recent experience as Grand Knight to the trustee line and serves as a steady counsel to the seated officers.</p>
+          <div class="actions">
+            <a class="email" href="mailto:trustee1@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email</a>
+            <span class="term">Term ends 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="off">
+        <div class="portrait"><div class="ph"><div class="monogram">KB</div></div><span class="role-tab">Financial Sec.</span><span class="photo-tag">PHOTO &middot; PENDING</span></div>
+        <div class="body">
+          <div class="name">Keith R. Birdsall</div>
+          <span class="post-flourish"></span>
+          <div class="post">Financial Secretary &middot; appointed</div>
+          <p class="bio">Keeps the membership rolls, collects dues and assessments, and corresponds with Supreme. Appointed to a three-year term by the Supreme Knight.</p>
+          <div class="actions">
+            <a class="email" href="mailto:fs@kofc6033.org"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg>Email</a>
+            <span class="term">Three-year appointment</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div>
+        <span class="eyebrow" style="color:#F7C04A">Considering service?</span>
+        <h2>Officers are made from members.</h2>
+        <span class="flourish"></span>
+        <p>Every Grand Knight on our wall began as a brother who simply showed up, served on a committee, and let the Holy Spirit do the rest. If service in the line of office is on your heart, speak to any current officer &mdash; or come to a meeting and see for yourself.</p>
+        <div class="actions">
+          <a class="btn btn-onnavy" href="#">Begin Your Membership <span class="arrow">&rarr;</span></a>
+          <a class="btn btn-secondary" href="mailto:gk@kofc6033.org" style="background:transparent;color:#fff;border-color:#fff">Email the Grand Knight</a>
+        </div>
+      </div>
+      <div class="cta-card">
+        <h3 style="margin-bottom:8px">Officers&rsquo; Meeting</h3>
+        <span class="flourish" style="margin:8px 0 12px"></span>
+        <div class="row"><span class="k">When</span><span class="v" style="">2nd Tue &middot; 7:30 PM</span></div>
+        <div class="row"><span class="k">Where</span><span class="v" style="">Church of the Presentation</span></div>
+        <div class="row"><span class="k">Open to</span><span class="v">All officers</span></div>
+        <div class="row"><span class="k">Council meeting</span><span class="v">3rd Wed &middot; 7:30 PM</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+
+      <div class="brand-block">
+        <img src="assets/kofc-horizontal-reversed.png" alt="Knights of Columbus">
+        <p style="color:#F7C04A;font-family:var(--serif);font-size:18px;font-weight:600;margin-top:4px">Presentation Council #6033</p>
+        <div class="addr">
+          <strong>Church of the Presentation</strong><br>
+          271 West Saddle River Road<br>
+          Upper Saddle River, NJ 07458<br>
+          (201) 327-1313
+        </div>
+        <div class="social" aria-label="Follow our council">
+          <a href="#" aria-label="Facebook"><svg class="icon" viewBox="0 0 24 24"><path d="M14 8h2.5V5H14c-2 0-3 1.5-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V8.5c0-.3.2-.5.5-.5z" fill="currentColor" stroke="none"></path></svg></a>
+          <a href="#" aria-label="Email"><svg class="icon" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"></rect><path d="M4 6l8 6 8-6"></path></svg></a>
+          <a href="#" aria-label="Calendar"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="1.5"></rect><path d="M4 9h16M8 3v4M16 3v4"></path></svg></a>
+          <a href="#" aria-label="Phone"><svg class="icon" viewBox="0 0 24 24"><path d="M5 5l3-1 2 4-2 1a10 10 0 0 0 6 6l1-2 4 2-1 3a2 2 0 0 1-2 1A14 14 0 0 1 4 7a2 2 0 0 1 1-2z"></path></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="#">Our Council</a></li>
+          <li><a href="Officers.html">Officers</a></li>
+          <li><a href="#">History</a></li>
+          <li><a href="#">Past Grand Knights</a></li>
+          <li><a href="#">Brothers in Memoriam</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="#">Become a Knight</a></li>
+          <li><a href="#">Volunteer</a></li>
+          <li><a href="#">Make a Donation</a></li>
+          <li><a href="#">Request a Mass</a></li>
+          <li><a href="#">Family Assistance</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Activities</h4>
+        <ul>
+          <li><a href="#">Calendar</a></li>
+          <li><a href="#">Coats for Kids</a></li>
+          <li><a href="#">Tootsie Roll Drive</a></li>
+          <li><a href="#">Pancake Breakfasts</a></li>
+          <li><a href="#">Memorial Mass</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Knights of Columbus (Supreme)</a></li>
+          <li><a href="#">NJ State Council</a></li>
+          <li><a href="#">Member Insurance</a></li>
+          <li><a href="#">Faith Formation</a></li>
+          <li><a href="#">Members Sign In</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Presentation Council #6033, Knights of Columbus. All rights reserved.</div>
+      <div class="links">
+        <a href="#">Privacy</a>
+        <a href="#">Site Credits</a>
+        <a href="#">Contact the Webmaster</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body>
+</html>

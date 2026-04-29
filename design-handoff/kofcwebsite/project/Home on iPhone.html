@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home on iPhone 15 &middot; Council #6033</title>
+<style>
+  html,body{margin:0;padding:0;background:#0b1020;min-height:100vh;font-family:-apple-system,system-ui,sans-serif;color:#cfd6e8}
+  .stage{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;gap:18px;
+    background:radial-gradient(60% 60% at 50% 30%, #14224a 0%, #0b1020 70%)}
+  .label{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#9aa6c4}
+  .label b{color:#F7C04A;font-weight:600}
+  #mount{display:flex;justify-content:center}
+  iframe.page{
+    width:100%;height:100%;border:0;display:block;background:#fff;
+  }
+  /* The device's inner content area below status bar (47px) and above home indicator (34px). 
+     We give the iframe full size; the page scrolls inside. */
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="ios-frame.jsx"></script>
+</head>
+<body>
+<div class="stage">
+  <div class="label">Presentation Council <b>#6033</b> &middot; Home.html on <b>iPhone 15</b> (390 &times; 844)</div>
+  <div id="mount"></div>
+</div>
+
+<script type="text/babel">
+  function App(){
+    return (
+      <IOSDevice width={390} height={844} dark={false}>
+        {/* Padding so content starts below the status bar/dynamic island
+            and ends above the home indicator. */}
+        <div style={{paddingTop:54,paddingBottom:34,height:'100%',boxSizing:'border-box',display:'flex'}}>
+          <iframe className="page" src="Home.html" title="Council #6033 — Home" />
+        </div>
+      </IOSDevice>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('mount')).render(<App/>);
+</script>
+</body>
+</html>
