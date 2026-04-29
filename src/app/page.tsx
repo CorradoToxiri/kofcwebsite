@@ -570,16 +570,22 @@ function JoinSection() {
             <span className="flourish" />
             <ol className="join-steps">
               <li>
-                <strong>Reach out</strong>
-                <span>Email our Membership Director or fill out the short interest form. We&rsquo;ll call within a week.</span>
+                <div>
+                  <strong>Reach out</strong>
+                  <span>Email our Membership Director or fill out the short interest form. We&rsquo;ll call within a week.</span>
+                </div>
               </li>
               <li>
-                <strong>Visit a meeting</strong>
-                <span>Join us on the third Wednesday of any month. No obligation, just coffee, fellowship, and a look behind the curtain.</span>
+                <div>
+                  <strong>Visit a meeting</strong>
+                  <span>Join us on the third Wednesday of any month. No obligation, just coffee, fellowship, and a look behind the curtain.</span>
+                </div>
               </li>
               <li>
-                <strong>Take your degree</strong>
-                <span>When you&rsquo;re ready, complete the Exemplification of Charity, Unity, and Fraternity — and you&rsquo;re a brother knight.</span>
+                <div>
+                  <strong>Take your degree</strong>
+                  <span>When you&rsquo;re ready, complete the Exemplification of Charity, Unity, and Fraternity — and you&rsquo;re a brother knight.</span>
+                </div>
               </li>
             </ol>
           </div>
