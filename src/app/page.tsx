@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
 import type { Event, NewsPost } from '@/lib/supabase/types'
 import { eventDateParts, shortWeekdayTime, monthYearPill, shortDate } from '@/lib/utils/dates'
@@ -142,18 +143,20 @@ function HeroSection() {
           </div>
         </div>
 
-        {/* Right — photo placeholder */}
-        <div className="hero-photo" aria-hidden="true">
+        {/* Right — photo */}
+        <div className="hero-photo">
           <div className="photo-frame">
-            <div className="photo-placeholder">
-              <div className="ph-inner">
-                <div className="ph-title">Hero photograph</div>
-                Brothers gathered after the<br />
-                annual Tootsie Roll Drive · 2025<br />
-                <span style={{ color: 'var(--color-muted)' }}>// supplied by council photo library</span>
-              </div>
+            <div className="hero-photo-wrap">
+              <Image
+                src="https://vsmwjkqqoqatkoalslci.supabase.co/storage/v1/object/public/public-photos/hero.png"
+                alt="Our Knights helping the Soup Kitchen Ministry"
+                fill
+                className="hero-photo-img"
+                sizes="(max-width: 980px) 100vw, 50vw"
+                priority
+              />
             </div>
-            <div className="photo-caption">PHOTO_01 · COUNCIL ARCHIVE</div>
+            <div className="photo-caption">Our Knights helping the Soup Kitchen Ministry</div>
           </div>
           <div className="hero-stamp">
             <div className="stamp-seal">VI</div>
@@ -692,6 +695,8 @@ function HomeStyles() {
         position: relative; border-radius: 6px; overflow: hidden;
         background: #fff; border: 1px solid var(--color-border); box-shadow: var(--shadow-lift);
       }
+      .hero-photo-wrap { position: relative; width: 100%; aspect-ratio: 4 / 3; }
+      .hero-photo-img { object-fit: cover; }
       .photo-placeholder {
         width: 100%; aspect-ratio: 4 / 5;
         background: repeating-linear-gradient(135deg, rgba(0,48,135,.06) 0 14px, rgba(0,48,135,.10) 14px 28px),
