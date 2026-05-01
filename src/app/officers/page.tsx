@@ -30,6 +30,18 @@ async function getOfficers(): Promise<Officer[]> {
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
+const NUMBER_WORDS: Record<number, string> = {
+  1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five',
+  6: 'Six', 7: 'Seven', 8: 'Eight', 9: 'Nine', 10: 'Ten',
+  11: 'Eleven', 12: 'Twelve', 13: 'Thirteen', 14: 'Fourteen',
+  15: 'Fifteen', 16: 'Sixteen', 17: 'Seventeen', 18: 'Eighteen',
+  19: 'Nineteen', 20: 'Twenty',
+}
+
+function toWord(n: number): string {
+  return NUMBER_WORDS[n] ?? String(n)
+}
+
 function initials(name: string): string {
   const cleaned = name.replace(/^(SK|Rev\.|Dr\.)\s+/i, '').trim()
   const parts = cleaned.split(/\s+/)
@@ -43,17 +55,22 @@ function initials(name: string): string {
 export default async function OfficersPage() {
   const officers = await getOfficers()
 
-  const featured  = officers.filter((o) => o.is_featured)
-  const elected   = officers.filter((o) => !o.is_featured && o.category === 'officer')
-  const trustees  = officers.filter((o) => o.category === 'trustee' || o.category === 'director')
+  const featured       = officers.filter((o) => o.is_featured)
+  const elected        = officers.filter((o) => !o.is_featured && o.category === 'officer')
+  const trustees       = officers.filter((o) => o.category === 'trustee' || o.category === 'director')
+  const officerCount   = officers.length || 14
+  const electedCount   = elected.length  || ELECTED_PLACEHOLDERS.length
+  const gkEmail        = officers.find(
+    (o) => /^grand knight$/i.test(o.title.trim())
+  )?.email ?? null
 
   return (
     <>
-      <PageHero />
+      <PageHero officerCount={officerCount} />
       <FeaturedSection officers={featured} />
-      <ElectedSection officers={elected} />
+      <ElectedSection officers={elected} electedCount={electedCount} />
       <TrusteesSection officers={trustees} />
-      <CtaBand />
+      <CtaBand gkEmail={gkEmail} />
       <OfficersStyles />
     </>
   )
@@ -61,7 +78,7 @@ export default async function OfficersPage() {
 
 // ─── Page Hero ───────────────────────────────────────────────────────────────
 
-function PageHero() {
+function PageHero({ officerCount }: { officerCount: number }) {
   return (
     <section className="off-pagehero">
       <div className="off-pagehero-inner">
@@ -91,7 +108,7 @@ function PageHero() {
           </div>
           <div className="off-meta-row">
             <span className="off-meta-k">Officers seated</span>
-            <span className="off-meta-v">14 brothers</span>
+            <span className="off-meta-v">{officerCount} brothers</span>
           </div>
           <div className="off-meta-row">
             <span className="off-meta-k">Term begins</span>
@@ -168,7 +185,7 @@ function FeaturedCard({ officer: o }: { officer: Officer }) {
 
       <div className="off-feat-body">
         <div className="off-post" style={{ color: isGrandKnight ? 'var(--color-gold-dark)' : undefined }}>
-          {isGrandKnight ? 'Elected officer · Presiding' : 'Appointed by the Pastor · Spiritual director'}
+          {isGrandKnight ? 'Elected officer · Presiding' : 'Spiritual director'}
         </div>
         <div className="off-feat-name">{o.full_name}</div>
         <span className="off-post-flourish" />
@@ -205,7 +222,7 @@ function FeaturedPlaceholderGrid() {
         monogram="RS"
         title="Chaplain"
         roleStyle={undefined}
-        postLabel="Appointed by the Pastor · Spiritual director"
+        postLabel="Spiritual director"
         postColor={undefined}
         name="Rev. Robert B. Stagg"
         bio="Our council chaplain leads us in prayer, opens our meetings, celebrates the council's memorial Mass, and supports our brothers and their families in moments of joy and grief alike."
@@ -247,7 +264,7 @@ function FeaturedPlaceholder({
 
 // ─── Elected Officers ────────────────────────────────────────────────────────
 
-function ElectedSection({ officers }: { officers: Officer[] }) {
+function ElectedSection({ officers, electedCount }: { officers: Officer[]; electedCount: number }) {
   return (
     <section style={{ paddingTop: '36px' }}>
       <div className="wrap">
@@ -258,8 +275,8 @@ function ElectedSection({ officers }: { officers: Officer[] }) {
             <span className="flourish" />
           </div>
           <p className="off-group-desc">
-            Six brothers elected by the council in May, installed at the first meeting of July,
-            to lead the council's business and ceremonial life through the Columbian year.
+            {toWord(electedCount)}{' '}brothers elected by the council in May, installed at the first meeting of July,
+            to lead the council&rsquo;s business and ceremonial life through the Columbian year.
           </p>
         </div>
 
@@ -431,7 +448,7 @@ const TRUSTEE_PLACEHOLDERS: PlaceholderProps[] = [
 
 // ─── CTA Band ────────────────────────────────────────────────────────────────
 
-function CtaBand() {
+function CtaBand({ gkEmail }: { gkEmail: string | null }) {
   return (
     <section className="off-cta-band">
       <div className="wrap">
@@ -449,13 +466,15 @@ function CtaBand() {
               <Link href="/join" className="btn btn-on-navy">
                 Begin Your Membership <span aria-hidden="true">→</span>
               </Link>
-              <a
-                href="mailto:gk@kofc6033.org"
-                className="btn btn-secondary"
-                style={{ background: 'transparent', color: '#fff', borderColor: '#fff' }}
-              >
-                Email the Grand Knight
-              </a>
+              {gkEmail && (
+                <a
+                  href={`mailto:${gkEmail}`}
+                  className="btn btn-secondary"
+                  style={{ background: 'transparent', color: '#fff', borderColor: '#fff' }}
+                >
+                  Email the Grand Knight
+                </a>
+              )}
             </div>
           </div>
 
@@ -596,10 +615,10 @@ function OfficersStyles() {
 
       /* ── Standard officer card (vertical) ── */
       .off-grid {
-        display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
       }
       @media (max-width: 980px) { .off-grid { grid-template-columns: repeat(2, 1fr); } }
-      @media (max-width: 560px) { .off-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 480px)  { .off-grid { grid-template-columns: 1fr; } }
 
       .off-card {
         background: #fff; border: 1px solid var(--color-border); border-radius: 6px;
@@ -611,22 +630,22 @@ function OfficersStyles() {
         position: relative; aspect-ratio: 4 / 5;
         background: linear-gradient(180deg, #dfe6f1, #c8d3e4); overflow: hidden;
       }
-      .off-card-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+      .off-card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; flex: 1; }
       .off-card-name {
-        font-family: var(--font-serif); font-size: 21px; font-weight: 600;
+        font-family: var(--font-serif); font-size: 16px; font-weight: 600;
         color: var(--color-navy); line-height: 1.2;
       }
       .off-card-post {
-        font-size: 13px; color: var(--color-muted);
-        font-family: var(--font-mono); letter-spacing: .04em; margin-bottom: 12px;
+        font-size: 12px; color: var(--color-muted);
+        font-family: var(--font-mono); letter-spacing: .04em; margin-bottom: 8px;
       }
       .off-card-bio {
-        font-size: 14.5px; color: var(--color-ink-soft); line-height: 1.5;
-        margin: 0 0 16px; flex: 1;
+        font-size: 13px; color: var(--color-ink-soft); line-height: 1.5;
+        margin: 0 0 12px; flex: 1;
       }
       .off-card-actions {
-        display: flex; align-items: center; justify-content: space-between; gap: 12px;
-        border-top: 1px solid var(--color-border); padding-top: 14px; margin-top: auto;
+        display: flex; align-items: center; justify-content: space-between; gap: 8px;
+        border-top: 1px solid var(--color-border); padding-top: 10px; margin-top: auto;
       }
 
       /* ── Shared portrait elements ── */
@@ -634,12 +653,16 @@ function OfficersStyles() {
         position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
         background: repeating-linear-gradient(135deg, rgba(0,48,135,.06) 0 14px, rgba(0,48,135,.10) 14px 28px);
       }
+      /* Monogram sizes: featured cards use the large version, standard cards the small one */
       .off-monogram {
         font-family: var(--font-serif); font-size: 58px; font-weight: 600;
         color: rgba(0,31,92,.55); letter-spacing: -.01em;
         background: rgba(255,255,255,.7); width: 106px; height: 106px; border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
         border: 2px solid rgba(242,169,0,.55); box-shadow: 0 2px 6px rgba(10,20,50,.08);
+      }
+      .off-card .off-monogram {
+        font-size: 42px; width: 78px; height: 78px;
       }
       .off-role-tab {
         position: absolute; left: 14px; top: 14px;
@@ -648,22 +671,26 @@ function OfficersStyles() {
         letter-spacing: .14em; text-transform: uppercase;
         padding: 5px 10px; border-radius: 3px; border-left: 3px solid var(--color-gold);
       }
+      .off-card .off-role-tab { font-size: 10px; padding: 4px 8px; left: 10px; top: 10px; }
       .off-photo-tag {
         position: absolute; right: 12px; bottom: 12px;
         background: rgba(0,31,92,.85); color: #fff;
         font-family: var(--font-mono); font-size: 10px; letter-spacing: .06em;
         padding: 4px 8px; border-radius: 2px;
       }
+      .off-card .off-photo-tag { right: 8px; bottom: 8px; font-size: 9px; padding: 3px 6px; }
       .off-post-flourish {
         display: block; width: 36px; height: 3px;
         background: var(--color-gold); border-radius: 2px; margin: 10px 0 12px;
       }
+      .off-card .off-post-flourish { width: 28px; margin: 8px 0 8px; }
 
       /* ── Email link ── */
       .off-email {
         display: inline-flex; align-items: center; gap: 8px;
         font-size: 14px; font-weight: 600; color: var(--color-navy);
       }
+      .off-card .off-email { font-size: 12px; gap: 5px; }
       .off-email:hover { color: var(--color-gold-dark); text-decoration: none; }
       .off-email-placeholder { opacity: .5; cursor: default; }
       .off-term {
