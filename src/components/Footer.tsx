@@ -79,7 +79,7 @@ export default function Footer() {
           <FooterCol title="Resources">
             <FooterLink href="https://www.kofc.org" external>Knights of Columbus (Supreme)</FooterLink>
             <FooterLink href="https://www.njkofc.org" external>NJ State Council</FooterLink>
-            <FooterLink href="https://www.churchofthepresentation.org" external>Church of the Presentation</FooterLink>
+            <FooterLink href="https://www.churchofpresentation.org" external>Church of the Presentation</FooterLink>
             <FooterLink href="https://www.kofc.org/insurance" external>Member Insurance</FooterLink>
           </FooterCol>
 

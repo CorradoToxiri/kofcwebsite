@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
 import type { Event, NewsPost } from '@/lib/supabase/types'
 import { eventDateParts, shortWeekdayTime, monthYearPill, shortDate } from '@/lib/utils/dates'
+import { PillarsGrid } from '@/components/PillarsGrid'
 
 // ─── Data fetching ──────────────────────────────────────────────────────────
 
@@ -258,68 +259,9 @@ function PillarsSection() {
           </p>
         </div>
 
-        <div className="pillars-grid">
-          <PillarCard
-            num="I."
-            title="Charity"
-            body="From the food pantry collection to the Coats for Kids drive, we are our parish's hands and feet for those in need."
-            meta="$47,200 given in 2025"
-            icon={
-              <path d="M12 21s-7-4.5-9.2-9A5.4 5.4 0 0 1 12 6.4 5.4 5.4 0 0 1 21.2 12c-2.2 4.5-9.2 9-9.2 9z"
-                stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinejoin="round" />
-            }
-          />
-          <PillarCard
-            num="II."
-            title="Unity"
-            body="None of us is as good as all of us. We work shoulder-to-shoulder with our pastor, our parish, and our community."
-            meta="12 parish events / year"
-            icon={<>
-              <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.6" fill="none" />
-              <path d="M3.5 12h17M12 3.5c2.5 3 2.5 14 0 17M12 3.5c-2.5 3-2.5 14 0 17"
-                stroke="currentColor" strokeWidth="1.6" fill="none" />
-            </>}
-          />
-          <PillarCard
-            num="III."
-            title="Fraternity"
-            body="A circle of Catholic men who hold each other up — at first communions and at funerals, in joys and in trials."
-            meta="100 brother knights"
-            icon={
-              <path d="M5 20a7 7 0 0 1 14 0M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"
-                stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" />
-            }
-          />
-          <PillarCard
-            num="IV."
-            title="Patriotism"
-            body="Faithful citizens who honor our country, support our veterans, and stand for the dignity of every life among us."
-            meta="20 Fourth Degree Knights"
-            icon={<>
-              <path d="M4 5h16v9l-8 5-8-5V5z" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinejoin="round" />
-              <path d="M4 9h16M12 5v14" stroke="currentColor" strokeWidth="1.6" fill="none" />
-            </>}
-          />
-        </div>
+        <PillarsGrid />
       </div>
     </section>
-  )
-}
-
-function PillarCard({
-  num, title, body, meta, icon,
-}: {
-  num: string; title: string; body: string; meta: string; icon: React.ReactNode
-}) {
-  return (
-    <div className="pillar">
-      <svg className="pillar-ico" viewBox="0 0 24 24" aria-hidden="true">{icon}</svg>
-      <div className="pillar-num">{num}</div>
-      <h3>{title}</h3>
-      <span className="flourish" />
-      <p>{body}</p>
-      <div className="pillar-meta">{meta}</div>
-    </div>
   )
 }
 
@@ -762,19 +704,6 @@ function HomeStyles() {
       .pillars-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 36px; flex-wrap: wrap; }
       .pillars-head h2 { font-size: 36px; }
       .pillars-desc { max-width: 420px; color: var(--color-ink-soft); font-size: 16px; margin: 0; }
-      .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-      .pillar {
-        background: #fff; border: 1px solid var(--color-border); border-radius: 6px; padding: 28px 26px;
-        box-shadow: var(--shadow-sm); position: relative; transition: transform .15s, box-shadow .15s;
-      }
-      .pillar:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
-      .pillar-ico { width: 34px; height: 34px; color: var(--color-navy); margin-bottom: 6px; stroke: currentColor; fill: none; }
-      .pillar-num { font-family: var(--font-serif); font-size: 13px; font-weight: 600; color: var(--color-gold-dark); letter-spacing: .18em; }
-      .pillar h3 { margin-top: 14px; }
-      .pillar p { font-size: 15px; color: var(--color-ink-soft); margin: 0 0 18px; line-height: 1.55; }
-      .pillar-meta { font-size: 13px; color: var(--color-muted); font-family: var(--font-mono); }
-      @media (max-width: 980px) { .pillars-grid { grid-template-columns: repeat(2, 1fr); } }
-      @media (max-width: 520px) { .pillars-grid { grid-template-columns: 1fr; } }
 
       /* ── Impact ── */
       .impact-section { background: var(--color-navy); color: #fff; position: relative; overflow: hidden; }
