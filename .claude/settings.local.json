@@ -18,7 +18,9 @@
       "Bash(python -c \"from PIL import Image; img=Image.open\\('public/kofc-emblem.png'\\); print\\(img.size\\)\")",
       "Bash(python3 -c \"from PIL import Image; img=Image.open\\('public/kofc-emblem.png'\\); print\\(img.size\\)\")",
       "Bash(grep -rn \"churchofthepresentation\" src/ public/ --include=\"*.tsx\" --include=\"*.ts\" --include=\"*.html\")",
-      "Bash(grep -rni \"officers.*meeting\\\\|1st mon\\\\|1st tue\\\\|1st tuesday\\\\|2nd mon\" src/ --include=\"*.tsx\" --include=\"*.ts\")"
+      "Bash(grep -rni \"officers.*meeting\\\\|1st mon\\\\|1st tue\\\\|1st tuesday\\\\|2nd mon\" src/ --include=\"*.tsx\" --include=\"*.ts\")",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\corra\\\\Documents\\\\DevProjects\\\\kofcwebsite\" -Directory)",
+      "Bash(Select-Object Name)"
     ]
   }
 }
