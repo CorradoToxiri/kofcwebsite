@@ -33,7 +33,7 @@ export default function Footer() {
             </address>
             {/* Social icons */}
             <div aria-label="Follow our council" style={{ display: 'flex', gap: '10px', marginTop: '8px' }}>
-              <SocialLink href="mailto:contact@kofc6033.org" label="Email">
+              <SocialLink href="mailto:kofc6033@churchofpresentation.org" label="Email">
                 <rect x="3.5" y="5.5" width="17" height="13" rx="1.5" />
                 <path d="M4 6l8 6 8-6" />
               </SocialLink>
