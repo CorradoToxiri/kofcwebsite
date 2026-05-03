@@ -5,7 +5,20 @@
       "Bash(npm run *)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(node *)"
+      "Bash(node *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\corra\\\\Documents\\\\DevProjects\\\\kofcwebsite\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "WebFetch(domain:uknight.org)",
+      "Bash(curl -s http://localhost:3000/about)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(curl -s http://localhost:3000/calendar)",
+      "Bash(python3 -c \"import sys,re; html=sys.stdin.read\\(\\); m=re.search\\(r'No upcoming events[^<]*', html\\); print\\(m.group\\(\\) if m else 'not found'\\)\")",
+      "Bash(git push *)",
+      "Bash(file \"public/kofc-emblem.png\")",
+      "Bash(python -c \"from PIL import Image; img=Image.open\\('public/kofc-emblem.png'\\); print\\(img.size\\)\")",
+      "Bash(python3 -c \"from PIL import Image; img=Image.open\\('public/kofc-emblem.png'\\); print\\(img.size\\)\")",
+      "Bash(grep -rn \"churchofthepresentation\" src/ public/ --include=\"*.tsx\" --include=\"*.ts\" --include=\"*.html\")",
+      "Bash(grep -rni \"officers.*meeting\\\\|1st mon\\\\|1st tue\\\\|1st tuesday\\\\|2nd mon\" src/ --include=\"*.tsx\" --include=\"*.ts\")"
     ]
   }
 }

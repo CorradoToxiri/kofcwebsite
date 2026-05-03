@@ -164,13 +164,6 @@ function HeroSection() {
             </div>
             <div className="photo-caption">Our Knights helping the Soup Kitchen Ministry</div>
           </div>
-          <div className="hero-stamp">
-            <div className="stamp-seal">VI</div>
-            <div className="stamp-text">
-              <strong>Council #6033</strong>
-              Chartered May 1968
-            </div>
-          </div>
         </div>
 
       </div>
@@ -620,24 +613,9 @@ function HomeStyles() {
         font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .04em;
         padding: 7px 12px; border-radius: 3px; border-left: 3px solid var(--color-gold);
       }
-      .hero-stamp {
-        position: absolute; left: -22px; top: 32px;
-        background: #fff; border: 1px solid var(--color-border); box-shadow: var(--shadow-card);
-        padding: 14px 18px; border-radius: 4px; display: flex; align-items: center; gap: 14px;
-      }
-      .stamp-seal {
-        width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
-        border: 2px solid var(--color-gold); display: flex; align-items: center; justify-content: center;
-        font-family: var(--font-serif); font-weight: 700; color: var(--color-navy); font-size: 14px;
-        line-height: 1;
-      }
-      .stamp-text { font-size: 12.5px; line-height: 1.25; color: var(--color-ink-soft); }
-      .stamp-text strong { display: block; color: var(--color-navy); font-family: var(--font-serif); font-size: 14px; font-weight: 600; }
-
       @media (max-width: 980px) {
         .hero-inner { grid-template-columns: 1fr; gap: 36px; padding: 40px 24px 48px; }
         .hero-copy h1 { font-size: 42px; }
-        .hero-stamp { left: 0; top: -18px; }
       }
 
       /* ── Welcome ── */
