@@ -79,7 +79,7 @@ function HistorySection() {
     <section id="history" style={{ background: 'var(--color-surface-alt)' }}>
       <div className="wrap">
         <span className="eyebrow">Our council</span>
-        <h2>Fifty-eight years of brothers, one parish.</h2>
+        <h2>How we got here</h2>
         <span className="flourish" />
 
         <div className="abt-history-grid">
@@ -246,6 +246,10 @@ function ContactSection() {
                 <span className="abt-meeting-v">2nd Tue · 7:30 PM</span>
               </div>
             </div>
+            <a href="mailto:kofc6033@churchofpresentation.org" className="abt-council-email">
+              <MailIcon />
+              kofc6033@churchofpresentation.org
+            </a>
             <a
               href="https://www.google.com/maps/search/?api=1&query=271+West+Saddle+River+Road+Upper+Saddle+River+NJ+07458"
               target="_blank"
@@ -390,6 +394,15 @@ function ChurchIcon() {
   )
 }
 
+function MailIcon() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true" style={{ flexShrink: 0 }}>
+      <rect x="3.5" y="5.5" width="17" height="13" rx="1.5" />
+      <path d="M4 6l8 6 8-6" />
+    </svg>
+  )
+}
+
 function ShieldIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
@@ -528,6 +541,12 @@ function AboutStyles() {
         color: var(--color-ink); font-weight: 600;
         font-family: var(--font-mono); font-size: 13px;
       }
+      .abt-council-email {
+        display: inline-flex; align-items: center; gap: 7px;
+        font-size: 13.5px; color: var(--color-navy); font-weight: 600;
+        font-family: var(--font-mono); margin-bottom: 14px;
+      }
+      .abt-council-email:hover { color: var(--color-gold-dark); text-decoration: none; }
       .abt-card-btn { margin-top: auto; font-size: 14px; padding: 10px 16px; }
       .abt-card-desc {
         font-size: 15px; color: var(--color-ink-soft);

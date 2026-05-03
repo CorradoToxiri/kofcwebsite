@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
-import type { Event, NewsPost } from '@/lib/supabase/types'
+import type { Event } from '@/lib/supabase/types'
 import { eventDateParts, shortWeekdayTimeRange, monthYearPill, shortDate, formatTimeRange } from '@/lib/utils/dates'
 import { PillarsGrid } from '@/components/PillarsGrid'
 
@@ -43,18 +43,23 @@ async function getThisWeekEvents(): Promise<Pick<Event, 'id' | 'title' | 'starts
   }
 }
 
-async function getLatestNews(): Promise<Pick<NewsPost, 'id' | 'title' | 'summary' | 'published_at'> | null> {
+async function getGrandKnight(): Promise<string | null> {
   try {
     const supabase = await createSupabaseServerClient()
     const { data } = await supabase
-      .from('news')
-      .select('id, title, summary, published_at')
+      .from('officers')
+      .select('full_name')
+      .eq('title', 'Grand Knight')
       .eq('is_published', true)
-      .order('published_at', { ascending: false })
       .limit(1)
       .single()
-    return data ?? null
+    if (!data) {
+      console.warn('[homepage] No Grand Knight row found in officers table')
+      return null
+    }
+    return data.full_name
   } catch {
+    console.warn('[homepage] Failed to fetch Grand Knight name')
     return null
   }
 }
@@ -74,19 +79,19 @@ const EVENT_TYPE_LABEL: Record<string, string> = {
 // ─── Page ───────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const [upcomingEvents, weekEvents, latestNews] = await Promise.all([
+  const [upcomingEvents, weekEvents, grandKnightName] = await Promise.all([
     getUpcomingEvents(),
     getThisWeekEvents(),
-    getLatestNews(),
+    getGrandKnight(),
   ])
 
   return (
     <>
       <HeroSection />
-      <WelcomeSection weekEvents={weekEvents} />
+      <WelcomeSection weekEvents={weekEvents} grandKnightName={grandKnightName} />
       <PillarsSection />
       <ImpactSection />
-      <ActivitiesSection events={upcomingEvents} latestNews={latestNews} />
+      <ActivitiesSection events={upcomingEvents} />
       <JoinSection />
       <HistorySection />
       <HomeStyles />
@@ -177,8 +182,10 @@ function HeroSection() {
 
 function WelcomeSection({
   weekEvents,
+  grandKnightName,
 }: {
   weekEvents: Pick<Event, 'id' | 'title' | 'starts_at' | 'ends_at'>[]
+  grandKnightName: string | null
 }) {
   return (
     <section className="welcome-section">
@@ -189,7 +196,6 @@ function WelcomeSection({
           <div className="welcome-quote">
             <span className="eyebrow">A word from the Grand Knight</span>
             <span className="flourish" />
-            {/* TODO: Replace with real Grand Knight name and welcome message — awaiting content from council */}
             <p style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', lineHeight: 1.45, color: 'var(--color-ink)', fontWeight: 400, margin: 0 }}>
               <span className="opening-quote">&ldquo;</span>
               Whether you have been a Knight for forty years or are simply curious
@@ -198,13 +204,16 @@ function WelcomeSection({
             </p>
             <div className="welcome-attrib">
               <span className="attrib-line" />
-              {/* TODO: Replace with real Grand Knight name */}
-              <span>
-                <strong style={{ color: 'var(--color-navy)', fontWeight: 600 }}>
-                  [Grand Knight Name]
-                </strong>
-                {' '}· Grand Knight, 2025–2026
-              </span>
+              {grandKnightName ? (
+                <span>
+                  <strong style={{ color: 'var(--color-navy)', fontWeight: 600 }}>
+                    {grandKnightName}
+                  </strong>
+                  {' '}· Grand Knight, 2025–2026
+                </span>
+              ) : (
+                <span style={{ color: 'var(--color-muted)' }}>Grand Knight</span>
+              )}
             </div>
           </div>
 
@@ -303,13 +312,7 @@ function ImpactCell({ num, lbl, sub }: { num: string; lbl: string; sub: string }
 
 // ─── Activities + sidebar ───────────────────────────────────────────────────
 
-function ActivitiesSection({
-  events,
-  latestNews,
-}: {
-  events: Event[]
-  latestNews: Pick<NewsPost, 'id' | 'title' | 'summary' | 'published_at'> | null
-}) {
+function ActivitiesSection({ events }: { events: Event[] }) {
   return (
     <section>
       <div className="wrap">
@@ -364,7 +367,7 @@ function ActivitiesSection({
               </div>
               <div className="meeting-row">
                 <span className="meeting-k">Location</span>
-                <span className="meeting-v">Parish Hall, USR</span>
+                <span className="meeting-v">Church of the Presentation</span>
               </div>
               <div className="meeting-row" style={{ borderBottom: 'none' }}>
                 <span className="meeting-k">Address</span>
@@ -374,49 +377,6 @@ function ActivitiesSection({
                 All baptized Catholic men 18 and over are welcome to attend a
                 meeting and learn more — no commitment required.
               </p>
-            </div>
-
-            {/* Bulletin card — latest news post */}
-            <div className="card bulletin-card">
-              <h3 style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                From the bulletin
-                {latestNews?.published_at && (
-                  <span className="bulletin-pill">
-                    {monthYearPill(latestNews.published_at)}
-                  </span>
-                )}
-              </h3>
-              <span className="flourish" />
-              {latestNews ? (
-                <>
-                  <p style={{ fontWeight: 600, fontSize: '14.5px', color: 'var(--color-ink)', margin: '0 0 6px' }}>
-                    {latestNews.title}
-                  </p>
-                  {latestNews.summary && (
-                    <p style={{ fontSize: '14px', color: 'var(--color-ink-soft)', margin: 0, lineHeight: 1.5 }}>
-                      {latestNews.summary}
-                    </p>
-                  )}
-                </>
-              ) : (
-                <p style={{ fontSize: '14px', color: 'var(--color-muted)', margin: 0 }}>
-                  No bulletin items yet.
-                </p>
-              )}
-            </div>
-
-            {/* Family Director card */}
-            <div className="card family-card">
-              <span className="eyebrow" style={{ color: '#F7C04A', fontSize: '12px' }}>Need a hand?</span>
-              <h3 style={{ color: '#fff', marginTop: '6px' }}>Brothers helping brothers.</h3>
-              <span className="flourish" />
-              <p style={{ fontSize: '14.5px', color: '#cfd6e8', margin: '0 0 16px', lineHeight: 1.5 }}>
-                If a fellow Knight or parishioner is sick, grieving, or in need, our Family
-                Director will quietly coordinate help.
-              </p>
-              <Link href="/about#contact" className="btn btn-on-navy" style={{ fontSize: '14px', padding: '10px 16px' }}>
-                Contact the Family Director
-              </Link>
             </div>
 
           </aside>
@@ -757,11 +717,6 @@ function HomeStyles() {
       .meeting-k { color: var(--color-muted); }
       .meeting-v { color: var(--color-ink); font-weight: 600; font-family: var(--font-mono); font-size: 13px; }
       .meeting-note { margin-top: 12px; font-size: 13px; color: var(--color-ink-soft); line-height: 1.5; }
-      .bulletin-card { background: var(--color-surface-warm); border-color: #E5D9B6; }
-      .bulletin-pill { font-family: var(--font-mono); font-size: 11px; color: var(--color-gold-dark); letter-spacing: .08em; background: rgba(0,0,0,.06); padding: 3px 8px; border-radius: 3px; font-weight: 600; }
-      .family-card { background: var(--color-navy); border-color: var(--color-navy); color: #fff; }
-      .family-card h3 { color: #fff; }
-      .family-card .flourish { background: var(--color-gold); }
 
       @media (max-width: 980px) {
         .activities-wrap { grid-template-columns: 1fr; gap: 32px; }

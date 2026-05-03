@@ -3,13 +3,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
 import type { Officer } from '@/lib/supabase/types'
+import { getColumbianYear, getColumbianYearRange } from '@/lib/utils/columbianYear'
 
 // ─── Metadata ───────────────────────────────────────────────────────────────
 
-export const metadata: Metadata = {
-  title: 'Council Officers',
-  description:
-    'Meet the elected and appointed officers leading Presentation Council #6033, Knights of Columbus, for the 2025–2026 Columbian Year.',
+export function generateMetadata(): Metadata {
+  return {
+    title: 'Council Officers',
+    description: `Meet the elected and appointed officers leading Presentation Council #6033, Knights of Columbus, for the ${getColumbianYear()} Columbian Year.`,
+  }
 }
 
 // ─── Data fetching ───────────────────────────────────────────────────────────
@@ -53,7 +55,9 @@ function initials(name: string): string {
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default async function OfficersPage() {
-  const officers = await getOfficers()
+  const officers      = await getOfficers()
+  const columBianYear = getColumbianYear()
+  const columBianYearRange = getColumbianYearRange()
 
   const featured       = officers.filter((o) => o.is_featured)
   const elected        = officers.filter((o) => !o.is_featured && o.category === 'officer')
@@ -66,10 +70,10 @@ export default async function OfficersPage() {
 
   return (
     <>
-      <PageHero officerCount={officerCount} />
-      <FeaturedSection officers={featured} />
-      <ElectedSection officers={elected} electedCount={electedCount} />
-      <TrusteesSection officers={trustees} />
+      <PageHero officerCount={officerCount} columBianYear={columBianYear} columBianYearRange={columBianYearRange} />
+      <FeaturedSection officers={featured} columBianYear={columBianYear} />
+      <ElectedSection officers={elected} electedCount={electedCount} columBianYear={columBianYear} />
+      <TrusteesSection officers={trustees} columBianYear={columBianYear} />
       <CtaBand gkEmail={gkEmail} />
       <OfficersStyles />
     </>
@@ -78,7 +82,7 @@ export default async function OfficersPage() {
 
 // ─── Page Hero ───────────────────────────────────────────────────────────────
 
-function PageHero({ officerCount }: { officerCount: number }) {
+function PageHero({ officerCount, columBianYear, columBianYearRange }: { officerCount: number; columBianYear: string; columBianYearRange: string }) {
   return (
     <section className="off-pagehero">
       <div className="off-pagehero-inner">
@@ -90,7 +94,7 @@ function PageHero({ officerCount }: { officerCount: number }) {
             <span className="off-crumbs-sep" aria-hidden="true">/</span>
             <span aria-current="page">Officers</span>
           </nav>
-          <span className="eyebrow">Council Officers · Columbian Year 2025–2026</span>
+          <span className="eyebrow">Council Officers · Columbian Year {columBianYear}</span>
           <h1>
             The brothers entrusted with{' '}
             <em style={{ fontStyle: 'italic', fontWeight: 500 }}>leading</em> our council.
@@ -104,7 +108,7 @@ function PageHero({ officerCount }: { officerCount: number }) {
         <aside className="off-pagehero-meta" aria-label="Council facts">
           <div className="off-meta-row">
             <span className="off-meta-k">Columbian Year</span>
-            <span className="off-meta-v">Jul 2025 – Jun 2026</span>
+            <span className="off-meta-v">{columBianYearRange}</span>
           </div>
           <div className="off-meta-row">
             <span className="off-meta-k">Officers seated</span>
@@ -126,7 +130,7 @@ function PageHero({ officerCount }: { officerCount: number }) {
 
 // ─── Featured (Grand Knight + Chaplain) ─────────────────────────────────────
 
-function FeaturedSection({ officers }: { officers: Officer[] }) {
+function FeaturedSection({ officers, columBianYear }: { officers: Officer[]; columBianYear: string }) {
   return (
     <section style={{ paddingBottom: '24px' }}>
       <div className="wrap">
@@ -145,18 +149,18 @@ function FeaturedSection({ officers }: { officers: Officer[] }) {
         {officers.length > 0 ? (
           <div className="off-feat-grid">
             {officers.map((o) => (
-              <FeaturedCard key={o.id} officer={o} />
+              <FeaturedCard key={o.id} officer={o} columBianYear={columBianYear} />
             ))}
           </div>
         ) : (
-          <FeaturedPlaceholderGrid />
+          <FeaturedPlaceholderGrid columBianYear={columBianYear} />
         )}
       </div>
     </section>
   )
 }
 
-function FeaturedCard({ officer: o }: { officer: Officer }) {
+function FeaturedCard({ officer: o, columBianYear }: { officer: Officer; columBianYear: string }) {
   const isGrandKnight = o.title.toLowerCase().includes('grand knight')
 
   return (
@@ -197,14 +201,14 @@ function FeaturedCard({ officer: o }: { officer: Officer }) {
               {isGrandKnight ? 'Email the Grand Knight' : `Email ${o.full_name.split(' ').pop()}`}
             </a>
           )}
-          <span className="off-term">{isGrandKnight ? 'Term · 2025–2026' : 'Pastoral appointment'}</span>
+          <span className="off-term">{isGrandKnight ? `Term · ${columBianYear}` : 'Pastoral appointment'}</span>
         </div>
       </div>
     </article>
   )
 }
 
-function FeaturedPlaceholderGrid() {
+function FeaturedPlaceholderGrid({ columBianYear }: { columBianYear: string }) {
   return (
     <div className="off-feat-grid">
       <FeaturedPlaceholder
@@ -216,7 +220,7 @@ function FeaturedPlaceholderGrid() {
         name="SK Edward G. Dowd"
         bio="Presides over all meetings of the council, appoints chairmen and committees, and represents Council #6033 to the pastor, the district deputy, and the state council."
         emailLabel="Email the Grand Knight"
-        termLabel="Term · 2025–2026"
+        termLabel={`Term · ${columBianYear}`}
       />
       <FeaturedPlaceholder
         monogram="RS"
@@ -264,7 +268,7 @@ function FeaturedPlaceholder({
 
 // ─── Elected Officers ────────────────────────────────────────────────────────
 
-function ElectedSection({ officers, electedCount }: { officers: Officer[]; electedCount: number }) {
+function ElectedSection({ officers, electedCount, columBianYear }: { officers: Officer[]; electedCount: number; columBianYear: string }) {
   return (
     <section style={{ paddingTop: '36px' }}>
       <div className="wrap">
@@ -282,8 +286,10 @@ function ElectedSection({ officers, electedCount }: { officers: Officer[]; elect
 
         <div className="off-grid">
           {officers.length > 0
-            ? officers.map((o) => <OfficerCard key={o.id} officer={o} />)
-            : ELECTED_PLACEHOLDERS.map((p) => <OfficerCardPlaceholder key={p.monogram + p.title} {...p} />)
+            ? officers.map((o) => <OfficerCard key={o.id} officer={o} columBianYear={columBianYear} />)
+            : ELECTED_PLACEHOLDERS.map((p) => (
+                <OfficerCardPlaceholder key={p.monogram + p.title} {...p} term={columBianYear} columBianYear={columBianYear} />
+              ))
           }
         </div>
       </div>
@@ -293,7 +299,7 @@ function ElectedSection({ officers, electedCount }: { officers: Officer[]; elect
 
 // ─── Trustees + Appointed ────────────────────────────────────────────────────
 
-function TrusteesSection({ officers }: { officers: Officer[] }) {
+function TrusteesSection({ officers, columBianYear }: { officers: Officer[]; columBianYear: string }) {
   return (
     <section style={{ paddingTop: '36px', background: 'var(--color-surface-alt)' }}>
       <div className="wrap">
@@ -311,8 +317,8 @@ function TrusteesSection({ officers }: { officers: Officer[] }) {
 
         <div className="off-grid">
           {officers.length > 0
-            ? officers.map((o) => <OfficerCard key={o.id} officer={o} />)
-            : TRUSTEE_PLACEHOLDERS.map((p) => <OfficerCardPlaceholder key={p.monogram + p.title} {...p} />)
+            ? officers.map((o) => <OfficerCard key={o.id} officer={o} columBianYear={columBianYear} />)
+            : TRUSTEE_PLACEHOLDERS.map((p) => <OfficerCardPlaceholder key={p.monogram + p.title} {...p} columBianYear={columBianYear} />)
           }
         </div>
       </div>
@@ -322,7 +328,7 @@ function TrusteesSection({ officers }: { officers: Officer[] }) {
 
 // ─── Officer Card (live data) ─────────────────────────────────────────────────
 
-function OfficerCard({ officer: o }: { officer: Officer }) {
+function OfficerCard({ officer: o, columBianYear }: { officer: Officer; columBianYear: string }) {
   return (
     <article className="off-card">
       <div className="off-card-portrait">
@@ -355,7 +361,7 @@ function OfficerCard({ officer: o }: { officer: Officer }) {
           ) : (
             <span />
           )}
-          <span className="off-term">2025–2026</span>
+          <span className="off-term">{columBianYear}</span>
         </div>
       </div>
     </article>
@@ -368,7 +374,7 @@ type PlaceholderProps = {
   monogram: string; title: string; name: string; bio: string; term: string
 }
 
-function OfficerCardPlaceholder({ monogram, title, name, bio, term }: PlaceholderProps) {
+function OfficerCardPlaceholder({ monogram, title, name, bio, term, columBianYear }: PlaceholderProps & { columBianYear: string }) {
   return (
     <article className="off-card">
       <div className="off-card-portrait">

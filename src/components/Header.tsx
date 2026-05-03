@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import MobileNav from './MobileNav'
 
 const navLinks = [
   { href: '/',           label: 'Home' },
   { href: '/about',      label: 'About' },
   { href: '/officers',   label: 'Officers' },
+  { href: '/calendar',   label: 'Calendar' },
   { href: '/activities', label: 'Activities' },
   { href: '/charities',  label: 'Charities' },
-  { href: '/calendar',   label: 'Calendar' },
 ]
 
 export default function Header() {
@@ -92,6 +93,9 @@ export default function Header() {
               Donate
             </Link>
           </div>
+
+          {/* Hamburger — visible only on mobile */}
+          <MobileNav />
 
         </div>
       </header>
