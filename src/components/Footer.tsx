@@ -33,9 +33,6 @@ export default function Footer() {
             </address>
             {/* Social icons */}
             <div aria-label="Follow our council" style={{ display: 'flex', gap: '10px', marginTop: '8px' }}>
-              <SocialLink href="#" label="Facebook">
-                <path d="M14 8h2.5V5H14c-2 0-3 1.5-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V8.5c0-.3.2-.5.5-.5z" fill="currentColor" stroke="none" />
-              </SocialLink>
               <SocialLink href="mailto:contact@kofc6033.org" label="Email">
                 <rect x="3.5" y="5.5" width="17" height="13" rx="1.5" />
                 <path d="M4 6l8 6 8-6" />
@@ -43,9 +40,6 @@ export default function Footer() {
               <SocialLink href="/calendar" label="Calendar">
                 <rect x="4" y="5" width="16" height="15" rx="1.5" />
                 <path d="M4 9h16M8 3v4M16 3v4" />
-              </SocialLink>
-              <SocialLink href="tel:+12013271313" label="Phone">
-                <path d="M5 5l3-1 2 4-2 1a10 10 0 0 0 6 6l1-2 4 2-1 3a2 2 0 0 1-2 1A14 14 0 0 1 4 7a2 2 0 0 1 1-2z" />
               </SocialLink>
             </div>
           </div>
