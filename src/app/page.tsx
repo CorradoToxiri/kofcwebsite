@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
 import type { Event, NewsPost } from '@/lib/supabase/types'
-import { eventDateParts, shortWeekdayTime, monthYearPill, shortDate } from '@/lib/utils/dates'
+import { eventDateParts, shortWeekdayTimeRange, monthYearPill, shortDate, formatTimeRange } from '@/lib/utils/dates'
 import { PillarsGrid } from '@/components/PillarsGrid'
 
 // ─── Data fetching ──────────────────────────────────────────────────────────
@@ -23,7 +23,7 @@ async function getUpcomingEvents(): Promise<Event[]> {
   }
 }
 
-async function getThisWeekEvents(): Promise<Pick<Event, 'id' | 'title' | 'starts_at'>[]> {
+async function getThisWeekEvents(): Promise<Pick<Event, 'id' | 'title' | 'starts_at' | 'ends_at'>[]> {
   try {
     const supabase = await createSupabaseServerClient()
     const now = new Date()
@@ -31,7 +31,7 @@ async function getThisWeekEvents(): Promise<Pick<Event, 'id' | 'title' | 'starts
     weekEnd.setDate(weekEnd.getDate() + 7)
     const { data } = await supabase
       .from('events')
-      .select('id, title, starts_at')
+      .select('id, title, starts_at, ends_at')
       .eq('is_published', true)
       .gte('starts_at', now.toISOString())
       .lte('starts_at', weekEnd.toISOString())
@@ -178,7 +178,7 @@ function HeroSection() {
 function WelcomeSection({
   weekEvents,
 }: {
-  weekEvents: Pick<Event, 'id' | 'title' | 'starts_at'>[]
+  weekEvents: Pick<Event, 'id' | 'title' | 'starts_at' | 'ends_at'>[]
 }) {
   return (
     <section className="welcome-section">
@@ -220,7 +220,7 @@ function WelcomeSection({
                 {weekEvents.map((ev) => (
                   <li key={ev.id} className="week-item">
                     <span className="week-what">{ev.title}</span>
-                    <span className="week-when">{shortWeekdayTime(ev.starts_at)}</span>
+                    <span className="week-when">{shortWeekdayTimeRange(ev.starts_at, ev.ends_at)}</span>
                   </li>
                 ))}
               </ul>
@@ -427,9 +427,10 @@ function ActivitiesSection({
 }
 
 function EventRow({ event }: { event: Event }) {
-  const { month, day, dowYear, time } = eventDateParts(event.starts_at)
+  const { month, day, dowYear } = eventDateParts(event.starts_at)
   const tag = EVENT_TYPE_LABEL[event.event_type] ?? 'Event'
-  const locationTime = [event.location_name, time].filter(Boolean).join(' · ')
+  const timeDisplay = formatTimeRange(event.starts_at, event.ends_at)
+  const locationTime = [event.location_name, timeDisplay].filter(Boolean).join(' · ')
   const hasSignup = Boolean(event.signup_url)
 
   const rsvpText = (() => {

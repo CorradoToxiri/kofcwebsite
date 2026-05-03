@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
 import type { Event } from '@/lib/supabase/types'
-import { eventDateParts, shortDate } from '@/lib/utils/dates'
+import { eventDateParts, shortDate, isSameCalendarDay } from '@/lib/utils/dates'
 
 // ─── Metadata ───────────────────────────────────────────────────────────────
 
@@ -91,13 +91,28 @@ function groupByMonth(events: Event[]) {
   return Array.from(map.entries()).map(([key, g]) => ({ key, label: g.label, events: g.events }))
 }
 
-function fullDateTime(iso: string): string {
-  const d = new Date(iso)
-  const date = d.toLocaleString('en-US', {
+function formatDateTime(startsAt: string, endsAt: string | null): string {
+  const start = new Date(startsAt)
+  const date = start.toLocaleString('en-US', {
     weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: TZ,
   })
-  const time = d.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: TZ })
-  return `${date} · ${time}`
+  if (!endsAt) {
+    const time = start.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: TZ })
+    return `${date} · ${time}`
+  }
+  if (isSameCalendarDay(startsAt, endsAt)) {
+    const t1 = start.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: TZ })
+    const t2 = new Date(endsAt).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: TZ })
+    return `${date} · ${t1} – ${t2}`
+  }
+  // Multi-day: omit time, show date range only
+  const startShort = start.toLocaleString('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric', timeZone: TZ,
+  })
+  const endFull = new Date(endsAt).toLocaleString('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: TZ,
+  })
+  return `${startShort} – ${endFull}`
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -254,8 +269,21 @@ function UpcomingEventItem({ event: ev }: { event: Event }) {
             <span className="cal-uitem-loc">{ev.location_name}</span>
           )}
         </div>
+        {ev.location_address && (
+          <p className="cal-uitem-addr">{ev.location_address}</p>
+        )}
+        {ev.location_map_url && (
+          <a
+            href={ev.location_map_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cal-uitem-map"
+          >
+            📍 View map
+          </a>
+        )}
         <h3 className="cal-uitem-title">{ev.title}</h3>
-        <p className="cal-uitem-dt">{fullDateTime(ev.starts_at)}</p>
+        <p className="cal-uitem-dt">{formatDateTime(ev.starts_at, ev.ends_at)}</p>
         {ev.description && (
           <p className="cal-uitem-desc">{ev.description}</p>
         )}
@@ -498,6 +526,9 @@ function CalendarStyles() {
       .cal-uitem-title { font-size: 22px; color: var(--color-navy); margin: 0 0 4px; line-height: 1.2; }
       .cal-uitem-dt { font-family: var(--font-mono); font-size: 13px; color: var(--color-muted); margin: 0 0 8px; letter-spacing: .02em; }
       .cal-uitem-desc { font-size: 15px; color: var(--color-ink-soft); line-height: 1.55; margin: 0; }
+      .cal-uitem-addr { font-size: 13px; color: var(--color-muted); margin: 3px 0 0; }
+      .cal-uitem-map { font-size: 12.5px; color: var(--color-muted); text-decoration: none; display: inline-block; margin-top: 2px; }
+      .cal-uitem-map:hover { color: var(--color-navy); text-decoration: underline; }
       .cal-uitem-actions { margin-top: 14px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
       .cal-signup-btn { font-size: 14px; padding: 10px 18px; }
       .cal-rsvp-note { font-family: var(--font-mono); font-size: 12.5px; color: var(--color-muted); }
