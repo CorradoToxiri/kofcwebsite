@@ -109,10 +109,9 @@ function HistorySection() {
 
           <div>
             <div className="abt-timeline">
-              <AbtTimelineNode year="1968" label="Council constituted — March 10" />
-              <AbtTimelineNode year="1970s" label="Annual Pancake Breakfast established" />
-              <AbtTimelineNode year="2002" label="Fourth Degree assembly formed" />
-              <AbtTimelineNode year="2025" label="$47K raised — record charitable year" />
+              <AbtTimelineNode year="1968" label="Council chartered" />
+              <AbtTimelineNode year="2000" label="First Charity Golf Outing" />
+              <AbtTimelineNode year="2025" label="$--K raised for charity" />
             </div>
           </div>
         </div>
@@ -157,8 +156,8 @@ function MissionSection() {
             <p>
               &ldquo;Love thy neighbor as thyself&rdquo; is not a slogan &mdash; it is a
               discipline. Knights councils around the world put charity into practice through
-              food drives, fundraisers, and direct service to families in need. In 2017 alone,
-              the Knights of Columbus gave more than $185&nbsp;million to charitable causes.
+              food drives, fundraisers, and direct service to families in need. In 2025 alone,
+              the Knights of Columbus gave more than $193&nbsp;million to charitable causes.
               Council #6033 carries that spirit to every parish ministry it touches.
             </p>
           </div>
@@ -184,7 +183,7 @@ function MissionSection() {
               program was his practical answer to that need. Today, fraternity means something
               broader: brothers who show up at first communions and funerals, who carry meals
               to sick families, and who hold each other accountable in faith. Knights gave
-              more than 75.6&nbsp;million service hours in 2017, illustrating how Catholics
+              more than 47.5&nbsp;million service hours in 2025, illustrating how Catholics
               serve each other in fraternity and mercy.
             </p>
             {/* Source note: the uknight.org source repeated the service-hours sentence twice

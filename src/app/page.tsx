@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
 import type { Event } from '@/lib/supabase/types'
-import { eventDateParts, shortWeekdayTimeRange, monthYearPill, shortDate, formatTimeRange } from '@/lib/utils/dates'
+import { eventDateParts, shortWeekdayTimeRange, shortWeekdayDateTimeRange, monthYearPill, shortDate, formatTimeRange } from '@/lib/utils/dates'
 import { PillarsGrid } from '@/components/PillarsGrid'
 
 // ─── Data fetching ──────────────────────────────────────────────────────────
@@ -23,20 +23,16 @@ async function getUpcomingEvents(): Promise<Event[]> {
   }
 }
 
-async function getThisWeekEvents(): Promise<Pick<Event, 'id' | 'title' | 'starts_at' | 'ends_at'>[]> {
+async function getNextThreeEvents(): Promise<Pick<Event, 'id' | 'title' | 'starts_at' | 'ends_at'>[]> {
   try {
     const supabase = await createSupabaseServerClient()
-    const now = new Date()
-    const weekEnd = new Date(now)
-    weekEnd.setDate(weekEnd.getDate() + 7)
     const { data } = await supabase
       .from('events')
       .select('id, title, starts_at, ends_at')
       .eq('is_published', true)
-      .gte('starts_at', now.toISOString())
-      .lte('starts_at', weekEnd.toISOString())
+      .gte('starts_at', new Date().toISOString())
       .order('starts_at', { ascending: true })
-      .limit(6)
+      .limit(3)
     return data ?? []
   } catch {
     return []
@@ -79,16 +75,16 @@ const EVENT_TYPE_LABEL: Record<string, string> = {
 // ─── Page ───────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const [upcomingEvents, weekEvents, grandKnightName] = await Promise.all([
+  const [upcomingEvents, nextEvents, grandKnightName] = await Promise.all([
     getUpcomingEvents(),
-    getThisWeekEvents(),
+    getNextThreeEvents(),
     getGrandKnight(),
   ])
 
   return (
     <>
       <HeroSection />
-      <WelcomeSection weekEvents={weekEvents} grandKnightName={grandKnightName} />
+      <WelcomeSection nextEvents={nextEvents} grandKnightName={grandKnightName} />
       <PillarsSection />
       <ImpactSection />
       <ActivitiesSection events={upcomingEvents} />
@@ -143,7 +139,7 @@ function HeroSection() {
               <div className="stat-lbl">Active brother knights</div>
             </div>
             <div className="stat">
-              <div className="stat-num">$47K</div>
+              <div className="stat-num">$--K</div>
               <div className="stat-lbl">Raised for charity in 2025</div>
             </div>
           </div>
@@ -174,10 +170,10 @@ function HeroSection() {
 // ─── Welcome / Grand Knight ─────────────────────────────────────────────────
 
 function WelcomeSection({
-  weekEvents,
+  nextEvents,
   grandKnightName,
 }: {
-  weekEvents: Pick<Event, 'id' | 'title' | 'starts_at' | 'ends_at'>[]
+  nextEvents: Pick<Event, 'id' | 'title' | 'starts_at' | 'ends_at'>[]
   grandKnightName: string | null
 }) {
   return (
@@ -210,25 +206,25 @@ function WelcomeSection({
             </div>
           </div>
 
-          {/* This week sidebar */}
-          <aside className="welcome-side" aria-label="This week at the council">
+          {/* Upcoming events sidebar */}
+          <aside className="welcome-side" aria-label="Coming up at the council">
             <h4 style={{ fontFamily: 'var(--font-serif)', color: 'var(--color-navy)', fontSize: '17px', marginBottom: '4px' }}>
-              This week at Council #6033
+              Coming up at Council #6033
             </h4>
             <span className="flourish" style={{ margin: '6px 0 4px' }} />
 
-            {weekEvents.length > 0 ? (
+            {nextEvents.length > 0 ? (
               <ul className="week-list">
-                {weekEvents.map((ev) => (
+                {nextEvents.map((ev) => (
                   <li key={ev.id} className="week-item">
                     <span className="week-what">{ev.title}</span>
-                    <span className="week-when">{shortWeekdayTimeRange(ev.starts_at, ev.ends_at)}</span>
+                    <span className="week-when">{shortWeekdayDateTimeRange(ev.starts_at, ev.ends_at)}</span>
                   </li>
                 ))}
               </ul>
             ) : (
               <p style={{ fontSize: '14px', color: 'var(--color-muted)', margin: '12px 0 0', lineHeight: 1.5 }}>
-                No events scheduled this week —{' '}
+                No upcoming events scheduled —{' '}
                 <Link href="/calendar" style={{ color: 'var(--color-navy)', fontWeight: 600 }}>
                   see the full calendar
                 </Link>
@@ -283,10 +279,10 @@ function ImpactSection() {
           </p>
         </div>
         <div className="impact-grid">
-          <ImpactCell num="$47,200" lbl="Donated to charity this year"          sub="// food pantry · seminarians · pro-life" />
-          <ImpactCell num="3,840"   lbl="Volunteer hours logged"                sub="// reported to Supreme, Form 1728" />
-          <ImpactCell num="412"     lbl="Coats given to children in Bergen County" sub="// Coats for Kids · winter 2025" />
-          <ImpactCell num="22"      lbl="New brothers welcomed"                 sub="// exemplified at Presentation, 2025" />
+          <ImpactCell num="$--K" lbl="Donated to charity this year"               sub="// food pantry · seminarians · pro-life" />
+          <ImpactCell num="--"   lbl="Volunteer hours logged"                     sub="// reported to Supreme, Form 1728" />
+          <ImpactCell num="$--K" lbl="Donated to Covenant House Newark"           sub="// Covenant House Newark · 2025" />
+          <ImpactCell num="7"    lbl="New brothers welcomed"                      sub="// exemplified at Presentation, 2025" />
         </div>
       </div>
     </section>
@@ -362,9 +358,13 @@ function ActivitiesSection({ events }: { events: Event[] }) {
                 <span className="meeting-k">Location</span>
                 <span className="meeting-v">Church of the Presentation</span>
               </div>
-              <div className="meeting-row" style={{ borderBottom: 'none' }}>
+              <div className="meeting-row">
                 <span className="meeting-k">Address</span>
                 <span className="meeting-v">271 W Saddle River Rd</span>
+              </div>
+              <div className="meeting-row" style={{ borderBottom: 'none' }}>
+                <span className="meeting-k">City</span>
+                <span className="meeting-v">Upper Saddle River, NJ</span>
               </div>
               <p className="meeting-note">
                 All baptized Catholic men 18 and over are welcome to attend a
@@ -477,7 +477,7 @@ function JoinSection() {
               <li>
                 <div>
                   <strong>Visit a meeting</strong>
-                  <span>Join us on the third Wednesday of any month. No obligation, just coffee, fellowship, and a look behind the curtain.</span>
+                  <span>Join us on the third Wednesday of any month. No obligation, just refreshments, conversation, and a look behind the curtain.</span>
                 </div>
               </li>
               <li>
@@ -523,21 +523,19 @@ function HistorySection() {
             <h2>Fifty-eight years of brothers, one parish.</h2>
             <span className="flourish" />
             <p style={{ color: 'var(--color-ink-soft)', fontSize: '17px', lineHeight: 1.65, margin: '0 0 14px' }}>
-              Presentation Council #6033 was chartered in May 1968 by 48 founding members under
-              the leadership of our first Grand Knight, William F. Hennessy. From its first pancake
-              breakfast that autumn to today, the council has been bound to the rhythms of parish
-              life at Church of the Presentation.
+              Presentation Council #6033 was chartered in May 1968 at Church of the Presentation
+              in Upper Saddle River, New Jersey. From its first pancake breakfast that autumn to
+              today, the council has been bound to the rhythms of parish life here.
             </p>
             <p style={{ color: 'var(--color-ink-soft)', fontSize: '17px', lineHeight: 1.65, margin: '0 0 14px' }}>
-              We have buried our brothers and welcomed new ones; we have served three pastors and
+              We have buried our brothers and welcomed new ones; we have served multiple pastors and
               seen the parish grow around us. The work has never changed: support the priest, care
               for the poor, and walk together in faith.
             </p>
             <div className="timeline">
-              <TimelineNode year="1968" label="Council chartered with 48 founders" />
-              <TimelineNode year="1991" label="Founded annual Tootsie Roll drive" />
-              <TimelineNode year="2002" label="Patriotic (4th) Degree formed" />
-              <TimelineNode year="2025" label="$47K raised — record year" />
+              <TimelineNode year="1968" label="Council chartered" />
+              <TimelineNode year="2000" label="First Charity Golf Outing" />
+              <TimelineNode year="2025" label="$--K raised for charity" />
             </div>
           </div>
 

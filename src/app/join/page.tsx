@@ -362,6 +362,7 @@ function JoinStyles() {
       @media (max-width: 880px) {
         .jn-hero-inner { grid-template-columns: 1fr; gap: 28px; padding: 40px 24px; }
         .jn-hero h1 { font-size: 38px; }
+        .jn-hero-meta { display: none; }
       }
 
       /* ── Facts Strip ── */

@@ -50,6 +50,23 @@ export function formatTimeRange(startsAt: string, endsAt: string | null): string
   return `${t1} – ${t2}`
 }
 
+// Returns "Mon 05/07 · 7:30 PM", "Mon 05/07 · 1:00 PM – 2:30 PM", or "Mon 05/07 – Wed 05/09".
+export function shortWeekdayDateTimeRange(startsAt: string, endsAt: string | null): string {
+  const start = new Date(startsAt)
+  const startDow = start.toLocaleString('en-US', { weekday: 'short', timeZone: TZ })
+  const startMd  = start.toLocaleString('en-US', { month: '2-digit', day: '2-digit', timeZone: TZ })
+  const t1 = start.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: TZ })
+  if (!endsAt) return `${startDow} ${startMd} · ${t1}`
+  if (isSameCalendarDay(startsAt, endsAt)) {
+    const t2 = new Date(endsAt).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: TZ })
+    return `${startDow} ${startMd} · ${t1} – ${t2}`
+  }
+  const end = new Date(endsAt)
+  const endDow = end.toLocaleString('en-US', { weekday: 'short', timeZone: TZ })
+  const endMd  = end.toLocaleString('en-US', { month: '2-digit', day: '2-digit', timeZone: TZ })
+  return `${startDow} ${startMd} – ${endDow} ${endMd}`
+}
+
 // Returns "Mon · 7:30 PM", "Mon · 1:00 PM – 2:30 PM" (same-day), or "Mon – Wed" (multi-day).
 export function shortWeekdayTimeRange(startsAt: string, endsAt: string | null): string {
   const start = new Date(startsAt)

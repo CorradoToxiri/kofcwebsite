@@ -23,8 +23,8 @@ export function PillarsGrid() {
       <PillarCard
         num="I."
         title="Charity"
-        body="From the food pantry collection to the Coats for Kids drive, we are our parish's hands and feet for those in need."
-        meta="$47,200 given in 2025"
+        body="From the food pantry collection to our work with Covenant House Newark, we are our parish's hands and feet for those in need."
+        meta="$--K given in 2025"
         icon={
           <path d="M12 21s-7-4.5-9.2-9A5.4 5.4 0 0 1 12 6.4 5.4 5.4 0 0 1 21.2 12c-2.2 4.5-9.2 9-9.2 9z"
             stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinejoin="round" />

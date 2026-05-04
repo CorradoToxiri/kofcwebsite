@@ -55,7 +55,6 @@ export default function Footer() {
           {/* Get Involved */}
           <FooterCol title="Get Involved">
             <FooterLink href="/join">Become a Knight</FooterLink>
-            <FooterLink href="/activities">Volunteer</FooterLink>
             <FooterLink href="/donate">Make a Donation</FooterLink>
             <FooterLink href="/calendar">Full Calendar</FooterLink>
           </FooterCol>
