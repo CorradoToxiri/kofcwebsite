@@ -111,7 +111,7 @@ function DuesOrDonateSection() {
               expenses. Members receive a reminder annually, but you can pay anytime
               via the methods below.
             </p>
-            <a href="#payment-methods" className="btn btn-primary don-give-btn">Pay with Venmo →</a>
+            <a href="#payment-methods" className="btn btn-primary don-give-btn">Pay with Zelle →</a>
           </div>
 
           <div className="don-give-card">
@@ -123,7 +123,7 @@ function DuesOrDonateSection() {
               dollar goes to our charitable initiatives and parish programs &mdash;
               none to overhead.
             </p>
-            <a href="#payment-methods" className="btn btn-primary don-give-btn">Donate with Venmo →</a>
+            <a href="#payment-methods" className="btn btn-primary don-give-btn">Donate with Zelle →</a>
           </div>
 
         </div>
@@ -144,24 +144,25 @@ function PaymentMethodsSection() {
         <div className="don-pay-grid">
 
           <div className="card don-pay-card">
-            <h3>Venmo</h3>
+            <h3>Zelle</h3>
             <span className="flourish" />
             <div className="don-qr-wrap">
               <Image
-                src="/VenmoKnights.png"
-                alt="Venmo QR code for @presentationknights"
-                width={260}
-                height={260}
-                style={{ borderRadius: '4px' }}
+                src="https://vsmwjkqqoqatkoalslci.supabase.co/storage/v1/object/public/public-photos/QR_Code_Zelle.png"
+                alt="Zelle QR code for Knights of Columbus #6033"
+                width={345}
+                height={420}
+                style={{ borderRadius: '4px', maxWidth: '260px', width: '100%', height: 'auto' }}
               />
             </div>
-            <p className="don-venmo-handle">@presentationknights</p>
+            <p className="don-venmo-handle">kofc6033@churchofpresentation.org</p>
             <p className="don-venmo-verify">
-              Verify the display name reads &ldquo;Presentation Knights &mdash; Joe Lupino&rdquo; before sending.
+              Verify the payee reads KNIGHTS OF COLUMBUS before sending.
             </p>
             <p className="don-pay-body">
-              Scan the QR with the Venmo app, or search for the handle above. Add a note
-              in the payment indicating whether it&rsquo;s for dues or a donation.
+              Open your bank app and look for the &lsquo;Pay with Zelle&rsquo; section, then scan the QR
+              code above. Enter the amount, and in the &lsquo;Message to recipient&rsquo; field, specify
+              whether this is a donation or for the yearly dues.
             </p>
           </div>
 
