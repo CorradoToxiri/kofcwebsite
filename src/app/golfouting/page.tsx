@@ -17,6 +17,7 @@ export default function GolfOutingPage() {
       <LeadSection />
       <DetailsBlock />
       <RegistrationSection />
+      <OnlinePaymentSection />
       <BrochureSection />
       <ContactSection />
       <GolfStyles />
@@ -168,6 +169,63 @@ function RegPanel({ heading, body, buttonLabel, buttonHref, qrSrc, qrAlt, qrCapt
         <p className="go-qr-caption">{qrCaption}</p>
       </div>
     </div>
+  )
+}
+
+// ─── Online Payment section ───────────────────────────────────────────────────
+
+function OnlinePaymentSection() {
+  return (
+    <section className="go-pay-section">
+      <div className="wrap">
+        <span className="eyebrow" style={{ textAlign: 'center', display: 'block' }}>
+          Pay online
+        </span>
+        <h2 className="go-pay-heading">Online Payment</h2>
+        <span className="flourish flourish-center" />
+        <div className="go-reg-panels">
+
+          <div className="go-reg-panel">
+            <h3 className="go-reg-panel-heading">Pay with Zelle</h3>
+            <div className="go-pay-img-wrap">
+              <Image
+                src="https://vsmwjkqqoqatkoalslci.supabase.co/storage/v1/object/public/public-photos/QR_Code_Zelle.png"
+                alt="Zelle QR code for Knights of Columbus #6033"
+                width={345}
+                height={420}
+                style={{ borderRadius: '4px', maxWidth: '260px', width: '100%', height: 'auto' }}
+              />
+            </div>
+            <p className="go-pay-handle">kofc6033@churchofpresentation.org</p>
+            <p className="go-pay-verify">
+              Verify the payee reads KNIGHTS OF COLUMBUS before sending.
+            </p>
+            <p className="go-reg-panel-body">
+              Open your bank app and look for the &lsquo;Pay with Zelle&rsquo; section,
+              then scan the QR code above.
+            </p>
+          </div>
+
+          <div className="go-reg-panel">
+            <h3 className="go-reg-panel-heading">Example Payment</h3>
+            <div className="go-pay-img-wrap">
+              <Image
+                src="https://vsmwjkqqoqatkoalslci.supabase.co/storage/v1/object/public/public-photos/Example_Zelle_Payment.png"
+                alt="Example of a completed Zelle payment screen"
+                width={345}
+                height={420}
+                style={{ borderRadius: '4px', maxWidth: '260px', width: '100%', height: 'auto' }}
+              />
+            </div>
+            <p className="go-reg-panel-body">
+              Enter the amount, and in the &lsquo;Message to recipient&rsquo; field, add your
+              name and specify whether this is a sponsorship or a payment for the golfer fees.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -354,6 +412,25 @@ function GolfStyles() {
         font-size: 12px; color: var(--color-muted);
         font-family: var(--font-mono); margin: 0;
         letter-spacing: .04em;
+      }
+
+      /* ── Online Payment ── */
+      .go-pay-section {
+        background: var(--color-surface-alt);
+        padding: 64px 0;
+      }
+      .go-pay-heading {
+        font-size: 38px; text-align: center; margin: 6px 0 0;
+      }
+      .go-pay-section .flourish { margin: 14px auto 36px; }
+      .go-pay-section .go-reg-panel { background: #fff; }
+      .go-pay-img-wrap { margin-bottom: 4px; }
+      .go-pay-handle {
+        font-family: var(--font-mono); font-size: 16px; font-weight: 700;
+        color: var(--color-navy); margin: 0;
+      }
+      .go-pay-verify {
+        font-size: 13px; color: var(--color-muted); line-height: 1.45; margin: 0;
       }
 
       /* ── Brochure ── */
