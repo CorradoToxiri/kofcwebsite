@@ -111,7 +111,7 @@ function HistorySection() {
             <div className="abt-timeline">
               <AbtTimelineNode year="1968" label="Council chartered" />
               <AbtTimelineNode year="2000" label="First Charity Golf Outing" />
-              <AbtTimelineNode year="2025" label="$--K raised for charity" />
+              <AbtTimelineNode year="2025" label="$31K raised for charity" />
             </div>
           </div>
         </div>

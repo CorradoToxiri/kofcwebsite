@@ -139,7 +139,7 @@ function HeroSection() {
               <div className="stat-lbl">Active brother knights</div>
             </div>
             <div className="stat">
-              <div className="stat-num">$--K</div>
+              <div className="stat-num">$31K</div>
               <div className="stat-lbl">Raised for charity in 2025</div>
             </div>
           </div>
@@ -279,9 +279,9 @@ function ImpactSection() {
           </p>
         </div>
         <div className="impact-grid">
-          <ImpactCell num="$--K" lbl="Donated to charity this year"               sub="// food pantry · seminarians · pro-life" />
-          <ImpactCell num="--"   lbl="Volunteer hours logged"                     sub="// reported to Supreme, Form 1728" />
-          <ImpactCell num="$--K" lbl="Donated to Covenant House Newark"           sub="// Covenant House Newark · 2025" />
+          <ImpactCell num="$31K"    lbl="Donated to charity this year"               sub="// food pantry · seminarians · pro-life" />
+          <ImpactCell num="Hundreds" lbl="Volunteer hours logged"                  sub="" />
+          <ImpactCell num="$2K"   lbl="Donated to Covenant House Newark"           sub="// Covenant House Newark · 2025" />
           <ImpactCell num="7"    lbl="New brothers welcomed"                      sub="// exemplified at Presentation, 2025" />
         </div>
       </div>
@@ -503,18 +503,19 @@ function HistorySection() {
       <div className="wrap">
         <div className="history-grid">
 
-          {/* Photo placeholder */}
+          {/* Charter card — temp emblem stand-in until real photo is available */}
           <div aria-hidden="true">
             <div className="photo-frame" style={{ position: 'relative' }}>
-              <div className="photo-placeholder" style={{ aspectRatio: '5 / 4' }}>
-                <div className="ph-inner">
-                  <div className="ph-title">Charter document, 1968</div>
-                  Original charter signed by<br />
-                  Supreme Knight John W. McDevitt<br />
-                  <span style={{ color: 'var(--color-muted)' }}>// council archive · framed in hall</span>
-                </div>
+              <div style={{ aspectRatio: '5 / 4', background: '#f5f2ec', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                <Image
+                  src="/kofc-emblem.png"
+                  alt="Knights of Columbus emblem"
+                  width={220}
+                  height={220}
+                  style={{ objectFit: 'contain' }}
+                />
               </div>
-              <div className="photo-caption">PHOTO_07 · CHARTER_1968</div>
+              <div className="photo-caption">Original charter signed by Supreme Knight John W. McDevitt // council archive · framed in hall</div>
             </div>
           </div>
 
@@ -535,7 +536,7 @@ function HistorySection() {
             <div className="timeline">
               <TimelineNode year="1968" label="Council chartered" />
               <TimelineNode year="2000" label="First Charity Golf Outing" />
-              <TimelineNode year="2025" label="$--K raised for charity" />
+              <TimelineNode year="2025" label="$31K raised for charity" />
             </div>
           </div>
 
