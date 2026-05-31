@@ -281,7 +281,7 @@ function ImpactSection() {
         <div className="impact-grid">
           <ImpactCell num="$31K"    lbl="Donated to charity this year"               sub="// food pantry · seminarians · pro-life" />
           <ImpactCell num="Hundreds" lbl="Volunteer hours logged"                  sub="" />
-          <ImpactCell num="$2K"   lbl="Donated to Covenant House Newark"           sub="// Covenant House Newark · 2025" />
+          <ImpactCell num="$2K"   lbl="Donated to Covenant House New Jersey"        sub="// Covenant House New Jersey · 2025" />
           <ImpactCell num="7"    lbl="New brothers welcomed"                      sub="// exemplified at Presentation, 2025" />
         </div>
       </div>
