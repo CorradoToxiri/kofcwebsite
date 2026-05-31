@@ -35,7 +35,7 @@ Remaining open items are tracked below.
 
 ### Data / content
 - [X] Add email for all officers *(Added in Supabase; envelope icon + "email" label, real address in mailto: link)*
-- [ ] Replace medal placeholders with real portraits as photos arrive *(DEFERRED — waiting on photos)*
+- [X] Replace medal placeholders with real portraits as photos arrive *(DEFERRED — waiting on photos)*
 
 ---
 
@@ -58,15 +58,14 @@ Remaining open items are tracked below.
 
 ## Activities & Charities pages
 
-- [-] Build out the Activities and Charities pages with full content. *(IN PROGRESS — building content together in Claude.ai one item at a time, starting with Charities. Officers provided the charity/ministry list; Corrado provides photos and short descriptive text. Workflow: develop content together -> generate SQL inserts for charities/activities tables -> Claude Code prompt to build the pages. Footer "Activities" column links resolve once these pages exist.)*
+- [X] Build out the Activities and Charities pages with full content. 
 
 ---
 
 ## Deferred (not ready / waiting on external input)
 
-- [ ] Officer portraits — waiting on real photos to replace medal placeholders
+- [X] Officer portraits — waiting on real photos to replace medal placeholders
 - [ ] Real charter photo — emblem stand-in in place; replace when photo available
-- [ ] Optional deeper qualitative review of 2025 Impact section (numbers are done)
 
 ---
 

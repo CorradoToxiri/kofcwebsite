@@ -64,8 +64,6 @@ export default function Footer() {
             <FooterLink href="/calendar">Calendar</FooterLink>
             <FooterLink href="/activities">All Activities</FooterLink>
             <FooterLink href="/charities">Charities</FooterLink>
-            <FooterLink href="/activities#golf">Golf Outing</FooterLink>
-            <FooterLink href="/activities#pancake">Pancake Breakfast</FooterLink>
           </FooterCol>
 
           {/* Resources */}
