@@ -75,7 +75,7 @@ function PageHero() {
           </div>
           <div className="cha-meta-row">
             <span className="cha-meta-k">Charities supported</span>
-            <span className="cha-meta-v">5+ organizations</span>
+            <span className="cha-meta-v">10+ organizations</span>
           </div>
           <div className="cha-meta-row">
             <span className="cha-meta-k">Raised in 2025</span>
