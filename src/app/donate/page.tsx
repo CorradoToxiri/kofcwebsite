@@ -45,7 +45,7 @@ function PageHero() {
         <aside className="don-hero-meta" aria-label="Council giving facts">
           <div className="don-meta-row">
             <span className="don-meta-k">Raised for charity</span>
-            <span className="don-meta-v">$--K in 2025</span>
+            <span className="don-meta-v">$31K in 2025</span>
           </div>
           <div className="don-meta-row">
             <span className="don-meta-k">Goes to programs</span>
@@ -72,7 +72,7 @@ function QuickFactsStrip() {
     <section className="don-facts-strip">
       <div className="wrap">
         <div className="don-facts-grid">
-          <DonFact num="$--K" lbl="Raised for charity in 2025" />
+          <DonFact num="$31K" lbl="Raised for charity in 2025" />
           <DonFact num="100%" lbl="Goes to council programs" />
           <DonFact num="$40/year" lbl="Annual member dues" />
           <DonFact num="1968" lbl="Year founded" />
