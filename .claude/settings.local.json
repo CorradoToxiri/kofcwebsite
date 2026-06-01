@@ -33,7 +33,10 @@
       "Bash(curl -s \"http://localhost:3000/donate\")",
       "Bash(python3 -c ' *)",
       "Bash(curl -s \"http://localhost:3000/golfouting\")",
-      "Bash(sort -t: -k1 -n)"
+      "Bash(sort -t: -k1 -n)",
+      "Bash(npm list *)",
+      "Bash(npx --yes playwright@1.60.0 --version)",
+      "Bash(npm install *)"
     ]
   }
 }

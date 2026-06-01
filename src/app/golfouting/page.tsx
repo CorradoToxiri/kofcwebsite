@@ -387,6 +387,7 @@ function GolfStyles() {
       }
       @media (max-width: 700px) {
         .go-reg-panels { grid-template-columns: 1fr; }
+        .go-reg-panel { min-width: 0; }
       }
       .go-reg-panel {
         border: 1px solid var(--color-border);
@@ -461,6 +462,12 @@ function GolfStyles() {
       }
       .go-contact a { color: var(--color-navy); font-weight: 600; }
       .go-contact a:hover { color: var(--color-gold-dark); }
+
+      /* ── Mobile ── */
+      @media (max-width: 480px) {
+        .go-reg-panel { padding: 16px; }
+        .go-pay-handle { font-size: 12px; white-space: nowrap; }
+      }
     `}</style>
   )
 }

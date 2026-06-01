@@ -356,7 +356,10 @@ function DonateStyles() {
       .don-give-card .flourish { margin: 14px 0 18px; }
       .don-give-body { font-size: 15.5px; color: var(--color-ink-soft); line-height: 1.65; margin: 0; flex: 1; }
       .don-give-btn { margin-top: 24px; align-self: flex-start; }
-      @media (max-width: 680px) { .don-give-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 680px) {
+        .don-give-grid { grid-template-columns: 1fr; }
+        .don-give-card { min-width: 0; }
+      }
 
       /* ── Payment Methods ── */
       .don-pay-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 32px; }
@@ -373,7 +376,14 @@ function DonateStyles() {
       .don-check-v { font-size: 15px; color: var(--color-navy); font-weight: 600; }
       .don-check-address { font-style: normal; font-size: 14.5px; color: var(--color-ink); line-height: 1.7; margin: 4px 0 0; font-family: var(--font-mono); }
       .don-pay-note { font-size: 13px; color: var(--color-muted); line-height: 1.5; margin: 0; font-style: italic; }
-      @media (max-width: 680px) { .don-pay-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 680px) {
+        .don-pay-grid { grid-template-columns: 1fr; }
+        .don-pay-card { min-width: 0; }
+      }
+      @media (max-width: 480px) {
+        .don-pay-card { padding: 20px; }
+        .don-venmo-handle { font-size: 12px; white-space: nowrap; }
+      }
 
       /* ── Where Money Goes ── */
       .don-uses-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 48px; }
@@ -386,6 +396,10 @@ function DonateStyles() {
       .don-contact-lead { font-size: 17px; color: var(--color-ink-soft); line-height: 1.6; margin: 0 0 16px; }
       .don-contact-email { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; color: var(--color-navy); font-weight: 600; font-family: var(--font-mono); }
       .don-contact-email:hover { color: var(--color-gold-dark); text-decoration: none; }
+      @media (max-width: 480px) {
+        .don-contact-card { padding: 16px; }
+        .don-contact-email { font-size: 12px; }
+      }
 
       /* ── CTA Band ── */
       .don-cta-band { background: linear-gradient(180deg, var(--color-navy-dark), var(--color-navy)); color: #fff; position: relative; overflow: hidden; }
