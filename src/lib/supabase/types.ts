@@ -77,7 +77,7 @@ export type Charity = {
   logo_url: string | null
   photo_url: string | null
   external_url: string | null
-  category: 'parish_major' | 'external'
+  category: 'parish_major' | 'parish_minor' | 'external'
   sort_order: number
   is_published: boolean
   created_at: string

@@ -36,7 +36,9 @@
       "Bash(sort -t: -k1 -n)",
       "Bash(npm list *)",
       "Bash(npx --yes playwright@1.60.0 --version)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(curl *)",
+      "Bash(grep -o 'Everything begins at Presentation\\\\|The work doesn.\\\\{0,3\\\\}t stop here' /c/Users/corra/AppData/Local/Temp/claude/charities.html)"
     ]
   }
 }

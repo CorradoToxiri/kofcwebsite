@@ -32,6 +32,7 @@ async function getCharities(): Promise<Charity[]> {
 export default async function CharitiesPage() {
   const all         = await getCharities()
   const parishMajor = all.filter((c) => c.category === 'parish_major')
+  const parishMinor = all.filter((c) => c.category === 'parish_minor')
   const external    = all.filter((c) => c.category === 'external')
 
   return (
@@ -39,7 +40,7 @@ export default async function CharitiesPage() {
       <PageHero />
       <ParishAnchor />
       <MajorMinistriesSection charities={parishMajor} />
-      <MinorMinistriesSection />
+      <MinorMinistriesSection charities={parishMinor} />
       <ExternalCharitiesSection charities={external} />
       <ClosingBlock />
       <CharitiesStyles />
@@ -164,25 +165,7 @@ function MajorMinistriesSection({ charities }: { charities: Charity[] }) {
 
 // ─── Tier 3: Minor Parish Ministries ─────────────────────────────────────────
 
-const MINOR_MINISTRIES = [
-  {
-    name: 'Parish Food Pantry',
-    description:
-      'A pantry of food and household essentials for local families facing financial hardship; the Knights help fund it through events like the Parish Pasta Dinner.',
-  },
-  {
-    name: 'Thanksgiving Turkey Drive',
-    description:
-      "Each November, the council collects frozen turkeys for local families in need and for the Soup Kitchen's Thanksgiving dinner, with members donating turkeys at the November meeting.",
-  },
-  {
-    name: 'Packathon',
-    description:
-      'A yearly food-packing event at Presentation, organized with Haiti Health Promise of Holy Name (Teaneck), benefiting the people of Milot, Haiti; the Knights handle setup and cleanup and sponsor a packing team.',
-  },
-]
-
-function MinorMinistriesSection() {
+function MinorMinistriesSection({ charities }: { charities: Charity[] }) {
   return (
     <section className="cha-minor">
       <div className="cha-minor-banner">
@@ -203,11 +186,11 @@ function MinorMinistriesSection() {
       </div>
       <div className="wrap" style={{ paddingTop: '36px', paddingBottom: '52px' }}>
         <ul className="cha-minor-list">
-          {MINOR_MINISTRIES.map((m) => (
-            <li key={m.name} className="cha-minor-item">
-              <span className="cha-minor-name">{m.name}</span>
+          {charities.map((c) => (
+            <li key={c.id} className="cha-minor-item">
+              <span className="cha-minor-name">{c.name}</span>
               {' — '}
-              {m.description}
+              {c.short_description}
             </li>
           ))}
         </ul>
