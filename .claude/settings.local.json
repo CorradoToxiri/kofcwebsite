@@ -38,7 +38,12 @@
       "Bash(npx --yes playwright@1.60.0 --version)",
       "Bash(npm install *)",
       "Bash(curl *)",
-      "Bash(grep -o 'Everything begins at Presentation\\\\|The work doesn.\\\\{0,3\\\\}t stop here' /c/Users/corra/AppData/Local/Temp/claude/charities.html)"
+      "Bash(grep -o 'Everything begins at Presentation\\\\|The work doesn.\\\\{0,3\\\\}t stop here' /c/Users/corra/AppData/Local/Temp/claude/charities.html)",
+      "Bash(cp \"C:/Users/corra/AppData/Local/Temp/claude/C--Users-corra-Documents-DevProjects-kofcwebsite/c2ae3100-6ee7-47de-8b61-76c23366566a/scratchpad/rls-probe.mjs\" ./__rls_probe.mjs)",
+      "Bash(rm -f ./__rls_probe.mjs)",
+      "Bash(grep -iv \"//\")",
+      "PowerShell($c = Get-NetTCPConnection -LocalPort 3001 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c.OwningProcess | Select-Object -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }; \"killed dev on 3001\" } else { \"no listener on 3001\" })",
+      "Bash(grep -vE \"Generating static|Collecting|Compiled|Finished|Creating|Finalizing|Environments|Next.js|^-|^$\")"
     ]
   }
 }

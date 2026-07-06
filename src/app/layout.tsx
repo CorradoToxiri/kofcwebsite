@@ -1,9 +1,6 @@
 import type { Metadata } from 'next'
 import { Source_Serif_4, Source_Sans_3, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import GolfBanner from '@/components/GolfBanner'
 
 const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
@@ -38,6 +35,10 @@ export const metadata: Metadata = {
   },
 }
 
+// Root layout is intentionally chrome-free: it only sets up <html>/<body>, the
+// font variables, and global styles. The public site's header/footer/golf banner
+// live in app/(public)/layout.tsx; the admin area supplies its own shell. This
+// keeps /admin from ever inheriting public chrome (and vice versa).
 export default function RootLayout({
   children,
 }: {
@@ -48,12 +49,7 @@ export default function RootLayout({
       lang="en"
       className={`${sourceSerif.variable} ${sourceSans.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="flex min-h-screen flex-col">
-        <Header />
-        <GolfBanner />
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
