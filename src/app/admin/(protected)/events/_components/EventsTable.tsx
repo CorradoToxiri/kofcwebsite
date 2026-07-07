@@ -10,6 +10,7 @@ import { TZ } from '@/lib/utils/dates'
 
 type SortKey = 'starts_at' | 'title'
 type SortDir = 'asc' | 'desc'
+type PageSize = '20' | '50' | 'all'
 
 function formatStartsAt(iso: string): string {
   return new Date(iso).toLocaleString('en-US', {
@@ -23,6 +24,7 @@ export default function EventsTable({ events }: { events: Event[] }) {
   const supabase = useMemo(() => createSupabaseBrowserClient(), [])
   const [sortKey, setSortKey] = useState<SortKey>('starts_at')
   const [sortDir, setSortDir] = useState<SortDir>('desc')
+  const [pageSize, setPageSize] = useState<PageSize>('50')
   const [deletingId, setDeletingId] = useState<string | null>(null)
   const [deleteError, setDeleteError] = useState<string | null>(null)
 
@@ -39,6 +41,10 @@ export default function EventsTable({ events }: { events: Event[] }) {
     })
     return copy
   }, [events, sortKey, sortDir])
+
+  const visible = useMemo(() => (
+    pageSize === 'all' ? sorted : sorted.slice(0, Number(pageSize))
+  ), [sorted, pageSize])
 
   function toggleSort(key: SortKey) {
     if (sortKey === key) {
@@ -78,6 +84,18 @@ export default function EventsTable({ events }: { events: Event[] }) {
 
   return (
     <div className="evt-wrap">
+      <div className="evt-toolbar">
+        <label className="evt-pagesize">
+          Show
+          <select value={pageSize} onChange={(e) => setPageSize(e.target.value as PageSize)}>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="all">All</option>
+          </select>
+        </label>
+        <span className="evt-count">{visible.length} of {events.length} events</span>
+      </div>
+
       {deleteError && <div className="evt-alert" role="alert">{deleteError}</div>}
 
       <table className="evt-table">
@@ -99,7 +117,7 @@ export default function EventsTable({ events }: { events: Event[] }) {
           </tr>
         </thead>
         <tbody>
-          {sorted.map((ev) => (
+          {visible.map((ev) => (
             <tr key={ev.id} className="evt-row">
               <td>
                 <Link href={`/admin/events/${ev.id}/edit`} className="evt-title-link">
@@ -116,13 +134,16 @@ export default function EventsTable({ events }: { events: Event[] }) {
                 )}
               </td>
               <td className="evt-actions">
-                <Link href={`/admin/events/${ev.id}/edit`} className="evt-action-link">Edit</Link>
-                <button
-                  type="button" className="evt-action-link evt-action-danger"
-                  onClick={() => handleDelete(ev)} disabled={deletingId === ev.id}
-                >
-                  {deletingId === ev.id ? 'Deleting…' : 'Delete'}
-                </button>
+                <div className="evt-actions-inner">
+                  <Link href={`/admin/events/${ev.id}/edit`} className="evt-action-link">Edit</Link>
+                  <Link href={`/admin/events/new?duplicateFrom=${ev.id}`} className="evt-action-link">Duplicate</Link>
+                  <button
+                    type="button" className="evt-action-link evt-action-danger"
+                    onClick={() => handleDelete(ev)} disabled={deletingId === ev.id}
+                  >
+                    {deletingId === ev.id ? 'Deleting…' : 'Delete'}
+                  </button>
+                </div>
               </td>
             </tr>
           ))}
@@ -143,6 +164,15 @@ function EventsTableStyles() {
       }
       .evt-wrap { background: #fff; border: 1px solid var(--color-border); border-radius: 12px;
         box-shadow: var(--shadow-card); overflow: hidden; }
+      .evt-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        padding: 14px 18px; border-bottom: 1px solid var(--color-border); flex-wrap: wrap; }
+      .evt-pagesize { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px;
+        font-weight: 600; color: var(--color-navy); }
+      .evt-pagesize select {
+        font: inherit; padding: 5px 8px; border: 1px solid var(--color-border-strong);
+        border-radius: 6px; background: #fff; color: var(--color-ink);
+      }
+      .evt-count { font-size: 13px; color: var(--color-muted); }
       .evt-alert { background: #FDECEC; border-bottom: 1px solid #F3B9BE; color: #8A1420;
         padding: 12px 20px; font-size: 14px; }
       .evt-table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
@@ -168,7 +198,7 @@ function EventsTableStyles() {
       }
       .evt-badge-yes { background: #E4F5E9; color: #1F7A3D; }
       .evt-badge-no { background: #F1F2F4; color: #6b7280; }
-      .evt-actions { display: flex; gap: 14px; white-space: nowrap; }
+      .evt-actions-inner { display: flex; align-items: center; gap: 14px; white-space: nowrap; }
       .evt-action-link {
         font-size: 13.5px; font-weight: 600; color: var(--color-navy); background: none;
         border: none; cursor: pointer; padding: 0; text-decoration: none;

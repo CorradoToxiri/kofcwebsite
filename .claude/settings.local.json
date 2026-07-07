@@ -44,7 +44,9 @@
       "Bash(grep -iv \"//\")",
       "PowerShell($c = Get-NetTCPConnection -LocalPort 3001 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c.OwningProcess | Select-Object -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }; \"killed dev on 3001\" } else { \"no listener on 3001\" })",
       "Bash(grep -vE \"Generating static|Collecting|Compiled|Finished|Creating|Finalizing|Environments|Next.js|^-|^$\")",
-      "Bash(npx eslint *)"
+      "Bash(npx eslint *)",
+      "PowerShell(Get-NetTCPConnection *)",
+      "PowerShell(Stop-Process *)"
     ]
   }
 }

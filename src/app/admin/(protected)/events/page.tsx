@@ -5,14 +5,27 @@ import EventsTable from './_components/EventsTable'
 
 export const metadata = { title: 'Events · Admin' }
 
+// Supabase/PostgREST caps rows per request (default 1,000) regardless of an
+// explicit .limit() above that cap, so we page through with .range() to
+// fetch every event no matter how many there are.
+const FETCH_PAGE_SIZE = 1000
+
 async function getEvents(): Promise<Event[]> {
   const supabase = await createSupabaseServerClient()
-  const { data } = await supabase
-    .from('events')
-    .select('*')
-    .order('starts_at', { ascending: false })
-    .limit(1000)
-  return data ?? []
+  const all: Event[] = []
+  let from = 0
+  for (;;) {
+    const { data } = await supabase
+      .from('events')
+      .select('*')
+      .order('starts_at', { ascending: false })
+      .range(from, from + FETCH_PAGE_SIZE - 1)
+    if (!data || data.length === 0) break
+    all.push(...data)
+    if (data.length < FETCH_PAGE_SIZE) break
+    from += FETCH_PAGE_SIZE
+  }
+  return all
 }
 
 const SUCCESS_MESSAGE: Record<string, string> = {

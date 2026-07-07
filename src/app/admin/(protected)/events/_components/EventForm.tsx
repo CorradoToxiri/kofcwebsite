@@ -8,7 +8,9 @@ import { EVENT_TYPE_OPTIONS } from '@/lib/utils/eventTypes'
 import { localDateTimeToISO, isoToLocalDateTimeInput, TZ } from '@/lib/utils/dates'
 import { slugify, withRandomSuffix } from '@/lib/utils/slug'
 
-type Props = { mode: 'create' } | { mode: 'edit'; event: Event }
+type Props =
+  | { mode: 'create'; duplicateOf?: Event }
+  | { mode: 'edit'; event: Event }
 
 type FormState = {
   title: string
@@ -49,12 +51,26 @@ function stateFromEvent(ev: Event): FormState {
   }
 }
 
+// Duplicate carries everything over except the occurrence-specific fields
+// (dates and signup info), which the admin must set fresh for the new event.
+function stateFromDuplicate(ev: Event): FormState {
+  return {
+    ...stateFromEvent(ev),
+    startsAt: '',
+    endsAt: '',
+    signupUrl: '',
+    signupDeadline: '',
+  }
+}
+
 export default function EventForm(props: Props) {
   const router = useRouter()
   const supabase = useMemo(() => createSupabaseBrowserClient(), [])
-  const [form, setForm] = useState<FormState>(() =>
-    props.mode === 'edit' ? stateFromEvent(props.event) : emptyState()
-  )
+  const [form, setForm] = useState<FormState>(() => {
+    if (props.mode === 'edit') return stateFromEvent(props.event)
+    if (props.duplicateOf) return stateFromDuplicate(props.duplicateOf)
+    return emptyState()
+  })
   const [errors, setErrors] = useState<string[]>([])
   const [saveError, setSaveError] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
