@@ -1,4 +1,4 @@
-const TZ = 'America/New_York'
+export const TZ = 'America/New_York'
 
 export function eventDateParts(iso: string) {
   const d = new Date(iso)
@@ -79,4 +79,54 @@ export function shortWeekdayTimeRange(startsAt: string, endsAt: string | null): 
   }
   const endDow = new Date(endsAt).toLocaleString('en-US', { weekday: 'short', timeZone: TZ })
   return `${startDow} – ${endDow}`
+}
+
+// ── Timezone-safe conversions for admin date/time pickers ──────────────────
+//
+// <input type="datetime-local"> has no timezone: its value is a bare wall-clock
+// string like "2026-08-01T19:30". Council events are always local to `TZ`
+// (America/New_York), regardless of what timezone the admin's browser/OS is
+// set to, so we must convert that wall-clock string to/from UTC by explicitly
+// anchoring it to `TZ` — never via `new Date(value)`, which anchors to the
+// browser's local timezone instead and would shift the time if an admin ever
+// enters an event from outside US Eastern.
+
+function timeZoneOffsetMinutes(instant: Date, timeZone: string): number {
+  const dtf = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    hourCycle: 'h23',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+  })
+  const parts = dtf.formatToParts(instant)
+  const get = (type: string) => Number(parts.find((p) => p.type === type)!.value)
+  const asUTC = Date.UTC(
+    get('year'), get('month') - 1, get('day'),
+    get('hour'), get('minute'), get('second')
+  )
+  return (asUTC - instant.getTime()) / 60000
+}
+
+// Converts a "YYYY-MM-DDTHH:mm" wall-clock string, interpreted as local time in
+// `timeZone`, to a UTC ISO string suitable for a timestamptz column.
+export function localDateTimeToISO(value: string, timeZone: string = TZ): string {
+  const [datePart, timePart] = value.split('T')
+  const [y, mo, d] = datePart.split('-').map(Number)
+  const [hh, mm] = timePart.split(':').map(Number)
+  const guessUTC = Date.UTC(y, mo - 1, d, hh, mm)
+  const offset = timeZoneOffsetMinutes(new Date(guessUTC), timeZone)
+  return new Date(guessUTC - offset * 60000).toISOString()
+}
+
+// Converts a UTC ISO timestamp to a "YYYY-MM-DDTHH:mm" wall-clock string in
+// `timeZone`, for pre-filling an <input type="datetime-local">.
+export function isoToLocalDateTimeInput(iso: string, timeZone: string = TZ): string {
+  const dtf = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    hourCycle: 'h23',
+    year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+  })
+  const parts = dtf.formatToParts(new Date(iso))
+  const get = (type: string) => parts.find((p) => p.type === type)!.value
+  return `${get('year')}-${get('month')}-${get('day')}T${get('hour')}:${get('minute')}`
 }

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
 import type { Event } from '@/lib/supabase/types'
 import { eventDateParts, shortDate, isSameCalendarDay } from '@/lib/utils/dates'
+import { EVENT_TYPE_LABEL } from '@/lib/utils/eventTypes'
 
 // ─── Metadata ───────────────────────────────────────────────────────────────
 
@@ -16,16 +17,6 @@ export const metadata: Metadata = {
 // ─── Config ──────────────────────────────────────────────────────────────────
 
 const TZ = 'America/New_York'
-
-const EVENT_TYPE_LABEL: Record<string, string> = {
-  council_meeting:    'Council Meeting',
-  officers_meeting:   "Officers' Meeting",
-  volunteer_activity: 'Volunteer Activity',
-  social_event:       'Social Event',
-  charity_event:      'Charity Event',
-  degree_ceremony:    'Degree Ceremony',
-  other:              'Event',
-}
 
 const PDF_URL =
   'https://vsmwjkqqoqatkoalslci.supabase.co/storage/v1/object/public/documents/KofC6033_Calendar.pdf'
