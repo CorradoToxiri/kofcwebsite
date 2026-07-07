@@ -112,6 +112,7 @@ export default function EventsTable({ events }: { events: Event[] }) {
                 Starts at {sortIndicator('starts_at')}
               </button>
             </th>
+            <th aria-label="Links" />
             <th>Visible on website</th>
             <th aria-label="Actions" />
           </tr>
@@ -126,6 +127,26 @@ export default function EventsTable({ events }: { events: Event[] }) {
               </td>
               <td>{EVENT_TYPE_LABEL[ev.event_type] ?? ev.event_type}</td>
               <td className="evt-mono">{formatStartsAt(ev.starts_at)}</td>
+              <td className="evt-links">
+                <div className="evt-links-inner">
+                  {ev.location_map_url && (
+                    <a
+                      href={ev.location_map_url} target="_blank" rel="noopener noreferrer"
+                      className="evt-icon-link" title="Open location map" aria-label="Open location map"
+                    >
+                      📍
+                    </a>
+                  )}
+                  {ev.signup_url && (
+                    <a
+                      href={ev.signup_url} target="_blank" rel="noopener noreferrer"
+                      className="evt-icon-link" title="Open signup page" aria-label="Open signup page"
+                    >
+                      📝
+                    </a>
+                  )}
+                </div>
+              </td>
               <td>
                 {ev.is_published ? (
                   <span className="evt-badge evt-badge-yes">Yes</span>
@@ -198,6 +219,12 @@ function EventsTableStyles() {
       }
       .evt-badge-yes { background: #E4F5E9; color: #1F7A3D; }
       .evt-badge-no { background: #F1F2F4; color: #6b7280; }
+      .evt-links-inner { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+      .evt-icon-link {
+        display: inline-flex; align-items: center; justify-content: center;
+        font-size: 15px; line-height: 1; text-decoration: none; opacity: .8;
+      }
+      .evt-icon-link:hover { opacity: 1; }
       .evt-actions-inner { display: flex; align-items: center; gap: 14px; white-space: nowrap; }
       .evt-action-link {
         font-size: 13.5px; font-weight: 600; color: var(--color-navy); background: none;

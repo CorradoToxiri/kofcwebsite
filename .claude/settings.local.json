@@ -46,7 +46,9 @@
       "Bash(grep -vE \"Generating static|Collecting|Compiled|Finished|Creating|Finalizing|Environments|Next.js|^-|^$\")",
       "Bash(npx eslint *)",
       "PowerShell(Get-NetTCPConnection *)",
-      "PowerShell(Stop-Process *)"
+      "PowerShell(Stop-Process *)",
+      "Bash(ls -la .env*)",
+      "Bash(grep -o '^[A-Z_]*=' .env.local)"
     ]
   }
 }
