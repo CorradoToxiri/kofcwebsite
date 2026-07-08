@@ -1,16 +1,18 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { getSiteSettings, type SiteSettingsMap } from '@/lib/site-settings'
 
 export const metadata: Metadata = {
   title: 'Join',
   description: 'How to become a Knight at Presentation Council #6033 — Upper Saddle River, NJ.',
 }
 
-export default function JoinPage() {
+export default async function JoinPage() {
+  const settings = await getSiteSettings()
   return (
     <>
-      <PageHero />
-      <QuickFactsStrip />
+      <PageHero settings={settings} />
+      <QuickFactsStrip settings={settings} />
       <WhyJoinSection />
       <HowToJoinSection />
       <ApplicationDetailsSection />
@@ -23,7 +25,7 @@ export default function JoinPage() {
 
 // ─── Page Hero ────────────────────────────────────────────────────────────────
 
-function PageHero() {
+function PageHero({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section className="jn-hero">
       <div className="jn-hero-inner">
@@ -48,11 +50,11 @@ function PageHero() {
           </div>
           <div className="jn-meta-row">
             <span className="jn-meta-k">Members</span>
-            <span className="jn-meta-v">100+ active</span>
+            <span className="jn-meta-v">{settings.active_members} active</span>
           </div>
           <div className="jn-meta-row">
             <span className="jn-meta-k">Annual dues</span>
-            <span className="jn-meta-v">$40/year</span>
+            <span className="jn-meta-v">{settings.annual_dues}/year</span>
           </div>
           <div className="jn-meta-row" style={{ borderBottom: 'none', paddingBottom: 0 }}>
             <span className="jn-meta-k">Sign-up fee</span>
@@ -66,14 +68,14 @@ function PageHero() {
 
 // ─── Quick Facts Strip ────────────────────────────────────────────────────────
 
-function QuickFactsStrip() {
+function QuickFactsStrip({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section className="jn-facts-strip">
       <div className="wrap">
         <div className="jn-facts-grid">
           <JnFact num="1968" lbl="Founded" />
-          <JnFact num="100+" lbl="Active members" />
-          <JnFact num="$40" lbl="Annual dues" />
+          <JnFact num={settings.active_members} lbl="Active members" />
+          <JnFact num={settings.annual_dues} lbl="Annual dues" />
           <JnFact num="Waived" lbl="Sign-up fee with promo" />
         </div>
       </div>

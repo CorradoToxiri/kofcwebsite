@@ -1,23 +1,28 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PillarsGrid } from '@/components/PillarsGrid'
+import { getSiteSettings, type SiteSettingsMap } from '@/lib/site-settings'
+import { getYearsServing } from '@/lib/utils/yearsServing'
 
 // ─── Metadata ───────────────────────────────────────────────────────────────
 
-export const metadata: Metadata = {
-  title: 'About Our Council',
-  description:
-    'Learn about Presentation Council #6033 — our 58-year history, our mission and four pillars, and where and when we meet.',
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'About Our Council',
+    description:
+      `Learn about Presentation Council #6033 — our ${getYearsServing()}-year history, our mission and four pillars, and where and when we meet.`,
+  }
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const settings = await getSiteSettings()
   return (
     <>
-      <PageHero />
-      <HistorySection />
-      <MissionSection />
+      <PageHero settings={settings} />
+      <HistorySection settings={settings} />
+      <MissionSection settings={settings} />
       <ContactSection />
       <CtaBand />
       <AboutStyles />
@@ -27,7 +32,7 @@ export default function AboutPage() {
 
 // ─── Page Hero ───────────────────────────────────────────────────────────────
 
-function PageHero() {
+function PageHero({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section className="abt-hero">
       <div className="abt-hero-inner">
@@ -39,7 +44,7 @@ function PageHero() {
           </nav>
           <span className="eyebrow">Presentation Council #6033 · Knights of Columbus</span>
           <h1>
-            Fifty-eight years of brothers,{' '}
+            {getYearsServing()} years of brothers,{' '}
             <em style={{ fontStyle: 'italic', fontWeight: 500 }}>one parish.</em>
           </h1>
           <p className="abt-hero-lede">
@@ -64,7 +69,7 @@ function PageHero() {
           </div>
           <div className="abt-meta-row" style={{ borderBottom: 'none', paddingBottom: 0 }}>
             <span className="abt-meta-k">Members</span>
-            <span className="abt-meta-v">100+ brother knights</span>
+            <span className="abt-meta-v">{settings.active_members} brother knights</span>
           </div>
         </aside>
       </div>
@@ -74,7 +79,7 @@ function PageHero() {
 
 // ─── History ─────────────────────────────────────────────────────────────────
 
-function HistorySection() {
+function HistorySection({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section id="history" style={{ background: 'var(--color-surface-alt)' }}>
       <div className="wrap">
@@ -111,7 +116,7 @@ function HistorySection() {
             <div className="abt-timeline">
               <AbtTimelineNode year="1968" label="Council chartered" />
               <AbtTimelineNode year="2000" label="First Charity Golf Outing" />
-              <AbtTimelineNode year="2025" label="$31K raised for charity" />
+              <AbtTimelineNode year={settings.reporting_year} label={`${settings.charity_raised} raised for charity`} />
             </div>
           </div>
         </div>
@@ -131,7 +136,7 @@ function AbtTimelineNode({ year, label }: { year: string; label: string }) {
 
 // ─── Mission ──────────────────────────────────────────────────────────────────
 
-function MissionSection() {
+function MissionSection({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section id="mission">
       <div className="wrap">
@@ -147,7 +152,13 @@ function MissionSection() {
           </p>
         </div>
 
-        <PillarsGrid />
+        <PillarsGrid
+          charityRaised={settings.charity_raised}
+          reportingYear={settings.reporting_year}
+          parishEventsPerYear={settings.parish_events_per_year}
+          activeMembers={settings.active_members}
+          fourthDegreeKnights={settings.fourth_degree_knights}
+        />
 
         <div className="abt-pillar-narratives">
           <div className="abt-pillar-narrative">
@@ -156,8 +167,8 @@ function MissionSection() {
             <p>
               &ldquo;Love thy neighbor as thyself&rdquo; is not a slogan &mdash; it is a
               discipline. Knights councils around the world put charity into practice through
-              food drives, fundraisers, and direct service to families in need. In 2025 alone,
-              the Knights of Columbus gave more than $193&nbsp;million to charitable causes.
+              food drives, fundraisers, and direct service to families in need. In {settings.reporting_year} alone,
+              the Knights of Columbus gave more than {settings.national_donated} to charitable causes.
               Council #6033 carries that spirit to every parish ministry it touches.
             </p>
           </div>
@@ -183,7 +194,7 @@ function MissionSection() {
               program was his practical answer to that need. Today, fraternity means something
               broader: brothers who show up at first communions and funerals, who carry meals
               to sick families, and who hold each other accountable in faith. Knights gave
-              more than 47.5&nbsp;million service hours in 2025, illustrating how Catholics
+              more than {settings.national_service_hours} service hours in {settings.reporting_year}, illustrating how Catholics
               serve each other in fraternity and mercy.
             </p>
             {/* Source note: the uknight.org source repeated the service-hours sentence twice

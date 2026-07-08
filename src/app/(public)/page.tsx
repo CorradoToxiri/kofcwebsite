@@ -4,6 +4,8 @@ import { createSupabaseServerClient } from '@/lib/supabase/server'
 import type { Event } from '@/lib/supabase/types'
 import { eventDateParts, shortWeekdayTimeRange, shortWeekdayDateTimeRange, monthYearPill, shortDate, formatTimeRange } from '@/lib/utils/dates'
 import { PillarsGrid } from '@/components/PillarsGrid'
+import { getSiteSettings, type SiteSettingsMap } from '@/lib/site-settings'
+import { getYearsServing } from '@/lib/utils/yearsServing'
 
 // ─── Data fetching ──────────────────────────────────────────────────────────
 
@@ -75,21 +77,22 @@ const EVENT_TYPE_LABEL: Record<string, string> = {
 // ─── Page ───────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const [upcomingEvents, nextEvents, grandKnightName] = await Promise.all([
+  const [upcomingEvents, nextEvents, grandKnightName, settings] = await Promise.all([
     getUpcomingEvents(),
     getNextThreeEvents(),
     getGrandKnight(),
+    getSiteSettings(),
   ])
 
   return (
     <>
-      <HeroSection />
-      <WelcomeSection nextEvents={nextEvents} grandKnightName={grandKnightName} />
-      <PillarsSection />
-      <ImpactSection />
+      <HeroSection settings={settings} />
+      <WelcomeSection nextEvents={nextEvents} grandKnightName={grandKnightName} settings={settings} />
+      <PillarsSection settings={settings} />
+      <ImpactSection settings={settings} />
       <ActivitiesSection events={upcomingEvents} />
       <JoinSection />
-      <HistorySection />
+      <HistorySection settings={settings} />
       <HomeStyles />
     </>
   )
@@ -97,7 +100,7 @@ export default async function HomePage() {
 
 // ─── Hero ───────────────────────────────────────────────────────────────────
 
-function HeroSection() {
+function HeroSection({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section className="hero-section">
       <div className="hero-inner">
@@ -131,16 +134,16 @@ function HeroSection() {
 
           <div className="hero-stats">
             <div className="stat">
-              <div className="stat-num">58</div>
+              <div className="stat-num">{getYearsServing()}</div>
               <div className="stat-lbl">Years serving the parish</div>
             </div>
             <div className="stat">
-              <div className="stat-num">100+</div>
+              <div className="stat-num">{settings.active_members}</div>
               <div className="stat-lbl">Active brother knights</div>
             </div>
             <div className="stat">
-              <div className="stat-num">$31K</div>
-              <div className="stat-lbl">Raised for charity in 2025</div>
+              <div className="stat-num">{settings.charity_raised}</div>
+              <div className="stat-lbl">Raised for charity in {settings.reporting_year}</div>
             </div>
           </div>
         </div>
@@ -172,9 +175,11 @@ function HeroSection() {
 function WelcomeSection({
   nextEvents,
   grandKnightName,
+  settings,
 }: {
   nextEvents: Pick<Event, 'id' | 'title' | 'starts_at' | 'ends_at'>[]
   grandKnightName: string | null
+  settings: SiteSettingsMap
 }) {
   return (
     <section className="welcome-section">
@@ -187,9 +192,7 @@ function WelcomeSection({
             <span className="flourish" />
             <p style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', lineHeight: 1.45, color: 'var(--color-ink)', fontWeight: 400, margin: 0 }}>
               <span className="opening-quote">&ldquo;</span>
-              Whether you have been a Knight for forty years or are simply curious
-              about who we are, you have a brother in this council. Come to a meeting,
-              share a meal, and see for yourself what fraternity feels like at Presentation.
+              {settings.grand_knight_quote}
             </p>
             <div className="welcome-attrib">
               <span className="attrib-line" />
@@ -241,7 +244,7 @@ function WelcomeSection({
 
 // ─── Four Pillars ───────────────────────────────────────────────────────────
 
-function PillarsSection() {
+function PillarsSection({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section className="pillars-section">
       <div className="wrap">
@@ -257,7 +260,13 @@ function PillarsSection() {
           </p>
         </div>
 
-        <PillarsGrid />
+        <PillarsGrid
+          charityRaised={settings.charity_raised}
+          reportingYear={settings.reporting_year}
+          parishEventsPerYear={settings.parish_events_per_year}
+          activeMembers={settings.active_members}
+          fourthDegreeKnights={settings.fourth_degree_knights}
+        />
       </div>
     </section>
   )
@@ -265,12 +274,12 @@ function PillarsSection() {
 
 // ─── Impact band ────────────────────────────────────────────────────────────
 
-function ImpactSection() {
+function ImpactSection({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section className="impact-section">
       <div className="wrap">
         <div className="impact-head">
-          <span className="eyebrow" style={{ color: '#F7C04A' }}>Our 2025 impact</span>
+          <span className="eyebrow" style={{ color: '#F7C04A' }}>Our {settings.reporting_year} impact</span>
           <h2 style={{ color: '#fff' }}>What 100 brothers can do, by God&rsquo;s grace.</h2>
           <span className="flourish" />
           <p style={{ color: '#cfd6e8', fontSize: '17px', margin: 0 }}>
@@ -279,10 +288,10 @@ function ImpactSection() {
           </p>
         </div>
         <div className="impact-grid">
-          <ImpactCell num="$31K"    lbl="Donated to charity this year"               sub="// food pantry · seminarians · pro-life" />
-          <ImpactCell num="Hundreds" lbl="Volunteer hours logged"                  sub="" />
-          <ImpactCell num="$2K"   lbl="Donated to Covenant House New Jersey"        sub="// Covenant House New Jersey · 2025" />
-          <ImpactCell num="7"    lbl="New brothers welcomed"                      sub="// exemplified at Presentation, 2025" />
+          <ImpactCell num={settings.charity_raised} lbl="Donated to charity this year"        sub="// food pantry · seminarians · pro-life" />
+          <ImpactCell num={settings.volunteer_hours} lbl="Volunteer hours logged"              sub="" />
+          <ImpactCell num={settings.covenant_house_donation} lbl="Donated to Covenant House New Jersey" sub={`// Covenant House New Jersey · ${settings.reporting_year}`} />
+          <ImpactCell num={settings.new_brothers} lbl="New brothers welcomed"                  sub={`// exemplified at Presentation, ${settings.reporting_year}`} />
         </div>
       </div>
     </section>
@@ -497,7 +506,7 @@ function JoinSection() {
 
 // ─── History ────────────────────────────────────────────────────────────────
 
-function HistorySection() {
+function HistorySection({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section style={{ background: 'var(--color-surface-alt)' }}>
       <div className="wrap">
@@ -521,7 +530,7 @@ function HistorySection() {
 
           <div>
             <span className="eyebrow">A short history</span>
-            <h2>Fifty-eight years of brothers, one parish.</h2>
+            <h2>{getYearsServing()} years of brothers, one parish.</h2>
             <span className="flourish" />
             <p style={{ color: 'var(--color-ink-soft)', fontSize: '17px', lineHeight: 1.65, margin: '0 0 14px' }}>
               Presentation Council #6033 was chartered in May 1968 at Church of the Presentation
@@ -536,7 +545,7 @@ function HistorySection() {
             <div className="timeline">
               <TimelineNode year="1968" label="Council chartered" />
               <TimelineNode year="2000" label="First Charity Golf Outing" />
-              <TimelineNode year="2025" label="$31K raised for charity" />
+              <TimelineNode year={settings.reporting_year} label={`${settings.charity_raised} raised for charity`} />
             </div>
           </div>
 

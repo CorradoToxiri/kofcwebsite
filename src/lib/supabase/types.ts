@@ -84,6 +84,15 @@ export type Charity = {
   updated_at: string
 }
 
+export type SiteSetting = {
+  key: string
+  value: string
+  label: string
+  section: 'annual_figures' | 'national_stats' | 'grand_knight'
+  sort_order: number
+  updated_at: string
+}
+
 export type Photo = {
   id: string
   storage_path: string

@@ -88,7 +88,7 @@ export default function Footer() {
           fontSize: '13px',
           color: '#9aa6c4',
         }}>
-          <div>© 2026 Presentation Council #6033, Knights of Columbus. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} Presentation Council #6033, Knights of Columbus. All rights reserved.</div>
           <div style={{ display: 'flex', gap: '22px' }}>
             <Link href="/privacy" style={{ color: '#9aa6c4' }}>Privacy</Link>
             <Link href="mailto:kofc6033@churchofpresentation.org" style={{ color: '#9aa6c4' }}>Contact the Webmaster</Link>

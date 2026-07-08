@@ -1,18 +1,20 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getSiteSettings, type SiteSettingsMap } from '@/lib/site-settings'
 
 export const metadata: Metadata = {
   title: 'Donate',
   description: 'Support our charitable work and pay your annual dues — Presentation Council #6033.',
 }
 
-export default function DonatePage() {
+export default async function DonatePage() {
+  const settings = await getSiteSettings()
   return (
     <>
-      <PageHero />
-      <QuickFactsStrip />
-      <DuesOrDonateSection />
+      <PageHero settings={settings} />
+      <QuickFactsStrip settings={settings} />
+      <DuesOrDonateSection settings={settings} />
       <PaymentMethodsSection />
       <WhereMoneyGoesSection />
       <ContactSection />
@@ -24,7 +26,7 @@ export default function DonatePage() {
 
 // ─── Page Hero ────────────────────────────────────────────────────────────────
 
-function PageHero() {
+function PageHero({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section className="don-hero">
       <div className="don-hero-inner">
@@ -45,7 +47,7 @@ function PageHero() {
         <aside className="don-hero-meta" aria-label="Council giving facts">
           <div className="don-meta-row">
             <span className="don-meta-k">Raised for charity</span>
-            <span className="don-meta-v">$31K in 2025</span>
+            <span className="don-meta-v">{settings.charity_raised} in {settings.reporting_year}</span>
           </div>
           <div className="don-meta-row">
             <span className="don-meta-k">Goes to programs</span>
@@ -53,7 +55,7 @@ function PageHero() {
           </div>
           <div className="don-meta-row">
             <span className="don-meta-k">Annual member dues</span>
-            <span className="don-meta-v">$40/year</span>
+            <span className="don-meta-v">{settings.annual_dues}/year</span>
           </div>
           <div className="don-meta-row" style={{ borderBottom: 'none', paddingBottom: 0 }}>
             <span className="don-meta-k">Founded</span>
@@ -67,14 +69,14 @@ function PageHero() {
 
 // ─── Quick Facts Strip ────────────────────────────────────────────────────────
 
-function QuickFactsStrip() {
+function QuickFactsStrip({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section className="don-facts-strip">
       <div className="wrap">
         <div className="don-facts-grid">
-          <DonFact num="$31K" lbl="Raised for charity in 2025" />
+          <DonFact num={settings.charity_raised} lbl={`Raised for charity in ${settings.reporting_year}`} />
           <DonFact num="100%" lbl="Goes to council programs" />
-          <DonFact num="$40/year" lbl="Annual member dues" />
+          <DonFact num={`${settings.annual_dues}/year`} lbl="Annual member dues" />
           <DonFact num="1968" lbl="Year founded" />
         </div>
       </div>
@@ -93,7 +95,7 @@ function DonFact({ num, lbl }: { num: string; lbl: string }) {
 
 // ─── Dues or Donate ───────────────────────────────────────────────────────────
 
-function DuesOrDonateSection() {
+function DuesOrDonateSection({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section id="give">
       <div className="wrap">
@@ -104,7 +106,7 @@ function DuesOrDonateSection() {
 
           <div className="don-give-card">
             <h3>Pay Annual Dues</h3>
-            <p className="don-give-subhead">$40/year for active members</p>
+            <p className="don-give-subhead">{settings.annual_dues}/year for active members</p>
             <span className="flourish" />
             <p className="don-give-body">
               Council dues fund our charitable activities, parish events, and operating

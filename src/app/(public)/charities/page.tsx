@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
 import type { Charity } from '@/lib/supabase/types'
+import { getSiteSettings, type SiteSettingsMap } from '@/lib/site-settings'
 
 // ─── Metadata ───────────────────────────────────────────────────────────────
 
@@ -30,14 +31,14 @@ async function getCharities(): Promise<Charity[]> {
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default async function CharitiesPage() {
-  const all         = await getCharities()
+  const [all, settings] = await Promise.all([getCharities(), getSiteSettings()])
   const parishMajor = all.filter((c) => c.category === 'parish_major')
   const parishMinor = all.filter((c) => c.category === 'parish_minor')
   const external    = all.filter((c) => c.category === 'external')
 
   return (
     <>
-      <PageHero />
+      <PageHero settings={settings} />
       <ParishAnchor />
       <MajorMinistriesSection charities={parishMajor} />
       <MinorMinistriesSection charities={parishMinor} />
@@ -50,7 +51,7 @@ export default async function CharitiesPage() {
 
 // ─── Page Hero ───────────────────────────────────────────────────────────────
 
-function PageHero() {
+function PageHero({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section className="cha-hero">
       <div className="cha-hero-inner">
@@ -76,11 +77,11 @@ function PageHero() {
           </div>
           <div className="cha-meta-row">
             <span className="cha-meta-k">Charities supported</span>
-            <span className="cha-meta-v">10+ organizations</span>
+            <span className="cha-meta-v">{settings.charities_supported} organizations</span>
           </div>
           <div className="cha-meta-row">
-            <span className="cha-meta-k">Raised in 2025</span>
-            <span className="cha-meta-v">$31K for charity</span>
+            <span className="cha-meta-k">Raised in {settings.reporting_year}</span>
+            <span className="cha-meta-v">{settings.charity_raised} for charity</span>
           </div>
           <div className="cha-meta-row" style={{ borderBottom: 'none', paddingBottom: 0 }}>
             <span className="cha-meta-k">Council</span>

@@ -5,6 +5,7 @@ import { createSupabaseServerClient } from '@/lib/supabase/server'
 import type { Event } from '@/lib/supabase/types'
 import { eventDateParts, shortDate, isSameCalendarDay } from '@/lib/utils/dates'
 import { EVENT_TYPE_LABEL } from '@/lib/utils/eventTypes'
+import { getColumbianYear } from '@/lib/utils/columbianYear'
 
 // ─── Metadata ───────────────────────────────────────────────────────────────
 
@@ -126,6 +127,7 @@ export default async function CalendarPage() {
 // ─── Page Hero ────────────────────────────────────────────────────────────────
 
 function PageHero() {
+  const columbianYear = getColumbianYear()
   return (
     <section className="cal-hero">
       <div className="cal-hero-inner">
@@ -135,7 +137,7 @@ function PageHero() {
             <span className="cal-crumbs-sep" aria-hidden="true">/</span>
             <span aria-current="page">Calendar</span>
           </nav>
-          <span className="eyebrow">Events &amp; meetings · Columbian Year 2025–2026</span>
+          <span className="eyebrow">Events &amp; meetings · Columbian Year {columbianYear}</span>
           <h1>
             The year ahead at{' '}
             <em style={{ fontStyle: 'italic', fontWeight: 500 }}>Council #6033.</em>

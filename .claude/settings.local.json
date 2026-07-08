@@ -48,7 +48,22 @@
       "PowerShell(Get-NetTCPConnection *)",
       "PowerShell(Stop-Process *)",
       "Bash(ls -la .env*)",
-      "Bash(grep -o '^[A-Z_]*=' .env.local)"
+      "Bash(grep -o '^[A-Z_]*=' .env.local)",
+      "Bash(grep -rn '2,000\\\\|2$K\\\\|Fourth Degree\\\\|fourth.degree' C:/Users/corra/Documents/DevProjects/kofcwebsite/src)",
+      "Skill(run)",
+      "Bash(chromium-cli --help)",
+      "Bash(timeout 30 bash -c 'until curl -sf http://localhost:3000 >/dev/null 2>&1; do sleep 1; done; echo UP')",
+      "Read(//tmp/**)",
+      "Bash(pkill -f \"next-server.*3001\")",
+      "Bash(pkill -f \"PORT=3001\")",
+      "Bash(grep -o \"stat-num\\\\\\\\\\\\\\\\\\\\\">[^<]*\" /tmp/home.html)",
+      "Bash(grep -o 'impact-num\\\\\\\\\">[^<]*' /tmp/home.html)",
+      "Bash(python3 -)",
+      "Bash(grep -o \"pillar-meta\\\\\\\\\\\\\\\\?\\\\\">[^<]*\" /tmp/home.html)",
+      "Bash(grep -o \"100+ active\\\\|40/year\\\\|waives the \\\\$40\" /tmp/join.html)",
+      "Bash(grep -o \"cha-meta-v\\\\\\\\\\\\\\\\?\\\\\">[^<]*\" /tmp/cha.html)",
+      "Bash(grep -o \"2K\\\\\\\\\\\\\\\\?\\\\\",\\\\\"lbl\")",
+      "Bash(grep -o '.\\\\{20\\\\}Presentation Council #6033, Knights of Columbus.\\\\{0,5\\\\}' /tmp/home2.html)"
     ]
   }
 }
