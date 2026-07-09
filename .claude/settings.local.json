@@ -63,7 +63,17 @@
       "Bash(grep -o \"100+ active\\\\|40/year\\\\|waives the \\\\$40\" /tmp/join.html)",
       "Bash(grep -o \"cha-meta-v\\\\\\\\\\\\\\\\?\\\\\">[^<]*\" /tmp/cha.html)",
       "Bash(grep -o \"2K\\\\\\\\\\\\\\\\?\\\\\",\\\\\"lbl\")",
-      "Bash(grep -o '.\\\\{20\\\\}Presentation Council #6033, Knights of Columbus.\\\\{0,5\\\\}' /tmp/home2.html)"
+      "Bash(grep -o '.\\\\{20\\\\}Presentation Council #6033, Knights of Columbus.\\\\{0,5\\\\}' /tmp/home2.html)",
+      "Bash(npm view *)",
+      "Bash(xargs grep -l \"ImageSrc\\\\|type Src\")",
+      "Bash(xargs grep -ln \"format\")",
+      "Bash(xargs grep -ln \"FileBody\")",
+      "Bash(xargs grep -l \"FileBody\\\\|fileBody\")",
+      "Bash(npx --no-install tsx --version)",
+      "Bash(echo \"started, pid $!\")",
+      "PowerShell(Get-Process *)",
+      "Bash(rm -rf \"src/app/api/zz-verify-calendar-pdf\")",
+      "Bash(rmdir src/app/api)"
     ]
   }
 }
