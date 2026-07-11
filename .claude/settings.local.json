@@ -73,7 +73,10 @@
       "Bash(echo \"started, pid $!\")",
       "PowerShell(Get-Process *)",
       "Bash(rm -rf \"src/app/api/zz-verify-calendar-pdf\")",
-      "Bash(rmdir src/app/api)"
+      "Bash(rmdir src/app/api)",
+      "Bash(echo \"started with pid $!\")",
+      "Bash(jobs)",
+      "Bash(npx --no-install playwright --version)"
     ]
   }
 }
