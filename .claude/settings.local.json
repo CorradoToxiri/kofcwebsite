@@ -76,7 +76,10 @@
       "Bash(rmdir src/app/api)",
       "Bash(echo \"started with pid $!\")",
       "Bash(jobs)",
-      "Bash(npx --no-install playwright --version)"
+      "Bash(npx --no-install playwright --version)",
+      "Bash(git *)",
+      "PowerShell(git mv *)",
+      "Bash(awk *)"
     ]
   }
 }

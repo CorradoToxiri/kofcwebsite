@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 // Seasonal announcement bar — set SHOW_GOLF_BANNER = false to disable after Sept 14, 2026
-const SHOW_GOLF_BANNER = true
+const SHOW_GOLF_BANNER = false
 
 export default function GolfBanner() {
   if (!SHOW_GOLF_BANNER) return null
