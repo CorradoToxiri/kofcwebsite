@@ -1,0 +1,122 @@
+/* Council video on /about. The box reserves 16:9 up front so nothing shifts while the video loads. */
+
+.box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lift);
+  background-color: var(--color-navy-dark);
+  background-size: cover;
+  background-position: center;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Controls ── */
+.controls {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(0, 22, 74, 0.72);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.iconBtn:hover {
+  background: rgba(0, 22, 74, 0.92);
+  border-color: var(--color-gold);
+}
+.iconBtn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+.centerBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  background: rgba(0, 22, 74, 0.78);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.centerBtn:hover {
+  background: rgba(0, 22, 74, 0.95);
+  border-color: var(--color-gold);
+}
+.centerBtn svg {
+  fill: currentColor;
+  pointer-events: none;
+}
+.playBtn {
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  padding: 0;
+  border-radius: 50%;
+}
+.playBtn svg {
+  width: 34px;
+  height: 34px;
+  margin-left: 4px; /* optical centering of the triangle */
+}
+.replayBtn {
+  padding: 14px 24px;
+  border-radius: 999px;
+  font: 600 16px / 1 var(--font-sans);
+}
+.replayBtn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.iconBtn:focus-visible,
+.centerBtn:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+@media (max-width: 560px) {
+  .controls {
+    right: 8px;
+    bottom: 8px;
+  }
+  .playBtn {
+    width: 60px;
+    height: 60px;
+  }
+  .playBtn svg {
+    width: 28px;
+    height: 28px;
+  }
+}

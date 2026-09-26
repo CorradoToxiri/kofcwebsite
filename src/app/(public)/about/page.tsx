@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PillarsGrid } from '@/components/PillarsGrid'
+import { AboutVideo } from '@/components/AboutVideo'
 import { getSiteSettings, type SiteSettingsMap } from '@/lib/site-settings'
 import { getYearsServing } from '@/lib/utils/yearsServing'
 
@@ -36,42 +37,49 @@ function PageHero({ settings }: { settings: SiteSettingsMap }) {
   return (
     <section className="abt-hero">
       <div className="abt-hero-inner">
-        <div>
-          <nav className="abt-crumbs" aria-label="Breadcrumb">
-            <Link href="/">Home</Link>
-            <span className="abt-crumbs-sep" aria-hidden="true">/</span>
-            <span aria-current="page">About</span>
-          </nav>
-          <span className="eyebrow">Presentation Council #6033 · Knights of Columbus</span>
-          <h1>
-            {getYearsServing()} years of brothers,{' '}
-            <em style={{ fontStyle: 'italic', fontWeight: 500 }}>one parish.</em>
-          </h1>
-          <p className="abt-hero-lede">
-            Presentation Council #6033 is a fellowship of Catholic men at Church of the
-            Presentation in Upper Saddle River, New Jersey — living out the four principles
-            of the Knights of Columbus since March 10, 1968.
-          </p>
+        <nav className="abt-crumbs" aria-label="Breadcrumb">
+          <Link href="/">Home</Link>
+          <span className="abt-crumbs-sep" aria-hidden="true">/</span>
+          <span aria-current="page">About</span>
+        </nav>
+
+        <div className="abt-hero-video">
+          <AboutVideo />
         </div>
 
-        <aside className="abt-hero-meta" aria-label="Council facts">
-          <div className="abt-meta-row">
-            <span className="abt-meta-k">Founded</span>
-            <span className="abt-meta-v">March 10, 1968</span>
+        <div className="abt-hero-grid">
+          <div>
+            <span className="eyebrow">Presentation Council #6033 · Knights of Columbus</span>
+            <h1>
+              {getYearsServing()} years of brothers,{' '}
+              <em style={{ fontStyle: 'italic', fontWeight: 500 }}>one parish.</em>
+            </h1>
+            <p className="abt-hero-lede">
+              Presentation Council #6033 is a fellowship of Catholic men at Church of the
+              Presentation in Upper Saddle River, New Jersey — living out the four principles
+              of the Knights of Columbus since March 10, 1968.
+            </p>
           </div>
-          <div className="abt-meta-row">
-            <span className="abt-meta-k">Parish</span>
-            <span className="abt-meta-v">Church of the Presentation</span>
-          </div>
-          <div className="abt-meta-row">
-            <span className="abt-meta-k">Council meeting</span>
-            <span className="abt-meta-v">3rd Wed · 7:30 PM</span>
-          </div>
-          <div className="abt-meta-row" style={{ borderBottom: 'none', paddingBottom: 0 }}>
-            <span className="abt-meta-k">Members</span>
-            <span className="abt-meta-v">{settings.active_members} brother knights</span>
-          </div>
-        </aside>
+
+          <aside className="abt-hero-meta" aria-label="Council facts">
+            <div className="abt-meta-row">
+              <span className="abt-meta-k">Founded</span>
+              <span className="abt-meta-v">March 10, 1968</span>
+            </div>
+            <div className="abt-meta-row">
+              <span className="abt-meta-k">Parish</span>
+              <span className="abt-meta-v">Church of the Presentation</span>
+            </div>
+            <div className="abt-meta-row">
+              <span className="abt-meta-k">Council meeting</span>
+              <span className="abt-meta-v">3rd Wed · 7:30 PM</span>
+            </div>
+            <div className="abt-meta-row" style={{ borderBottom: 'none', paddingBottom: 0 }}>
+              <span className="abt-meta-k">Members</span>
+              <span className="abt-meta-v">{settings.active_members} brother knights</span>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
   )
@@ -430,6 +438,7 @@ function AboutStyles() {
       .abt-hero {
         background: var(--color-surface-alt);
         position: relative; overflow: hidden;
+        padding-top: 0; /* video starts close to the header; global section padding-top removed */
       }
       .abt-hero::before {
         content: ""; position: absolute; right: -80px; top: -80px;
@@ -438,9 +447,13 @@ function AboutStyles() {
         pointer-events: none;
       }
       .abt-hero-inner {
-        max-width: var(--width-content); margin: 0 auto; padding: 60px 32px 56px;
+        max-width: var(--width-content); margin: 0 auto; padding: 24px 32px 56px;
+        position: relative;
+      }
+      .abt-hero-video { margin-bottom: 32px; }
+      .abt-hero-grid {
         display: grid; grid-template-columns: 1.2fr .8fr;
-        gap: 48px; align-items: end; position: relative;
+        gap: 48px; align-items: end;
       }
       .abt-hero h1 { font-size: 52px; line-height: 1.05; }
       .abt-hero-lede {
@@ -471,7 +484,8 @@ function AboutStyles() {
         font-family: var(--font-mono); font-size: 13px; text-align: right;
       }
       @media (max-width: 880px) {
-        .abt-hero-inner { grid-template-columns: 1fr; gap: 28px; padding: 40px 24px; }
+        .abt-hero-inner { padding: 20px 24px 40px; }
+        .abt-hero-grid { grid-template-columns: 1fr; gap: 28px; }
         .abt-hero h1 { font-size: 38px; }
       }
 
