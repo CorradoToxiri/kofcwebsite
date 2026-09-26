@@ -4,6 +4,7 @@ import { createSupabaseServerClient } from '@/lib/supabase/server'
 import type { Event } from '@/lib/supabase/types'
 import { eventDateParts, shortWeekdayTimeRange, shortWeekdayDateTimeRange, monthYearPill, shortDate, formatTimeRange } from '@/lib/utils/dates'
 import { PillarsGrid } from '@/components/PillarsGrid'
+import { HeroBanner } from '@/components/HeroBanner'
 import { getSiteSettings, type SiteSettingsMap } from '@/lib/site-settings'
 import { getYearsServing } from '@/lib/utils/yearsServing'
 
@@ -86,7 +87,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroSection settings={settings} />
+      <HeroBanner settings={settings} yearsServing={getYearsServing()} />
       <WelcomeSection nextEvents={nextEvents} grandKnightName={grandKnightName} settings={settings} />
       <PillarsSection settings={settings} />
       <ImpactSection settings={settings} />
@@ -95,78 +96,6 @@ export default async function HomePage() {
       <HistorySection settings={settings} />
       <HomeStyles />
     </>
-  )
-}
-
-// ─── Hero ───────────────────────────────────────────────────────────────────
-
-function HeroSection({ settings }: { settings: SiteSettingsMap }) {
-  return (
-    <section className="hero-section">
-      <div className="hero-inner">
-
-        {/* Left — copy */}
-        <div className="hero-copy">
-          <span className="hero-badge">
-            <span className="hero-badge-dot" />
-            Presentation Council · Est. 1968
-          </span>
-
-          <h1>
-            Faith, family, and <em>fraternity</em> —{' '}
-            rooted at Presentation Parish.
-          </h1>
-
-          <p className="hero-lede">
-            We are Catholic men of Upper Saddle River, Saddle River, Allendale,
-            and the surrounding towns — gathering each month to serve our parish,
-            support our neighbors in need, and grow as husbands, fathers, and disciples.
-          </p>
-
-          <div className="hero-cta-row">
-            <Link href="/join" className="btn btn-primary">
-              Join Our Brotherhood <span aria-hidden="true">→</span>
-            </Link>
-            <Link href="/charities" className="btn btn-secondary">
-              Support Our Charities
-            </Link>
-          </div>
-
-          <div className="hero-stats">
-            <div className="stat">
-              <div className="stat-num">{getYearsServing()}</div>
-              <div className="stat-lbl">Years serving the parish</div>
-            </div>
-            <div className="stat">
-              <div className="stat-num">{settings.active_members}</div>
-              <div className="stat-lbl">Active brother knights</div>
-            </div>
-            <div className="stat">
-              <div className="stat-num">{settings.charity_raised}</div>
-              <div className="stat-lbl">Raised for charity in {settings.reporting_year}</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Right — photo */}
-        <div className="hero-photo">
-          <div className="photo-frame">
-            <div className="hero-photo-wrap">
-              <Image
-                src="https://vsmwjkqqoqatkoalslci.supabase.co/storage/v1/object/public/public-photos/hero.png"
-                alt="Our Knights helping the Soup Kitchen Ministry"
-                fill
-                className="hero-photo-img"
-                sizes="(max-width: 980px) 100vw, 50vw"
-                priority
-              />
-            </div>
-            <div className="photo-caption">Our Knights helping the Soup Kitchen Ministry</div>
-          </div>
-        </div>
-
-      </div>
-    </section>
   )
 }
 
@@ -569,61 +498,16 @@ function TimelineNode({ year, label }: { year: string; label: string }) {
 function HomeStyles() {
   return (
     <style>{`
-      /* ── Hero ── */
-      .hero-section { background: var(--color-surface-alt); padding: 0; overflow: hidden; }
-      .hero-inner {
-        max-width: var(--width-content); margin: 0 auto; padding: 64px 32px 72px;
-        display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center;
-      }
-      .hero-badge {
-        display: inline-flex; align-items: center; gap: 10px;
-        background: #fff; border: 1px solid var(--color-border); border-radius: 999px;
-        padding: 6px 14px; font-size: 13px; color: var(--color-ink-soft); font-weight: 500;
-        margin-bottom: 22px;
-      }
-      .hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-gold); flex-shrink: 0; }
-      .hero-copy h1 { font-size: 60px; line-height: 1.05; }
-      .hero-copy h1 em { font-style: italic; color: var(--color-navy); font-weight: 500; }
-      .hero-lede { font-size: 19px; line-height: 1.55; color: var(--color-ink-soft); margin: 22px 0 28px; max-width: 560px; }
-      .hero-cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
-      .hero-stats {
-        display: flex; flex-wrap: wrap; gap: 28px; margin-top: 36px;
-        border-top: 1px solid var(--color-border-strong); padding-top: 24px;
-      }
-      .stat-num { font-family: var(--font-serif); font-size: 32px; color: var(--color-navy); font-weight: 600; line-height: 1; }
-      .stat-lbl { font-size: 13px; color: var(--color-muted); margin-top: 6px; letter-spacing: .02em; }
-
-      /* Hero photo */
-      .hero-photo { position: relative; }
+      /* Photo frame (History section) */
       .photo-frame {
         position: relative; border-radius: 6px; overflow: hidden;
         background: #fff; border: 1px solid var(--color-border); box-shadow: var(--shadow-lift);
       }
-      .hero-photo-wrap { position: relative; width: 100%; aspect-ratio: 4 / 3; }
-      .hero-photo-img { object-fit: cover; }
-      .photo-placeholder {
-        width: 100%; aspect-ratio: 4 / 5;
-        background: repeating-linear-gradient(135deg, rgba(0,48,135,.06) 0 14px, rgba(0,48,135,.10) 14px 28px),
-          linear-gradient(180deg, #dfe6f1, #c8d3e4);
-        display: flex; align-items: center; justify-content: center;
-        color: var(--color-navy-dark);
-      }
-      .ph-inner {
-        text-align: center; font-family: var(--font-mono); font-size: 12px;
-        background: rgba(255,255,255,.85); padding: 14px 18px; border-radius: 3px;
-        border: 1px solid rgba(0,31,92,.18); max-width: 78%; letter-spacing: .04em;
-        line-height: 1.6;
-      }
-      .ph-title { font-family: var(--font-serif); font-size: 16px; font-weight: 600; color: var(--color-navy); margin-bottom: 4px; letter-spacing: 0; }
       .photo-caption {
         position: absolute; left: 18px; bottom: 18px;
         background: rgba(0,31,92,.92); color: #fff;
         font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .04em;
         padding: 7px 12px; border-radius: 3px; border-left: 3px solid var(--color-gold);
-      }
-      @media (max-width: 980px) {
-        .hero-inner { grid-template-columns: 1fr; gap: 36px; padding: 40px 24px 48px; }
-        .hero-copy h1 { font-size: 42px; }
       }
 
       /* ── Welcome ── */

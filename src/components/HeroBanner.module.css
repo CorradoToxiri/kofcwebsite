@@ -1,0 +1,281 @@
+/* Animated homepage hero. Single deliberate look: council navy + gold, independent of page theme. */
+
+.hero {
+  --navy-deep: #07142a;
+  --navy: #0e2445;
+  --navy-line: #24406b;
+  --gold: #cfa84e;
+  --gold-soft: #e6cd8f;
+  --parchment: #f3ecdd;
+  --mist: #a9b6cb;
+
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 0; /* global `section` rule adds 72px; .inner owns the spacing */
+  color: var(--parchment);
+  background: radial-gradient(120% 90% at 78% 20%, #16335f 0%, var(--navy) 38%, var(--navy-deep) 100%);
+  border-bottom: 1px solid var(--navy-line);
+}
+
+/* ── Photo stack ── */
+.photos {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+}
+.photo {
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1.8s ease;
+  filter: saturate(0.85) contrast(1.05);
+}
+/* .prev keeps the Ken Burns animation running while the old photo fades out,
+   so it doesn't snap back to scale(1.04) mid-fade. */
+.on,
+.prev {
+  animation: kenburns 9s ease-out forwards;
+}
+.on {
+  opacity: 1;
+}
+@keyframes kenburns {
+  from { transform: scale(1.04) translate(0, 0); }
+  to   { transform: scale(1.14) translate(-2%, -1.5%); }
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(7, 20, 42, 0.96) 0%, rgba(7, 20, 42, 0.86) 42%, rgba(7, 20, 42, 0.45) 100%),
+    linear-gradient(0deg, rgba(7, 20, 42, 0.9) 0%, rgba(7, 20, 42, 0) 45%);
+}
+
+/* ── Layout ── */
+.inner {
+  max-width: var(--width-content, 1240px);
+  margin: 0 auto;
+  padding-inline: max(16px, 4vw);
+  padding-block: clamp(40px, 5vw, 72px) clamp(36px, 5vw, 64px);
+  display: grid;
+  gap: clamp(28px, 4vw, 44px);
+}
+
+.title {
+  margin: 0;
+  max-width: 20ch;
+  text-wrap: balance;
+  color: var(--parchment);
+  font: 500 clamp(38px, 5.4vw, 72px) / 1.06 var(--font-serif);
+  letter-spacing: -0.01em;
+}
+.title em {
+  font-style: italic;
+  color: var(--gold-soft);
+  font-weight: 500;
+}
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em);
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+@keyframes rise {
+  to { opacity: 1; transform: none; }
+}
+
+.lede {
+  margin: 0;
+  max-width: 56ch;
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.6;
+  color: var(--mist);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 2px;
+  font: 600 15px / 1 var(--font-sans);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: 3px;
+}
+.primary {
+  background: var(--gold);
+  color: var(--navy-deep);
+  border: 1px solid var(--gold);
+}
+.primary:hover {
+  background: var(--gold-soft);
+  border-color: var(--gold-soft);
+}
+.ghost {
+  color: var(--parchment);
+  border: 1px solid rgba(243, 236, 221, 0.35);
+}
+.ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold-soft);
+}
+
+/* ── Four principles ticker ── */
+.pillars {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px 28px;
+  align-items: center;
+  border-top: 1px solid var(--navy-line);
+  padding-top: 26px;
+  max-width: 760px;
+}
+.numeral {
+  font: 500 clamp(56px, 7vw, 88px) / 0.9 var(--font-serif);
+  color: var(--gold);
+  min-width: 3ch;
+  font-variant-numeric: lining-nums;
+}
+/* All four texts share one grid cell; the hidden sizers hold the height of the
+   tallest so swapping copy never shifts the layout, at any width. */
+.pillarText {
+  display: grid;
+}
+.pillarText > * {
+  grid-area: 1 / 1;
+}
+.sizer {
+  visibility: hidden;
+  pointer-events: none;
+}
+.pillarBody {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+.pillarName {
+  font: 600 clamp(24px, 2.6vw, 30px) / 1.1 var(--font-serif);
+}
+.pillarCopy {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--mist);
+  max-width: 52ch;
+}
+.pillarStat {
+  font: 600 12px / 1 var(--font-sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+.swap {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.out {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.dots {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+}
+.dot {
+  flex: 1;
+  height: 2px;
+  background: rgba(243, 236, 221, 0.18);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+/* Enlarged hit area without changing the 2px visual bar. */
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: -12px 0;
+}
+.dot i {
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+.done i {
+  transform: scaleX(1);
+}
+.running i {
+  animation: fill var(--dur, 5200ms) linear forwards;
+}
+.dot:focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: 4px;
+}
+@keyframes fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Stats ── */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(20px, 5vw, 64px);
+}
+.stat b {
+  display: block;
+  font: 500 clamp(34px, 4vw, 48px) / 1 var(--font-serif);
+  color: var(--parchment);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.stat span {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--mist);
+}
+
+/* Overrides come after the base rules they modify. */
+@media (max-width: 560px) {
+  .pillars {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .numeral {
+    font-size: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .on,
+  .prev {
+    animation: none;
+  }
+  .running i {
+    animation: none;
+    transform: scaleX(1);
+  }
+  .photo,
+  .swap {
+    transition: none;
+  }
+}

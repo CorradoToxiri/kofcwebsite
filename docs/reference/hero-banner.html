@@ -1,0 +1,237 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Council 6033 Hero Banner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Figtree:wght@400;500;600&display=swap">
+<style>
+  /* Single deliberate look: council navy + parish gold. Works on any host background. */
+  :root {
+    color-scheme: dark;
+    --navy-deep: #07142A;
+    --navy: #0E2445;
+    --navy-line: #24406B;
+    --gold: #CFA84E;
+    --gold-soft: #E6CD8F;
+    --parchment: #F3ECDD;
+    --mist: #A9B6CB;
+    --red: #A83236;
+    --display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+    --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  }
+  body { background: var(--navy-deep); color: var(--parchment); font-family: var(--body); }
+
+  .kc-hero {
+    position: relative; overflow: hidden; isolation: isolate;
+    background: radial-gradient(120% 90% at 78% 20%, #16335F 0%, var(--navy) 38%, var(--navy-deep) 100%);
+    border-bottom: 1px solid var(--navy-line);
+  }
+  /* Photo layer: loads the council's own photos from the live site; hidden if unavailable */
+  .kc-photos { position: absolute; inset: 0; z-index: -3; }
+  .kc-photos img {
+    position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover;
+    opacity: 0; transform: scale(1.04); transition: opacity 1.8s ease;
+    filter: saturate(.85) contrast(1.05);
+  }
+  .kc-photos img.on { opacity: 1; animation: kc-kenburns 9s ease-out forwards; }
+  @keyframes kc-kenburns { from { transform: scale(1.04) translate(0,0); } to { transform: scale(1.14) translate(-2%, -1.5%); } }
+  .kc-scrim {
+    position: absolute; inset: 0; z-index: -2;
+    background: linear-gradient(90deg, rgba(7,20,42,.96) 0%, rgba(7,20,42,.86) 42%, rgba(7,20,42,.45) 100%),
+                linear-gradient(0deg, rgba(7,20,42,.9) 0%, rgba(7,20,42,0) 45%);
+  }
+  .kc-hero.no-photos .kc-scrim { background: none; }
+
+  .kc-inner {
+    max-width: 1180px; margin: 0 auto; padding-inline: max(16px, 4vw);
+    padding-block: clamp(36px, 4.5vw, 64px) clamp(36px, 5vw, 64px);
+    display: grid; gap: clamp(28px, 4vw, 44px);
+  }
+  .kc-eyebrow {
+    display: flex; align-items: center; gap: 14px;
+    font: 600 12px/1 var(--body); letter-spacing: .22em; text-transform: uppercase; color: var(--gold);
+  }
+  .kc-eyebrow::before { content: ""; width: 36px; height: 1px; background: var(--gold); }
+  .kc-title {
+    margin: 0; max-width: 17ch; text-wrap: balance;
+    font: 500 clamp(40px, 6.4vw, 84px)/1.02 var(--display); letter-spacing: -.01em;
+  }
+  .kc-title em { font-style: italic; color: var(--gold-soft); }
+  .kc-title .w { display: inline-block; opacity: 0; transform: translateY(.35em); animation: kc-rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes kc-rise { to { opacity: 1; transform: none; } }
+  .kc-lede { margin: 0; max-width: 56ch; font-size: clamp(16px, 1.6vw, 18px); line-height: 1.6; color: var(--mist); }
+
+  .kc-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+  .kc-btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 2px;
+    font: 600 15px/1 var(--body); text-decoration: none; transition: background .2s, color .2s, border-color .2s;
+  }
+  .kc-btn.primary { background: var(--gold); color: var(--navy-deep); }
+  .kc-btn.primary:hover { background: var(--gold-soft); }
+  .kc-btn.ghost { color: var(--parchment); border: 1px solid rgba(243,236,221,.35); }
+  .kc-btn.ghost:hover { border-color: var(--gold); color: var(--gold-soft); }
+  .kc-btn:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; }
+
+  /* Four principles ticker: the order is the Order's own (I–IV) */
+  .kc-pillars {
+    display: grid; grid-template-columns: auto 1fr; gap: 18px 28px; align-items: center;
+    border-top: 1px solid var(--navy-line); padding-top: 26px; max-width: 760px;
+  }
+  .kc-numeral {
+    font: 500 clamp(56px, 7vw, 88px)/.9 var(--display); color: var(--gold); min-width: 2.3ch;
+    font-variant-numeric: lining-nums;
+  }
+  .kc-pillar-text { display: grid; gap: 6px; min-height: 5.2em; }
+  .kc-pillar-name { font: 600 clamp(24px, 2.6vw, 30px)/1.1 var(--display); }
+  .kc-pillar-copy { font-size: 15px; line-height: 1.5; color: var(--mist); max-width: 52ch; }
+  .kc-pillar-stat { font: 600 12px/1 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--gold-soft); }
+  .kc-swap { transition: opacity .5s ease, transform .5s ease; }
+  .kc-swap.out { opacity: 0; transform: translateY(8px); }
+  .kc-dots { grid-column: 1 / -1; display: flex; gap: 8px; }
+  .kc-dot { flex: 1; height: 2px; background: rgba(243,236,221,.18); border: 0; padding: 0; cursor: pointer; position: relative; overflow: hidden; }
+  .kc-dot i { position: absolute; inset: 0; background: var(--gold); transform-origin: left; transform: scaleX(0); }
+  .kc-dot.done i { transform: scaleX(1); }
+  .kc-dot.active i { animation: kc-fill var(--kc-dur, 5s) linear forwards; }
+  .kc-dot:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 4px; }
+  @keyframes kc-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  .kc-stats { display: flex; flex-wrap: wrap; gap: clamp(20px, 5vw, 64px); }
+  .kc-stat b { display: block; font: 500 clamp(34px, 4vw, 48px)/1 var(--display); color: var(--parchment); font-variant-numeric: tabular-nums lining-nums; }
+  .kc-stat span { font-size: 13px; color: var(--mist); }
+
+
+  @media (max-width: 560px) {
+    .kc-pillars { grid-template-columns: 1fr; gap: 10px; }
+    .kc-numeral { font-size: 52px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kc-title .w { animation: none; opacity: 1; transform: none; }
+    .kc-photos img.on { animation: none; }
+    .kc-dot.active i { animation: none; transform: scaleX(1); }
+  }
+</style>
+</head><body style="margin:0">
+
+<section class="kc-hero" id="kc-hero" aria-label="Presentation Council #6033">
+  <div class="kc-photos" id="kc-photos" aria-hidden="true"></div>
+  <div class="kc-scrim"></div>
+
+  <div class="kc-inner">
+    <h1 class="kc-title" id="kc-title">Faith, family, and <em>fraternity</em> rooted at Presentation Parish.</h1>
+    <p class="kc-lede">We are Catholic men of Upper Saddle River, Saddle River, Allendale, and the surrounding towns, gathering each month to serve our parish, support our neighbors in need, and grow as husbands, fathers, and disciples.</p>
+    <div class="kc-ctas">
+      <a class="kc-btn primary" href="https://www.kofc6033.org/join">Join Our Brotherhood →</a>
+      <a class="kc-btn ghost" href="https://www.kofc6033.org/charities">Support Our Charities</a>
+    </div>
+
+    <div class="kc-pillars" aria-live="polite">
+      <div class="kc-numeral kc-swap" id="kc-num">I.</div>
+      <div class="kc-pillar-text kc-swap" id="kc-ptext">
+        <div class="kc-pillar-name" id="kc-pname">Charity</div>
+        <div class="kc-pillar-copy" id="kc-pcopy">From the food pantry collection to our work with Covenant House, we are our parish's hands and feet for those in need.</div>
+        <div class="kc-pillar-stat" id="kc-pstat">$31K given in 2025</div>
+      </div>
+      <div class="kc-dots" id="kc-dots" role="tablist" aria-label="Four principles"></div>
+    </div>
+
+    <div class="kc-stats">
+      <div class="kc-stat"><b data-count="58">58</b><span>Years serving the parish</span></div>
+      <div class="kc-stat"><b data-count="100" data-suffix="+">100+</b><span>Active brother knights</span></div>
+      <div class="kc-stat"><b data-count="31" data-prefix="$" data-suffix="K">$31K</b><span>Raised for charity in 2025</span></div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(() => {
+  const hero = document.getElementById('kc-hero');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 1. Headline: word-by-word rise */
+  const title = document.getElementById('kc-title');
+  let i = 0;
+  const wrap = (node) => {
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(part => {
+          if (!part.trim()) { frag.append(part); return; }
+          const s = document.createElement('span'); s.className = 'w'; s.textContent = part;
+          s.style.animationDelay = (0.15 + i++ * 0.07) + 's'; frag.append(s);
+        });
+        n.replaceWith(frag);
+      } else wrap(n);
+    });
+  };
+  wrap(title);
+
+  /* 2. Photo cross-fade (council photos on Supabase; silently skipped if they fail to load) */
+  const base = 'https://vsmwjkqqoqatkoalslci.supabase.co/storage/v1/object/public/public-photos/';
+  const photos = ['hero.png', 'Activities_service1.jpg', 'Activities_faith1.jpg', 'Activities_service2.png', 'Activities_signature1.jpg', 'Activities_faith2.jpg', 'CoP_volunteer.jpg'];
+  const box = document.getElementById('kc-photos');
+  const loaded = [];
+  hero.classList.add('no-photos');
+  photos.forEach(f => {
+    const img = new Image(); img.alt = ''; img.decoding = 'async';
+    img.onload = () => { loaded.push(img); box.append(img); if (loaded.length === 1) { hero.classList.remove('no-photos'); show(0); } };
+    img.src = base + f;
+  });
+  let pIdx = 0;
+  function show(n) { loaded.forEach((im, k) => im.classList.toggle('on', k === n)); }
+  if (!reduce) setInterval(() => { if (loaded.length > 1) { pIdx = (pIdx + 1) % loaded.length; show(pIdx); } }, 7000);
+
+  /* 3. Four principles ticker */
+  const P = [
+    ['I.', 'Charity', "From the food pantry collection to our work with Covenant House, we are our parish's hands and feet for those in need.", '$31K given in 2025'],
+    ['II.', 'Unity', 'None of us is as good as all of us. We work shoulder-to-shoulder with our pastor, our parish, and our community.', '12 parish events a year'],
+    ['III.', 'Fraternity', 'A circle of Catholic men who hold each other up, at first communions and at funerals, in joys and in trials.', '100+ brother knights'],
+    ['IV.', 'Patriotism', 'Faithful citizens who honor our country, support our veterans, and stand for the dignity of every life among us.', '20 Fourth Degree Knights'],
+  ];
+  const DUR = 5200;
+  const dots = document.getElementById('kc-dots');
+  dots.style.setProperty('--kc-dur', DUR + 'ms');
+  const $ = id => document.getElementById(id);
+  P.forEach((p, k) => {
+    const b = document.createElement('button'); b.className = 'kc-dot'; b.setAttribute('role', 'tab');
+    b.setAttribute('aria-label', p[1]); b.innerHTML = '<i></i>';
+    b.addEventListener('click', () => go(k, true)); b.addEventListener('mouseenter', () => go(k, true));
+    dots.append(b);
+  });
+  let cur = 0, timer = null, paused = false;
+  function paint(k) {
+    [...dots.children].forEach((d, j) => {
+      d.classList.remove('active'); d.classList.toggle('done', j < k || (paused && j === k));
+      d.setAttribute('aria-selected', j === k);
+    });
+    if (!paused) { void dots.offsetWidth; dots.children[k].classList.add('active'); }
+  }
+  function go(k, manual) {
+    if (manual) { paused = true; clearTimeout(timer); timer = setTimeout(() => { paused = false; go((cur + 1) % 4); }, 9000); }
+    if (k === cur && manual) { paint(k); return; }
+    const num = $('kc-num'), txt = $('kc-ptext');
+    num.classList.add('out'); txt.classList.add('out');
+    setTimeout(() => {
+      const [n, name, copy, stat] = P[k];
+      num.textContent = n; $('kc-pname').textContent = name; $('kc-pcopy').textContent = copy; $('kc-pstat').textContent = stat;
+      num.classList.remove('out'); txt.classList.remove('out');
+    }, reduce ? 0 : 420);
+    cur = k; paint(k);
+    if (!manual) timer = setTimeout(() => go((cur + 1) % 4), DUR);
+  }
+  paint(0);
+  if (!reduce) timer = setTimeout(() => go(1), DUR);
+
+  /* 4. Stat counters */
+  if (!reduce) document.querySelectorAll('[data-count]').forEach(el => {
+    const end = +el.dataset.count, pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+    const t0 = performance.now() + 900, d = 1600;
+    const tick = now => {
+      const p = Math.min(1, Math.max(0, (now - t0) / d)), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + Math.round(end * e) + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    el.textContent = pre + '0' + suf; requestAnimationFrame(tick);
+  });
+})();
+</script>
+</body></html>
