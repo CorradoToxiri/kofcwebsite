@@ -116,6 +116,7 @@ const SPONSOR_TIERS: { heading: string; layout: 'single' | 'columns'; names: str
       'Kevin R. Birdsall CPA, LLC',
       "Presentation Men's Wednesday 6:00am",
       "Terrie O'Connor Realtors / Sean Farley",
+      'Victor Hartanto',
       'Wannamaker & Carlough Funeral Home',
     ],
   },
